@@ -1,0 +1,77 @@
+name: Godot Windows build and smoke test
+
+on:
+  push:
+    branches: [migration/godot]
+    paths: ['godot/**', '.github/workflows/godot-windows.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: godot-windows-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows-x64:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install verified Godot 4.7.2 and Windows templates
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $base = 'https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable'
+          $toolDir = Join-Path $env:RUNNER_TEMP 'godot-tools'
+          New-Item -ItemType Directory -Force $toolDir | Out-Null
+          Invoke-WebRequest "$base/SHA512-SUMS.txt" -OutFile "$toolDir/SHA512-SUMS.txt"
+          foreach ($asset in @('Godot_v4.7.2-stable_win64.exe.zip', 'Godot_v4.7.2-stable_export_templates.tpz')) {
+            $destination = Join-Path $toolDir $asset
+            Invoke-WebRequest "$base/$asset" -OutFile $destination
+            $entry = Get-Content "$toolDir/SHA512-SUMS.txt" | Where-Object { $_ -match "  $([regex]::Escape($asset))$" }
+            if (-not $entry) { throw "Missing official checksum for $asset" }
+            $expected = ($entry -split '\s+')[0]
+            if ((Get-FileHash $destination -Algorithm SHA512).Hash.ToLower() -ne $expected.ToLower()) { throw "Checksum mismatch: $asset" }
+          }
+          Expand-Archive "$toolDir/Godot_v4.7.2-stable_win64.exe.zip" -DestinationPath $toolDir
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          $templates = Join-Path $env:APPDATA 'Godot/export_templates/4.7.2.stable'
+          New-Item -ItemType Directory -Force $templates | Out-Null
+          $archive = [IO.Compression.ZipFile]::OpenRead("$toolDir/Godot_v4.7.2-stable_export_templates.tpz")
+          try {
+            foreach ($entry in $archive.Entries) {
+              if ($entry.FullName -match '^templates/(windows_(debug|release)_x86_64(_console)?\.exe|version\.txt)$') {
+                [IO.Compression.ZipFileExtensions]::ExtractToFile($entry, (Join-Path $templates $entry.Name), $true)
+              }
+            }
+          } finally { $archive.Dispose() }
+          "GODOT_BIN=$toolDir/Godot_v4.7.2-stable_win64_console.exe" | Out-File -FilePath $env:GITHUB_ENV -Append
+      - name: Import, test, and export Windows Debug and Release
+        shell: pwsh
+        run: |
+          & ./godot/tools/build_windows.ps1 -GodotBin $env:GODOT_BIN
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Start actual Windows release executable
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $exe = Resolve-Path 'godot/build/windows/Bone-Puzzle-0.2.0-Windows-x64.exe'
+          $log = Join-Path $env:RUNNER_TEMP 'bone-puzzle-windows-smoke.log'
+          $process = Start-Process $exe -ArgumentList @('--headless', '--quit-after', '120', '--log-file', $log) -PassThru
+          if (-not $process.WaitForExit(60000)) { $process.Kill(); throw 'Windows runtime smoke timed out' }
+          Get-Content $log
+          if ($process.ExitCode -ne 0) { throw "Windows runtime exit $($process.ExitCode)" }
+          if (Select-String -Path $log -Pattern 'SCRIPT ERROR:|ERROR:' -Quiet) { throw 'Godot reported runtime errors' }
+          'Windows headless launch passed. Interactive graphics and hardware performance require separate Windows validation.'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Bone-Puzzle-Windows-x64-${{ github.sha }}
+          path: |
+            godot/build/Bone-Puzzle-0.2.0-Windows-x64.zip
+            godot/build/Bone-Puzzle-Godot-Source.zip
+            godot/build/SHA256SUMS.txt

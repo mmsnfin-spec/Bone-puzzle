@@ -1,0 +1,55 @@
+{
+  "environment": {
+    "measured_utc": "2026-10-23T20:33:49.926Z",
+    "original_project": "React production build",
+    "browser": "154.0.8037.57",
+    "os": "linux x64",
+    "cpu": "AMD EPYC 9V74 80-Core Processor",
+    "viewport": [
+      1920,
+      1080
+    ],
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "source_origin": "http://127.0.0.1:4175",
+    "sample_frames": 120,
+    "comparison_note": "Same cloud host, but Chromium SwiftShader and Godot llvmpipe are different software graphics stacks. Original title renders assembled anatomy while Godot title is intentionally UI-only. CPU and memory definitions differ. These data do not establish hardware improvement percentages or Windows 60 FPS."
+  },
+  "title": {
+    "phase": "title",
+    "frames": 120,
+    "average_fps": 60,
+    "minimum_instantaneous_fps": 59.52380952380888,
+    "mean_frame_ms": 16.666666666666668,
+    "p95_frame_ms": 16.700000000000273,
+    "maximum_frame_ms": 16.800000000000182,
+    "cdp_main_thread_task_ms": 135.63400000000001,
+    "cdp_script_ms": 103.28500000000001,
+    "cdp_layout_ms": 0,
+    "cdp_style_ms": 0,
+    "js_heap_used_bytes": 14206588,
+    "js_heap_total_bytes": 22679552,
+    "gpu_frame_time_ms": null,
+    "physics_time_ms": null,
+    "notes": "RAF is browser presentation cadence. CDP CPU durations are page main-thread totals over this sample, not Godot CPU process monitor time. JS heap is not total process/static memory."
+  },
+  "title_to_game_skip_intro_ms": 121.73551300000054,
+  "game_guide_on": {
+    "phase": "game_guide_on",
+    "frames": 120,
+    "average_fps": 8.955558043210567,
+    "minimum_instantaneous_fps": 2.3998080153587673,
+    "mean_frame_ms": 111.6625,
+    "p95_frame_ms": 216.70000000000073,
+    "maximum_frame_ms": 416.7000000000007,
+    "cdp_main_thread_task_ms": 1124.4959999999999,
+    "cdp_script_ms": 1005.6669999999999,
+    "cdp_layout_ms": 3.845000000000001,
+    "cdp_style_ms": 0.11800000000000005,
+    "js_heap_used_bytes": 15412628,
+    "js_heap_total_bytes": 20844544,
+    "gpu_frame_time_ms": null,
+    "physics_time_ms": null,
+    "notes": "RAF is browser presentation cadence. CDP CPU durations are page main-thread totals over this sample, not Godot CPU process monitor time. JS heap is not total process/static memory."
+  },
+  "page_errors": []
+}

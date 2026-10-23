@@ -1,0 +1,150 @@
+{
+	"environment": {
+		"build": "editor/debug",
+		"comparison_note": "These values are Linux software-renderer measurements, not a React/Godot same-PC hardware comparison or a 60 FPS Windows guarantee.",
+		"cpu_monitor_note": "TIME_PROCESS and TIME_PHYSICS_PROCESS are Godot's reported monitor samples, including engine overhead. They are not OS per-thread attribution or GPU timings.",
+		"display": "X11",
+		"engine": "4.7.2-stable (official)",
+		"frame_limit": 60,
+		"gpu_frame_time_ms": null,
+		"gpu_frame_time_note": "Not exposed by this portable monitor harness. Capture GPU Profiler on target Windows hardware.",
+		"os": "Linux",
+		"processor": "AMD EPYC 9V74 80-Core Processor",
+		"processor_count": 5,
+		"renderer": "llvmpipe (LLVM 19.1.7, 256 bits)",
+		"viewport": [
+			1920,
+			1080
+		],
+		"windows_runtime_tested": false
+	},
+	"five_restarts": [
+		{
+			"dynamic_bodies": 0,
+			"iteration": 1,
+			"nodes": 280.0,
+			"resources": 123.0,
+			"static_bytes": 83441815.0
+		},
+		{
+			"dynamic_bodies": 0,
+			"iteration": 2,
+			"nodes": 280.0,
+			"resources": 123.0,
+			"static_bytes": 83445687.0
+		},
+		{
+			"dynamic_bodies": 0,
+			"iteration": 3,
+			"nodes": 280.0,
+			"resources": 123.0,
+			"static_bytes": 83449479.0
+		},
+		{
+			"dynamic_bodies": 0,
+			"iteration": 4,
+			"nodes": 280.0,
+			"resources": 123.0,
+			"static_bytes": 83453295.0
+		},
+		{
+			"dynamic_bodies": 0,
+			"iteration": 5,
+			"nodes": 280.0,
+			"resources": 123.0,
+			"static_bytes": 83457363.0
+		}
+	],
+	"five_restarts_after_timers_settle": {
+		"dynamic_bodies": 0,
+		"nodes": 280.0,
+		"resources": 123.0,
+		"static_bytes": 83438891.0
+	},
+	"game_guide_off": {
+		"average_fps": 39.1849785690821,
+		"average_rendered_fps": 39.1849785690821,
+		"dynamic_bodies": 0,
+		"frame_timing_note": "process_frame cadence includes the frame cap; low-processor title/menu intentionally render fewer frames when unchanged.",
+		"frames": 120,
+		"interaction": "Static scene",
+		"maximum_frame_ms": 36.42,
+		"mean_cpu_process_ms": 32.2769833333333,
+		"mean_draw_calls": 145.0,
+		"mean_frame_ms": 25.5199833333333,
+		"mean_physics_process_ms": 0.0775083333333335,
+		"minimum_instantaneous_fps": 27.4574409665019,
+		"nodes": 280.0,
+		"p95_frame_ms": 29.546,
+		"phase": "game_guide_off",
+		"rendered_frames": 120,
+		"resources": 123.0,
+		"static_memory_bytes": 83364691.0,
+		"video_memory_bytes": 29813639.0
+	},
+	"game_guide_on": {
+		"average_fps": 30.4260406339773,
+		"average_rendered_fps": 30.4260406339773,
+		"dynamic_bodies": 0,
+		"frame_timing_note": "process_frame cadence includes the frame cap; low-processor title/menu intentionally render fewer frames when unchanged.",
+		"frames": 120,
+		"interaction": "Static scene",
+		"maximum_frame_ms": 48.011,
+		"mean_cpu_process_ms": 53.640375,
+		"mean_draw_calls": 172.0,
+		"mean_frame_ms": 32.8665833333333,
+		"mean_physics_process_ms": 0.0611333333333332,
+		"minimum_instantaneous_fps": 20.8285601216388,
+		"nodes": 280.0,
+		"p95_frame_ms": 40.003,
+		"phase": "game_guide_on",
+		"rendered_frames": 120,
+		"resources": 123.0,
+		"static_memory_bytes": 83364767.0,
+		"video_memory_bytes": 29812275.0
+	},
+	"game_manipulation": {
+		"average_fps": 38.9073266386793,
+		"average_rendered_fps": 38.9073266386793,
+		"dynamic_bodies": 0,
+		"frame_timing_note": "process_frame cadence includes the frame cap; low-processor title/menu intentionally render fewer frames when unchanged.",
+		"frames": 120,
+		"interaction": "Cycle selection through all27 bones, rotate+nudge one each frame",
+		"maximum_frame_ms": 52.319,
+		"mean_cpu_process_ms": 38.8245333333334,
+		"mean_draw_calls": 145.0,
+		"mean_frame_ms": 25.7021,
+		"mean_physics_process_ms": 0.05005,
+		"minimum_instantaneous_fps": 19.1135151665743,
+		"nodes": 280.0,
+		"p95_frame_ms": 29.064,
+		"phase": "game_manipulation",
+		"rendered_frames": 120,
+		"resources": 123.0,
+		"static_memory_bytes": 83397282.0,
+		"video_memory_bytes": 29761501.0
+	},
+	"long_play_memory_note": "Five repeated stage reloads detect gross accumulation only; an extended Windows soak test remains required.",
+	"stage_load_ms": 26.667,
+	"title": {
+		"average_fps": 59.99988000024,
+		"average_rendered_fps": 0.0,
+		"dynamic_bodies": 0,
+		"frame_timing_note": "process_frame cadence includes the frame cap; low-processor title/menu intentionally render fewer frames when unchanged.",
+		"frames": 120,
+		"interaction": "Static scene",
+		"maximum_frame_ms": 17.883,
+		"mean_cpu_process_ms": 5.364375,
+		"mean_draw_calls": 3.0,
+		"mean_frame_ms": 16.6667,
+		"mean_physics_process_ms": 0.407,
+		"minimum_instantaneous_fps": 55.9190292456523,
+		"nodes": 8.0,
+		"p95_frame_ms": 16.744,
+		"phase": "title",
+		"rendered_frames": 0,
+		"resources": 15.0,
+		"static_memory_bytes": 73190289.0,
+		"video_memory_bytes": 25999359.0
+	}
+}

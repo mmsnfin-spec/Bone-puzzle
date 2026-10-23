@@ -1,0 +1,10 @@
+{
+	"checks": 137,
+	"display": "X11",
+	"duration_ms": 11685,
+	"engine": "4.7.2-stable (official)",
+	"failures": [],
+	"notes": "Linux GUI integration under software rendering; no Windows runtime certification. Separate all27 Easy ray-pick/pointer playthrough does not set target transforms directly.",
+	"pointer_assembled": 27,
+	"windows_runtime_tested": false
+}

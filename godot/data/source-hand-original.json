@@ -1,0 +1,1525 @@
+{
+  "stageId": "hand",
+  "side": "right",
+  "dataset": "BodyParts3D 3.0 / 20110915",
+  "source": "BodyParts3D mirror; real anatomical meshes",
+  "coordinateMapping": {
+    "sourceOrigin": [
+      -272.0814971923828,
+      -149.1964988708496,
+      742.7115173339844
+    ],
+    "rotationRows": [
+      [
+        -1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        -1
+      ],
+      [
+        0,
+        -1,
+        0
+      ]
+    ],
+    "uniformScale": 0.044034301971768254,
+    "stageOffset": [
+      0,
+      1.5,
+      0
+    ],
+    "sourceBounds": [
+      [
+        -324.6510009765625,
+        -191.83399963378906,
+        663.22802734375
+      ],
+      [
+        -219.51199340820312,
+        -106.55899810791016,
+        822.1950073242188
+      ]
+    ],
+    "sourceUnits": "source coordinate units; not asserted to be clinical millimeters"
+  },
+  "bones": [
+    {
+      "id": "FMA23725",
+      "fmaId": "FMA23725",
+      "englishName": "Trapezoid",
+      "koreanName": "소능형골",
+      "acceptedAliases": [
+        "right trapezoid",
+        "trapezoid bone",
+        "right trapezoid bone"
+      ],
+      "category": "carpals",
+      "modelPath": "/models/hand/carpals/FMA23725.glb",
+      "targetPosition": [
+        -0.1633897289898503,
+        -0.9933751581388472,
+        -1.402712669153374
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -268.37098693847656,
+        -117.34149932861328,
+        799.3349914550781
+      ],
+      "initialTransform": {
+        "position": [
+          -5.0,
+          -3.7262860935721234,
+          -0.9500000000000002
+        ],
+        "rotation": [
+          0.7042449312540563,
+          -0.06355373162112235,
+          0.06355373162112235,
+          0.7042449312540563
+        ]
+      },
+      "size": [
+        0.4993488231014219,
+        0.5599403343808732,
+        0.6674278128557524
+      ],
+      "snapDistance": 0.22,
+      "sourceSha256": "db19cf9ed7c2e97266255c03615458913b8c970d3b6e44eb015a756e4c839e5c",
+      "vertexCount": 310,
+      "triangleCount": 616
+    },
+    {
+      "id": "FMA24435",
+      "fmaId": "FMA24435",
+      "englishName": "Scaphoid",
+      "koreanName": "주상골",
+      "acceptedAliases": [
+        "right scaphoid",
+        "scaphoid bone",
+        "right scaphoid bone"
+      ],
+      "category": "carpals",
+      "modelPath": "/models/hand/carpals/FMA24435.glb",
+      "targetPosition": [
+        -0.4507791277838676,
+        -1.653846685467352,
+        -1.491067506810289
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -261.84449768066406,
+        -115.33499908447266,
+        814.3340148925781
+      ],
+      "initialTransform": {
+        "position": [
+          -3.75,
+          -3.7198350844591026,
+          -0.9500000000000002
+        ],
+        "rotation": [
+          0.7071067811865476,
+          0.0,
+          -0.0,
+          0.7071067811865476
+        ]
+      },
+      "size": [
+        1.049557211227426,
+        0.6923066290652962,
+        0.6803298310817945
+      ],
+      "snapDistance": 0.3148671633682278,
+      "sourceSha256": "106d5be5a72229257a9ba41a543a4f42d18eae0513b45e0cd21e8e34d62518b6",
+      "vertexCount": 539,
+      "triangleCount": 1074
+    },
+    {
+      "id": "FMA24437",
+      "fmaId": "FMA24437",
+      "englishName": "Lunate",
+      "koreanName": "월상골",
+      "acceptedAliases": [
+        "right lunate",
+        "lunate bone",
+        "right lunate bone"
+      ],
+      "category": "carpals",
+      "modelPath": "/models/hand/carpals/FMA24437.glb",
+      "targetPosition": [
+        -1.184412596971029,
+        -1.6369803975020298,
+        -1.4976727192970667
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -245.18399810791016,
+        -115.18499755859375,
+        813.9509887695312
+      ],
+      "initialTransform": {
+        "position": [
+          -2.5,
+          -3.6906842636728907,
+          -0.9500000000000002
+        ],
+        "rotation": [
+          0.7042449312540563,
+          0.06355373162112235,
+          -0.06355373162112235,
+          0.7042449312540563
+        ]
+      },
+      "size": [
+        0.7359895220415317,
+        0.5729727031712238,
+        0.7386314726542177
+      ],
+      "snapDistance": 0.2215894417962653,
+      "sourceSha256": "4b35077cf6a5711e1dfdd39a07734d792f0c84ce19b3b8cc942e2ad4838ef8ea",
+      "vertexCount": 434,
+      "triangleCount": 864
+    },
+    {
+      "id": "FMA24439",
+      "fmaId": "FMA24439",
+      "englishName": "Triquetral",
+      "koreanName": "삼각골",
+      "acceptedAliases": [
+        "right triquetral",
+        "triquetral bone",
+        "right triquetral bone"
+      ],
+      "category": "carpals",
+      "modelPath": "/models/hand/carpals/FMA24439.glb",
+      "targetPosition": [
+        -1.5079766290460987,
+        -1.2884485211258139,
+        -1.3542968412545138
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -237.83599853515625,
+        -118.44100189208984,
+        806.0359802246094
+      ],
+      "initialTransform": {
+        "position": [
+          -1.25,
+          -3.713890359625496,
+          -0.9500000000000002
+        ],
+        "rotation": [
+          0.7069278023334212,
+          -0.01590856021264645,
+          0.01590856021264645,
+          0.7069278023334212
+        ]
+      },
+      "size": [
+        0.49653083203590687,
+        0.6138382769920695,
+        0.692219280749007
+      ],
+      "snapDistance": 0.22,
+      "sourceSha256": "bb2139a7289e784de0ff2db5e1adcc9bd8f5c9c0d4418c0b885d379c97e8e319",
+      "vertexCount": 354,
+      "triangleCount": 704
+    },
+    {
+      "id": "FMA24441",
+      "fmaId": "FMA24441",
+      "englishName": "Pisiform",
+      "koreanName": "두상골",
+      "acceptedAliases": [
+        "right pisiform",
+        "pisiform bone",
+        "right pisiform bone"
+      ],
+      "category": "carpals",
+      "modelPath": "/models/hand/carpals/FMA24441.glb",
+      "targetPosition": [
+        -1.5609940334380872,
+        -1.2802149344503677,
+        -0.9041123539315381
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -236.63199615478516,
+        -128.66449737548828,
+        805.8489990234375
+      ],
+      "initialTransform": {
+        "position": [
+          0.0,
+          -3.8214883673159874,
+          -0.9500000000000002
+        ],
+        "rotation": [
+          0.7054965150878756,
+          0.04769347123939512,
+          -0.04769347123939512,
+          0.7054965150878756
+        ]
+      },
+      "size": [
+        0.3770215375991307,
+        0.5209238572248576,
+        0.47702326536802436
+      ],
+      "snapDistance": 0.22,
+      "sourceSha256": "1357a32fd5fc1bb826a122dc67f5c795644516300ce53aae6e9b106da1997a19",
+      "vertexCount": 200,
+      "triangleCount": 396
+    },
+    {
+      "id": "FMA24443",
+      "fmaId": "FMA24443",
+      "englishName": "Trapezium",
+      "koreanName": "대능형골",
+      "acceptedAliases": [
+        "right trapezium",
+        "trapezium bone",
+        "right trapezium bone"
+      ],
+      "category": "carpals",
+      "modelPath": "/models/hand/carpals/FMA24443.glb",
+      "targetPosition": [
+        0.08119966673257785,
+        -1.2904750020637237,
+        -1.1773892884087824
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -273.9255065917969,
+        -122.45849609375,
+        806.0820007324219
+      ],
+      "initialTransform": {
+        "position": [
+          1.25,
+          -3.6841012242202478,
+          -0.9500000000000002
+        ],
+        "rotation": [
+          0.7063909563782641,
+          -0.03180906705644535,
+          0.03180906705644535,
+          0.7063909563782641
+        ]
+      },
+      "size": [
+        0.7559365179313615,
+        0.8870261833777113,
+        0.7517975515595033
+      ],
+      "snapDistance": 0.2661078550133134,
+      "sourceSha256": "c28bb9f078fa7e1f164e549449c8025201a31965c47df0546476c84bb13cffaf",
+      "vertexCount": 515,
+      "triangleCount": 1026
+    },
+    {
+      "id": "FMA24446",
+      "fmaId": "FMA24446",
+      "englishName": "Capitate",
+      "koreanName": "유두골",
+      "acceptedAliases": [
+        "right capitate",
+        "capitate bone",
+        "right capitate bone"
+      ],
+      "category": "carpals",
+      "modelPath": "/models/hand/carpals/FMA24446.glb",
+      "targetPosition": [
+        -0.663244836370687,
+        -1.1843521730533322,
+        -1.4912437152406492
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -257.01949310302734,
+        -115.33099746704102,
+        803.6719970703125
+      ],
+      "initialTransform": {
+        "position": [
+          2.5,
+          -3.6737311313238736,
+          -0.9500000000000002
+        ],
+        "rotation": [
+          0.7063909563782641,
+          0.03180906705644535,
+          -0.03180906705644535,
+          0.7063909563782641
+        ]
+      },
+      "size": [
+        0.7148969193880627,
+        1.0008128192772934,
+        0.7725377373522517
+      ],
+      "snapDistance": 0.300243845783188,
+      "sourceSha256": "4f717f2fba9b0cb432da64921d7aeaab2709d97129f39b6538c6ea147e68977d",
+      "vertexCount": 644,
+      "triangleCount": 1284
+    },
+    {
+      "id": "FMA24448",
+      "fmaId": "FMA24448",
+      "englishName": "Hamate",
+      "koreanName": "유구골",
+      "acceptedAliases": [
+        "right hamate",
+        "hamate bone",
+        "right hamate bone"
+      ],
+      "category": "carpals",
+      "modelPath": "/models/hand/carpals/FMA24448.glb",
+      "targetPosition": [
+        -1.2019161916901995,
+        -1.0755873934302547,
+        -1.3329621829784046
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -244.7864990234375,
+        -118.92550277709961,
+        801.2019958496094
+      ],
+      "initialTransform": {
+        "position": [
+          3.75,
+          -3.5585593527009824,
+          -0.9500000000000002
+        ],
+        "rotation": [
+          0.7054965150878756,
+          -0.04769347123939512,
+          0.04769347123939512,
+          0.7054965150878756
+        ]
+      },
+      "size": [
+        0.6984277303067942,
+        0.8611334547890873,
+        1.0028812945980345
+      ],
+      "snapDistance": 0.3008643883794104,
+      "sourceSha256": "28fc3501dc45884187c91738d368194820d0fa8fc5c421cc40525e0c71665e7d",
+      "vertexCount": 577,
+      "triangleCount": 1150
+    },
+    {
+      "id": "FMA24450",
+      "fmaId": "FMA24450",
+      "englishName": "Proximal phalanx of thumb",
+      "koreanName": "엄지 근위지골",
+      "acceptedAliases": [
+        "proximal phalanx of right thumb"
+      ],
+      "category": "phalanges",
+      "modelPath": "/models/hand/phalanges/FMA24450.glb",
+      "targetPosition": [
+        1.6404759619353315,
+        0.668941242419414,
+        0.03421450346801612
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -309.33599853515625,
+        -149.97349548339844,
+        761.5845031738281
+      ],
+      "initialTransform": {
+        "position": [
+          5.0,
+          -3.5654728039577424,
+          -0.9500000000000002
+        ],
+        "rotation": [
+          0.7069278023334212,
+          0.01590856021264645,
+          -0.01590856021264645,
+          0.7069278023334212
+        ]
+      },
+      "size": [
+        0.8946886464466512,
+        1.4057945529206013,
+        0.9890543920845147
+      ],
+      "snapDistance": 0.42,
+      "sourceSha256": "12066c799d3468b5d697a87b6fcf0b35e71c68df5e030053ecdd3d39c2259dec",
+      "vertexCount": 688,
+      "triangleCount": 1368
+    },
+    {
+      "id": "FMA24451",
+      "fmaId": "FMA24451",
+      "englishName": "Proximal phalanx of index finger",
+      "koreanName": "검지 근위지골",
+      "acceptedAliases": [
+        "proximal phalanx of right index finger"
+      ],
+      "category": "phalanges",
+      "modelPath": "/models/hand/phalanges/FMA24451.glb",
+      "targetPosition": [
+        0.897860062238075,
+        2.7258933045115885,
+        -0.323343813531502
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -292.4715118408203,
+        -141.85350036621094,
+        714.8720092773438
+      ],
+      "initialTransform": {
+        "position": [
+          -5.0,
+          -3.5506773429986,
+          1.5
+        ],
+        "rotation": [
+          0.7042449312540563,
+          -0.06355373162112235,
+          0.06355373162112235,
+          0.7042449312540563
+        ]
+      },
+      "size": [
+        0.9752278255260576,
+        1.6637032230568838,
+        1.018645314002799
+      ],
+      "snapDistance": 0.42,
+      "sourceSha256": "29ac3a5b3459b99e81e4da835f4aa909b647f1fbb187423e53aa3e57315253ff",
+      "vertexCount": 834,
+      "triangleCount": 1664
+    },
+    {
+      "id": "FMA24452",
+      "fmaId": "FMA24452",
+      "englishName": "Proximal phalanx of middle finger",
+      "koreanName": "중지 근위지골",
+      "acceptedAliases": [
+        "proximal phalanx of right middle finger"
+      ],
+      "category": "phalanges",
+      "modelPath": "/models/hand/phalanges/FMA24452.glb",
+      "targetPosition": [
+        -0.13740898017481182,
+        2.7234273943517318,
+        -0.1402489762969305
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -268.96099853515625,
+        -146.01150512695312,
+        714.9280090332031
+      ],
+      "initialTransform": {
+        "position": [
+          -3.75,
+          -3.415624079723096,
+          1.5
+        ],
+        "rotation": [
+          0.7071067811865476,
+          0.0,
+          -0.0,
+          0.7071067811865476
+        ]
+      },
+      "size": [
+        0.808028366125747,
+        1.7980073065426767,
+        1.2887518405538074
+      ],
+      "snapDistance": 0.42,
+      "sourceSha256": "648823478862684fe11a5c647b02ae7892f634a3d56ff402c71b89e91aed33ec",
+      "vertexCount": 986,
+      "triangleCount": 1968
+    },
+    {
+      "id": "FMA24453",
+      "fmaId": "FMA24453",
+      "englishName": "Proximal phalanx of ring finger",
+      "koreanName": "약지 근위지골",
+      "acceptedAliases": [
+        "proximal phalanx of right ring finger"
+      ],
+      "category": "phalanges",
+      "modelPath": "/models/hand/phalanges/FMA24453.glb",
+      "targetPosition": [
+        -1.068690188000453,
+        2.5096188733794964,
+        -0.18148746023731865
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -247.81200408935547,
+        -145.0749969482422,
+        719.7835083007812
+      ],
+      "initialTransform": {
+        "position": [
+          -2.5,
+          -3.478703002286414,
+          1.5
+        ],
+        "rotation": [
+          0.7042449312540563,
+          0.06355373162112235,
+          -0.06355373162112235,
+          0.7042449312540563
+        ]
+      },
+      "size": [
+        0.605559672338228,
+        1.7305932198509126,
+        1.1625939954271716
+      ],
+      "snapDistance": 0.42,
+      "sourceSha256": "3f36cfec72db8d90f89069910d0a1981c0e22b621fd4a7f9c6ad5d1517d2e15e",
+      "vertexCount": 812,
+      "triangleCount": 1620
+    },
+    {
+      "id": "FMA24454",
+      "fmaId": "FMA24454",
+      "englishName": "Proximal phalanx of little finger",
+      "koreanName": "소지 근위지골",
+      "acceptedAliases": [
+        "proximal phalanx of right little finger"
+      ],
+      "category": "phalanges",
+      "modelPath": "/models/hand/phalanges/FMA24454.glb",
+      "targetPosition": [
+        -1.85353597502798,
+        2.060007525393403,
+        -0.1705007218234489
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -229.98849487304688,
+        -145.32450103759766,
+        729.9939880371094
+      ],
+      "initialTransform": {
+        "position": [
+          -1.25,
+          -3.5932142932561337,
+          1.5
+        ],
+        "rotation": [
+          0.7069278023334212,
+          -0.01590856021264645,
+          0.01590856021264645,
+          0.7069278023334212
+        ]
+      },
+      "size": [
+        0.6388938055645677,
+        1.4440611783767803,
+        0.9335714134877319
+      ],
+      "snapDistance": 0.42,
+      "sourceSha256": "bf7d8f3cd4dcc1bef6487551a87d703e5a6b2b5ce856bc8c941edd5e90519bc9",
+      "vertexCount": 606,
+      "triangleCount": 1208
+    },
+    {
+      "id": "FMA24455",
+      "fmaId": "FMA24455",
+      "englishName": "Middle phalanx of index finger",
+      "koreanName": "검지 중위지골",
+      "acceptedAliases": [
+        "middle phalanx of right index finger"
+      ],
+      "category": "phalanges",
+      "modelPath": "/models/hand/phalanges/FMA24455.glb",
+      "targetPosition": [
+        1.3322795222910984,
+        3.7580574502354565,
+        0.3855643709097471
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -302.3369903564453,
+        -157.95249938964844,
+        691.4320068359375
+      ],
+      "initialTransform": {
+        "position": [
+          0.0,
+          -3.5991590180897397,
+          1.5
+        ],
+        "rotation": [
+          0.7054965150878756,
+          0.04769347123939512,
+          -0.04769347123939512,
+          0.7054965150878756
+        ]
+      },
+      "size": [
+        0.6485370596828968,
+        0.9107177343958471,
+        0.9216819638205194
+      ],
+      "snapDistance": 0.2765045891461558,
+      "sourceSha256": "b44a016e7a7798587ad694405a65275931c904e3cf2d55dd64061cbecbabe2ab",
+      "vertexCount": 572,
+      "triangleCount": 1140
+    },
+    {
+      "id": "FMA24456",
+      "fmaId": "FMA24456",
+      "englishName": "Middle phalanx of middle finger",
+      "koreanName": "중지 중위지골",
+      "acceptedAliases": [
+        "middle phalanx of right middle finger"
+      ],
+      "category": "phalanges",
+      "modelPath": "/models/hand/phalanges/FMA24456.glb",
+      "targetPosition": [
+        0.08529428703616604,
+        4.024707671101913,
+        0.7246945448576798
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -274.01849365234375,
+        -165.65399932861328,
+        685.3764953613281
+      ],
+      "initialTransform": {
+        "position": [
+          1.25,
+          -3.5495542452241584,
+          1.5
+        ],
+        "rotation": [
+          0.7063909563782641,
+          -0.03180906705644535,
+          0.03180906705644535,
+          0.7063909563782641
+        ]
+      },
+      "size": [
+        0.6095676162356523,
+        1.1227430058955314,
+        1.0208915095516824
+      ],
+      "snapDistance": 0.3368229017686594,
+      "sourceSha256": "43d9601a373cf165c2e2bd604638186eda9ccded8f4418cc4aa382183cd5c2c2",
+      "vertexCount": 740,
+      "triangleCount": 1476
+    },
+    {
+      "id": "FMA24457",
+      "fmaId": "FMA24457",
+      "englishName": "Middle phalanx of ring finger",
+      "koreanName": "약지 중위지골",
+      "acceptedAliases": [
+        "middle phalanx of right ring finger"
+      ],
+      "category": "phalanges",
+      "modelPath": "/models/hand/phalanges/FMA24457.glb",
+      "targetPosition": [
+        -1.0038280159645845,
+        3.7324294542362013,
+        0.6886082677581047
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -249.28499603271484,
+        -164.8344955444336,
+        692.0140075683594
+      ],
+      "initialTransform": {
+        "position": [
+          2.5,
+          -3.524917316659723,
+          1.5
+        ],
+        "rotation": [
+          0.7063909563782641,
+          0.03180906705644535,
+          -0.03180906705644535,
+          0.7063909563782641
+        ]
+      },
+      "size": [
+        0.5355452934615466,
+        1.0607875170617178,
+        1.0701653666805528
+      ],
+      "snapDistance": 0.3210496100041658,
+      "sourceSha256": "929519bef218c8e53a80751a46fa69ef3ac301b8dd278e3156d7600431618e85",
+      "vertexCount": 677,
+      "triangleCount": 1350
+    },
+    {
+      "id": "FMA24458",
+      "fmaId": "FMA24458",
+      "englishName": "Middle phalanx of little finger",
+      "koreanName": "소지 중위지골",
+      "acceptedAliases": [
+        "middle phalanx of right little finger"
+      ],
+      "category": "phalanges",
+      "modelPath": "/models/hand/phalanges/FMA24458.glb",
+      "targetPosition": [
+        -2.057062255352724,
+        3.0454725735885564,
+        0.45163799690153444
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -225.3665008544922,
+        -159.4530029296875,
+        707.614501953125
+      ],
+      "initialTransform": {
+        "position": [
+          3.75,
+          -3.6904642131068544,
+          1.5
+        ],
+        "rotation": [
+          0.7054965150878756,
+          -0.04769347123939512,
+          0.04769347123939512,
+          0.7054965150878756
+        ]
+      },
+      "size": [
+        0.5137478570866361,
+        0.8718329516243907,
+        0.7390715737862903
+      ],
+      "snapDistance": 0.26154988548731717,
+      "sourceSha256": "d67f25f614d977663d141628d01bdefcd55b0624dc90b3aee91dc96abac1942f",
+      "vertexCount": 452,
+      "triangleCount": 900
+    },
+    {
+      "id": "FMA24459",
+      "fmaId": "FMA24459",
+      "englishName": "Distal phalanx of thumb",
+      "koreanName": "엄지 원위지골",
+      "acceptedAliases": [
+        "distal phalanx of right thumb"
+      ],
+      "category": "phalanges",
+      "modelPath": "/models/hand/phalanges/FMA24459.glb",
+      "targetPosition": [
+        2.011046490421441,
+        1.5747930036878266,
+        0.5421063278575857
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -317.7514953613281,
+        -161.50749969482422,
+        741.0130004882812
+      ],
+      "initialTransform": {
+        "position": [
+          5.0,
+          -3.701098198704941,
+          1.5
+        ],
+        "rotation": [
+          0.7069278023334212,
+          0.01590856021264645,
+          -0.01590856021264645,
+          0.7069278023334212
+        ]
+      },
+      "size": [
+        0.6076298274342824,
+        1.0285546445307474,
+        0.7178036025901176
+      ],
+      "snapDistance": 0.3085663933592242,
+      "sourceSha256": "a9aa0c6acb7269cc5a81632a00b06ceb8a33cd2fe078634239da5a7f53ea1602",
+      "vertexCount": 520,
+      "triangleCount": 1040
+    },
+    {
+      "id": "FMA24460",
+      "fmaId": "FMA24460",
+      "englishName": "Distal phalanx of index finger",
+      "koreanName": "검지 원위지골",
+      "acceptedAliases": [
+        "distal phalanx of right index finger"
+      ],
+      "category": "phalanges",
+      "modelPath": "/models/hand/phalanges/FMA24460.glb",
+      "targetPosition": [
+        1.5350579666463813,
+        4.305778427077594,
+        1.1139357759506088
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -306.94200134277344,
+        -174.49349975585938,
+        678.9934997558594
+      ],
+      "initialTransform": {
+        "position": [
+          -5.0,
+          -3.6828682691403194,
+          3.95
+        ],
+        "rotation": [
+          0.7042449312540563,
+          -0.06355373162112235,
+          0.06355373162112235,
+          0.7042449312540563
+        ]
+      },
+      "size": [
+        0.4474773614281353,
+        0.61582175568196,
+        0.7542634617193604
+      ],
+      "snapDistance": 0.2262790385158081,
+      "sourceSha256": "7f5f76eb2982eb79bbf51ed626f722abe0d8ceb6e678e433d6732a71187b61db",
+      "vertexCount": 330,
+      "triangleCount": 656
+    },
+    {
+      "id": "FMA24461",
+      "fmaId": "FMA24461",
+      "englishName": "Distal phalanx of middle finger",
+      "koreanName": "중지 원위지골",
+      "acceptedAliases": [
+        "distal phalanx of right middle finger"
+      ],
+      "category": "phalanges",
+      "modelPath": "/models/hand/phalanges/FMA24461.glb",
+      "targetPosition": [
+        0.20909708717361963,
+        4.700567284120076,
+        1.4922786248111453
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -276.8300018310547,
+        -183.08550262451172,
+        670.0280151367188
+      ],
+      "initialTransform": {
+        "position": [
+          -3.75,
+          -3.6747660408943696,
+          3.95
+        ],
+        "rotation": [
+          0.7071067811865476,
+          0.0,
+          -0.0,
+          0.7071067811865476
+        ]
+      },
+      "size": [
+        0.4236111137774211,
+        0.5988654317598477,
+        0.77046791821126
+      ],
+      "snapDistance": 0.231140375463378,
+      "sourceSha256": "5a2321e130f03d57b18e6cc725c9129b8e8398385f06403d8e6228a3f959756a",
+      "vertexCount": 322,
+      "triangleCount": 640
+    },
+    {
+      "id": "FMA24462",
+      "fmaId": "FMA24462",
+      "englishName": "Distal phalanx of ring finger",
+      "koreanName": "약지 원위지골",
+      "acceptedAliases": [
+        "distal phalanx of right ring finger"
+      ],
+      "category": "phalanges",
+      "modelPath": "/models/hand/phalanges/FMA24462.glb",
+      "targetPosition": [
+        -0.9655620624185308,
+        4.2763635456121385,
+        1.4836697763307178
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -250.15399932861328,
+        -182.88999938964844,
+        679.6614990234375
+      ],
+      "initialTransform": {
+        "position": [
+          -2.5,
+          -3.707857950520538,
+          3.95
+        ],
+        "rotation": [
+          0.7042449312540563,
+          0.06355373162112235,
+          -0.06355373162112235,
+          0.7042449312540563
+        ]
+      },
+      "size": [
+        0.3714729037843898,
+        0.41009093823610154,
+        0.7042840989589232
+      ],
+      "snapDistance": 0.22,
+      "sourceSha256": "9e14b18953b97f741d9ab5a0b05f786d6474cda29a13f06072d188b3ff978291",
+      "vertexCount": 228,
+      "triangleCount": 452
+    },
+    {
+      "id": "FMA24463",
+      "fmaId": "FMA24463",
+      "englishName": "Distal phalanx of little finger",
+      "koreanName": "소지 원위지골",
+      "acceptedAliases": [
+        "distal phalanx of right little finger"
+      ],
+      "category": "phalanges",
+      "modelPath": "/models/hand/phalanges/FMA24463.glb",
+      "targetPosition": [
+        -2.131106079250839,
+        3.6781565857750866,
+        0.9880194825140188
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -223.68499755859375,
+        -171.63399505615234,
+        693.2465209960938
+      ],
+      "initialTransform": {
+        "position": [
+          -1.25,
+          -3.744582206284087,
+          3.95
+        ],
+        "rotation": [
+          0.7069278023334212,
+          -0.01590856021264645,
+          0.01590856021264645,
+          0.7069278023334212
+        ]
+      },
+      "size": [
+        0.36751064977548603,
+        0.5623618984724603,
+        0.6308355874318251
+      ],
+      "snapDistance": 0.22,
+      "sourceSha256": "520090dc80d537f973295acd49e070f3e094c4d5a48ef708e36a2b98a351d0d7",
+      "vertexCount": 237,
+      "triangleCount": 466
+    },
+    {
+      "id": "FMA24464",
+      "fmaId": "FMA24464",
+      "englishName": "First metacarpal bone",
+      "koreanName": "제1중수골",
+      "acceptedAliases": [
+        "right first metacarpal bone"
+      ],
+      "category": "metacarpals",
+      "modelPath": "/models/hand/metacarpals/FMA24464.glb",
+      "targetPosition": [
+        0.8606725244431305,
+        -0.5457231000781335,
+        -0.6320243644210151
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -291.6269989013672,
+        -134.84349822998047,
+        789.1690063476562
+      ],
+      "initialTransform": {
+        "position": [
+          0.0,
+          -3.3840957049585043,
+          3.95
+        ],
+        "rotation": [
+          0.7054965150878756,
+          0.04769347123939512,
+          -0.04769347123939512,
+          0.7054965150878756
+        ]
+      },
+      "size": [
+        1.6534888453320482,
+        1.6416860720709996,
+        1.3518085900829904
+      ],
+      "snapDistance": 0.42,
+      "sourceSha256": "5bca353b5b387b71fd6a9b3a588b08303a32cbf924a9c0bc7dc700024808624c",
+      "vertexCount": 1219,
+      "triangleCount": 2434
+    },
+    {
+      "id": "FMA24466",
+      "fmaId": "FMA24466",
+      "englishName": "Second metacarpal bone",
+      "koreanName": "제2중수골",
+      "acceptedAliases": [
+        "right second metacarpal bone"
+      ],
+      "category": "metacarpals",
+      "modelPath": "/models/hand/metacarpals/FMA24466.glb",
+      "targetPosition": [
+        0.25421047680662234,
+        0.5985734388168239,
+        -1.0121284576974983
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -277.85450744628906,
+        -126.21149826049805,
+        763.1825256347656
+      ],
+      "initialTransform": {
+        "position": [
+          1.25,
+          -3.489293481703887,
+          3.95
+        ],
+        "rotation": [
+          0.7063909563782641,
+          -0.03180906705644535,
+          0.03180906705644535,
+          0.7063909563782641
+        ]
+      },
+      "size": [
+        1.37188862417763,
+        3.0066177388112565,
+        1.1414130365922253
+      ],
+      "snapDistance": 0.42,
+      "sourceSha256": "3541c67a2864e4e72f56fe2a0c01aaa5d87346e55864e92a0360b32991892fe7",
+      "vertexCount": 1611,
+      "triangleCount": 3218
+    },
+    {
+      "id": "FMA24468",
+      "fmaId": "FMA24468",
+      "englishName": "Third metacarpal bone",
+      "koreanName": "제3중수골",
+      "acceptedAliases": [
+        "right third metacarpal bone"
+      ],
+      "category": "metacarpals",
+      "modelPath": "/models/hand/metacarpals/FMA24468.glb",
+      "targetPosition": [
+        -0.397783896426014,
+        0.5969447286730928,
+        -1.113649374259699
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -263.0479965209961,
+        -123.90600204467773,
+        763.2195129394531
+      ],
+      "initialTransform": {
+        "position": [
+          2.5,
+          -3.383060459432946,
+          3.95
+        ],
+        "rotation": [
+          0.7063909563782641,
+          0.03180906705644535,
+          -0.03180906705644535,
+          0.7063909563782641
+        ]
+      },
+      "size": [
+        0.8918699834710109,
+        2.8497670391608416,
+        1.3538790811341075
+      ],
+      "snapDistance": 0.42,
+      "sourceSha256": "f8d96b418c20308dc76868621875a3b029f9d6f072621efa37045dceb2730d5e",
+      "vertexCount": 1511,
+      "triangleCount": 3018
+    },
+    {
+      "id": "FMA24470",
+      "fmaId": "FMA24470",
+      "englishName": "Fourth metacarpal bone",
+      "koreanName": "제4중수골",
+      "acceptedAliases": [
+        "right fourth metacarpal bone"
+      ],
+      "category": "metacarpals",
+      "modelPath": "/models/hand/metacarpals/FMA24470.glb",
+      "targetPosition": [
+        -1.0482365718761457,
+        0.4989694818421089,
+        -1.0526841129730486
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -248.27649688720703,
+        -125.29049682617188,
+        765.4444885253906
+      ],
+      "initialTransform": {
+        "position": [
+          3.75,
+          -3.481499492227919,
+          3.95
+        ],
+        "rotation": [
+          0.7054965150878756,
+          -0.04769347123939512,
+          0.04769347123939512,
+          0.7054965150878756
+        ]
+      },
+      "size": [
+        0.5596319276333598,
+        2.648532644273502,
+        1.1570010155441608
+      ],
+      "snapDistance": 0.42,
+      "sourceSha256": "5b9338a2d75680e92abbdc2c539d36ae8dd6f634ea3a026f2a6b33c071fb8e35",
+      "vertexCount": 1155,
+      "triangleCount": 2306
+    },
+    {
+      "id": "FMA24472",
+      "fmaId": "FMA24472",
+      "englishName": "Fifth metacarpal bone",
+      "koreanName": "제5중수골",
+      "acceptedAliases": [
+        "right fifth metacarpal bone"
+      ],
+      "category": "metacarpals",
+      "modelPath": "/models/hand/metacarpals/FMA24472.glb",
+      "targetPosition": [
+        -1.5909592092961644,
+        0.30816850738045276,
+        -0.9088679658208918
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -235.95149993896484,
+        -128.55649948120117,
+        769.7774963378906
+      ],
+      "initialTransform": {
+        "position": [
+          5.0,
+          -3.5163304732358998,
+          3.95
+        ],
+        "rotation": [
+          0.7069278023334212,
+          0.01590856021264645,
+          -0.01590856021264645,
+          0.7069278023334212
+        ]
+      },
+      "size": [
+        0.8973756150377326,
+        2.428006365868501,
+        1.0873390535282
+      ],
+      "snapDistance": 0.42,
+      "sourceSha256": "4359ea925a821e599ed8f65bd02f3d6754144718f8724ef155177c38b9b79480",
+      "vertexCount": 1091,
+      "triangleCount": 2178
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.cache/
+.playwright/
+playwright-report/
+test-results/
+__pycache__/
+.env*

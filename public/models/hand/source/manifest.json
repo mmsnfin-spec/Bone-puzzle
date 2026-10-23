@@ -1,0 +1,223 @@
+{
+  "dataset": "BodyParts3D 3.0 / 20110915",
+  "mirrorCommit": "f0eeb6e843380cfe6b83797cf8c3e1af74de5e61",
+  "license": "CC BY-SA 2.1 Japan",
+  "models": [
+    {
+      "fmaId": "FMA23725",
+      "englishName": "right trapezoid",
+      "file": "FMA23725.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA23725.stl",
+      "sha256": "db19cf9ed7c2e97266255c03615458913b8c970d3b6e44eb015a756e4c839e5c",
+      "bytes": 30884
+    },
+    {
+      "fmaId": "FMA24435",
+      "englishName": "right scaphoid",
+      "file": "FMA24435.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24435.stl",
+      "sha256": "106d5be5a72229257a9ba41a543a4f42d18eae0513b45e0cd21e8e34d62518b6",
+      "bytes": 53784
+    },
+    {
+      "fmaId": "FMA24437",
+      "englishName": "right lunate",
+      "file": "FMA24437.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24437.stl",
+      "sha256": "4b35077cf6a5711e1dfdd39a07734d792f0c84ce19b3b8cc942e2ad4838ef8ea",
+      "bytes": 43284
+    },
+    {
+      "fmaId": "FMA24439",
+      "englishName": "right triquetral",
+      "file": "FMA24439.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24439.stl",
+      "sha256": "bb2139a7289e784de0ff2db5e1adcc9bd8f5c9c0d4418c0b885d379c97e8e319",
+      "bytes": 35284
+    },
+    {
+      "fmaId": "FMA24441",
+      "englishName": "right pisiform",
+      "file": "FMA24441.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24441.stl",
+      "sha256": "1357a32fd5fc1bb826a122dc67f5c795644516300ce53aae6e9b106da1997a19",
+      "bytes": 19884
+    },
+    {
+      "fmaId": "FMA24443",
+      "englishName": "right trapezium",
+      "file": "FMA24443.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24443.stl",
+      "sha256": "c28bb9f078fa7e1f164e549449c8025201a31965c47df0546476c84bb13cffaf",
+      "bytes": 51384
+    },
+    {
+      "fmaId": "FMA24446",
+      "englishName": "right capitate",
+      "file": "FMA24446.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24446.stl",
+      "sha256": "4f717f2fba9b0cb432da64921d7aeaab2709d97129f39b6538c6ea147e68977d",
+      "bytes": 64284
+    },
+    {
+      "fmaId": "FMA24448",
+      "englishName": "right hamate",
+      "file": "FMA24448.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24448.stl",
+      "sha256": "28fc3501dc45884187c91738d368194820d0fa8fc5c421cc40525e0c71665e7d",
+      "bytes": 57584
+    },
+    {
+      "fmaId": "FMA24450",
+      "englishName": "proximal phalanx of right thumb",
+      "file": "FMA24450.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24450.stl",
+      "sha256": "12066c799d3468b5d697a87b6fcf0b35e71c68df5e030053ecdd3d39c2259dec",
+      "bytes": 68484
+    },
+    {
+      "fmaId": "FMA24451",
+      "englishName": "proximal phalanx of right index finger",
+      "file": "FMA24451.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24451.stl",
+      "sha256": "29ac3a5b3459b99e81e4da835f4aa909b647f1fbb187423e53aa3e57315253ff",
+      "bytes": 83284
+    },
+    {
+      "fmaId": "FMA24452",
+      "englishName": "proximal phalanx of right middle finger",
+      "file": "FMA24452.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24452.stl",
+      "sha256": "648823478862684fe11a5c647b02ae7892f634a3d56ff402c71b89e91aed33ec",
+      "bytes": 98484
+    },
+    {
+      "fmaId": "FMA24453",
+      "englishName": "proximal phalanx of right ring finger",
+      "file": "FMA24453.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24453.stl",
+      "sha256": "3f36cfec72db8d90f89069910d0a1981c0e22b621fd4a7f9c6ad5d1517d2e15e",
+      "bytes": 81084
+    },
+    {
+      "fmaId": "FMA24454",
+      "englishName": "proximal phalanx of right little finger",
+      "file": "FMA24454.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24454.stl",
+      "sha256": "bf7d8f3cd4dcc1bef6487551a87d703e5a6b2b5ce856bc8c941edd5e90519bc9",
+      "bytes": 60484
+    },
+    {
+      "fmaId": "FMA24455",
+      "englishName": "middle phalanx of right index finger",
+      "file": "FMA24455.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24455.stl",
+      "sha256": "b44a016e7a7798587ad694405a65275931c904e3cf2d55dd64061cbecbabe2ab",
+      "bytes": 57084
+    },
+    {
+      "fmaId": "FMA24456",
+      "englishName": "middle phalanx of right middle finger",
+      "file": "FMA24456.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24456.stl",
+      "sha256": "43d9601a373cf165c2e2bd604638186eda9ccded8f4418cc4aa382183cd5c2c2",
+      "bytes": 73884
+    },
+    {
+      "fmaId": "FMA24457",
+      "englishName": "middle phalanx of right ring finger",
+      "file": "FMA24457.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24457.stl",
+      "sha256": "929519bef218c8e53a80751a46fa69ef3ac301b8dd278e3156d7600431618e85",
+      "bytes": 67584
+    },
+    {
+      "fmaId": "FMA24458",
+      "englishName": "middle phalanx of right little finger",
+      "file": "FMA24458.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24458.stl",
+      "sha256": "d67f25f614d977663d141628d01bdefcd55b0624dc90b3aee91dc96abac1942f",
+      "bytes": 45084
+    },
+    {
+      "fmaId": "FMA24459",
+      "englishName": "distal phalanx of right thumb",
+      "file": "FMA24459.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24459.stl",
+      "sha256": "a9aa0c6acb7269cc5a81632a00b06ceb8a33cd2fe078634239da5a7f53ea1602",
+      "bytes": 52084
+    },
+    {
+      "fmaId": "FMA24460",
+      "englishName": "distal phalanx of right index finger",
+      "file": "FMA24460.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24460.stl",
+      "sha256": "7f5f76eb2982eb79bbf51ed626f722abe0d8ceb6e678e433d6732a71187b61db",
+      "bytes": 32884
+    },
+    {
+      "fmaId": "FMA24461",
+      "englishName": "distal phalanx of right middle finger",
+      "file": "FMA24461.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24461.stl",
+      "sha256": "5a2321e130f03d57b18e6cc725c9129b8e8398385f06403d8e6228a3f959756a",
+      "bytes": 32084
+    },
+    {
+      "fmaId": "FMA24462",
+      "englishName": "distal phalanx of right ring finger",
+      "file": "FMA24462.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24462.stl",
+      "sha256": "9e14b18953b97f741d9ab5a0b05f786d6474cda29a13f06072d188b3ff978291",
+      "bytes": 22684
+    },
+    {
+      "fmaId": "FMA24463",
+      "englishName": "distal phalanx of right little finger",
+      "file": "FMA24463.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24463.stl",
+      "sha256": "520090dc80d537f973295acd49e070f3e094c4d5a48ef708e36a2b98a351d0d7",
+      "bytes": 23384
+    },
+    {
+      "fmaId": "FMA24464",
+      "englishName": "right first metacarpal bone",
+      "file": "FMA24464.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24464.stl",
+      "sha256": "5bca353b5b387b71fd6a9b3a588b08303a32cbf924a9c0bc7dc700024808624c",
+      "bytes": 121784
+    },
+    {
+      "fmaId": "FMA24466",
+      "englishName": "right second metacarpal bone",
+      "file": "FMA24466.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24466.stl",
+      "sha256": "3541c67a2864e4e72f56fe2a0c01aaa5d87346e55864e92a0360b32991892fe7",
+      "bytes": 160984
+    },
+    {
+      "fmaId": "FMA24468",
+      "englishName": "right third metacarpal bone",
+      "file": "FMA24468.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24468.stl",
+      "sha256": "f8d96b418c20308dc76868621875a3b029f9d6f072621efa37045dceb2730d5e",
+      "bytes": 150984
+    },
+    {
+      "fmaId": "FMA24470",
+      "englishName": "right fourth metacarpal bone",
+      "file": "FMA24470.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24470.stl",
+      "sha256": "5b9338a2d75680e92abbdc2c539d36ae8dd6f634ea3a026f2a6b33c071fb8e35",
+      "bytes": 115384
+    },
+    {
+      "fmaId": "FMA24472",
+      "englishName": "right fifth metacarpal bone",
+      "file": "FMA24472.stl",
+      "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA24472.stl",
+      "sha256": "4359ea925a821e599ed8f65bd02f3d6754144718f8724ef155177c38b9b79480",
+      "bytes": 108984
+    }
+  ]
+}

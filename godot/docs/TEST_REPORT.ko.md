@@ -6,7 +6,7 @@
 
 - 대상 엔진: 공식 Godot **4.7.2 Stable**, GDScript, GL Compatibility.
 - 현재 검증 호스트: Linux x86-64 Codex Cloud. Windows Export Templates는 동일 4.7.2 x86-64를 사용한다.
-- Windows 대상: Windows 10/11 x86-64. **실제 Windows PC 실행/그래픽·입력 검수는 아직 미실행이다.**
+- Windows 대상: Windows 10/11 x86-64. **GitHub Windows runner에서 실제 Release EXE의 headless 시작/종료가 통과했다. 사용자 Windows PC의 그래픽·입력·성능 검수는 미실행이다.**
 - headless는 규칙·자원·상태를 검증하지만 실제 GPU 렌더링/마우스 사용성/Windows 실행을 대신하지 않는다.
 
 ## 완료된 자동 검증
@@ -54,9 +54,10 @@
 | 배포 ZIP CRC 및 SHA-256 목록 | 두 ZIP CRC 검사 통과, `SHA256SUMS.txt`에 ZIP SHA-256 기록. EXE 해시는 동봉 BUILD-INFO.json |
 | licenses/README/조작/테스트/성능/비교표 동봉 | 통과. 스크린샷과 원시 JSON도 docs/evidence에 동봉 |
 | 소스 ZIP 실제 개방·재사용 | 별도 `/tmp` 폴더에 풀어 cache 없이 editor import, 코어 212 검사, 18,164 정점 비교, standalone Python 데이터 검증 모두 통과. 미동봉 원본 web/STL 비교만 명시적으로 UNRUN |
+| 실제 Windows EXE headless 시작·종료 | GitHub Windows runner 통과: [run 40021935337](https://github.com/mmsnfin-spec/Bone-puzzle/actions/runs/40021935337), 게임 소스 커밋 c439a74, Windows Debug/Release export 및 실제 Release 프로세스 실행/종료·오류 로그 검사 성공 |
 | 실제 Windows 10/11 실행·종료·재실행·저장·전체 HAND | **미실행** |
 
-`.github/workflows/godot-windows.yml`은 Windows runner에서 공식 엔진/템플릿 SHA-512 검증, import/코어 검사, Debug/Release export, 실제 Release EXE의 headless 시작·종료 및 artifact 업로드를 자동화한다. 워크플로 작성 자체를 실행 성공으로 표시하지 않는다. 이 테스트도 실제 Windows 그래픽·마우스·장시간 성능 검수를 대신하지 않는다.
+`.github/workflows/godot-windows.yml`은 Windows runner에서 공식 엔진/템플릿 SHA-512 검증, import/코어·정점 검사, Debug/Release export, 실제 Release EXE의 headless 시작·종료 및 artifact 업로드를 자동화한다. 위 run의 각 step success와 artifact 업로드를 실제 확인했다. 성공 후 패키징은 BUILD-INFO에 해당 CI URL과 headless 검증 여부를 기록한다. 이 테스트는 실제 Windows 그래픽·마우스·장시간 성능 검수를 대신하지 않는다.
 
 ## 남은 제한
 

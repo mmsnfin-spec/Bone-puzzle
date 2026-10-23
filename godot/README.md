@@ -4,7 +4,7 @@
 
 이 프로젝트는 `migration/godot` 브랜치의 `godot/`에 있다. 기존 React 웹게임의 `src/`, `public/`, `scripts/`, `package.json`과 Vercel 설정은 독립적으로 보존한다.
 
-검증: 코어 212 assertions, Linux GUI 137 assertions 통과. GUIDE OFF에서 실제 포인터로 27개를 조립해 완료했다. Windows Debug/Release export와 두 ZIP 무결성·독립 소스 임포트를 확인했으며, 실제 Windows 그래픽/입력/성능 검수는 별도다.
+검증: 코어 212 assertions, Linux GUI 137 assertions 통과. GUIDE OFF에서 실제 포인터로 27개를 조립해 완료했다. Windows Debug/Release export, GitHub Windows runner의 실제 Release EXE headless 실행, 두 ZIP 무결성·독립 소스 임포트를 확인했다. 사용자 Windows PC의 그래픽/입력/성능 검수는 별도다.
 
 ## Windows 실행
 

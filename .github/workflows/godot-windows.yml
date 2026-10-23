@@ -68,6 +68,11 @@ jobs:
           if ($process.ExitCode -ne 0) { throw "Windows runtime exit $($process.ExitCode)" }
           if (Select-String -Path $log -Pattern 'SCRIPT ERROR:|ERROR:' -Quiet) { throw 'Godot reported runtime errors' }
           'Windows headless launch passed. Interactive graphics and hardware performance require separate Windows validation.'
+      - name: Record successful Windows headless verification in package
+        shell: pwsh
+        run: |
+          python godot/tools/package_build.py --windows-headless-smoke-run '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}'
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - uses: actions/upload-artifact@v4
         with:
           name: Bone-Puzzle-Windows-x64-${{ github.sha }}

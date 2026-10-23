@@ -91,7 +91,7 @@ def package_source() -> Path:
     return destination
 
 
-def package_release() -> tuple[Path, Path]:
+def package_release(windows_smoke_run: str = "") -> tuple[Path, Path]:
     output = BUILD / "windows"
     executable = output / f"{PRODUCT}.exe"
     verify_windows_executable(executable)
@@ -117,8 +117,10 @@ def package_release() -> tuple[Path, Path]:
         "product": "BONE PUZZLE", "version": VERSION,
         "engine": "Godot 4.7.2 Stable", "target": "Windows 10/11 x86-64",
         "embedded_resources": True, "code_signed": False,
-        "windows_runtime_verified": False,
-        "verification_scope": "PE x86-64 header and embedded resource pack verified; see bundled test report for actual executed checks",
+        "windows_headless_launch_verified": bool(windows_smoke_run),
+        "windows_headless_ci_run": windows_smoke_run or None,
+        "windows_interactive_verified": False,
+        "verification_scope": "PE x86-64 and embedded pack verified; headless launch is recorded separately from Windows interactive graphics and hardware performance",
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "exe_sha256": sha256(executable), **commit_info(),
     }
@@ -131,11 +133,12 @@ def package_release() -> tuple[Path, Path]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-only", action="store_true", help="Create only the editable source ZIP")
+    parser.add_argument("--windows-headless-smoke-run", default="", help="Observed successful Windows headless CI run URL; does not certify interactive Windows gameplay")
     arguments = parser.parse_args()
     BUILD.mkdir(exist_ok=True)
     artifacts = [package_source()]
     if not arguments.source_only:
-        release, executable = package_release()
+        release, executable = package_release(arguments.windows_headless_smoke_run)
         artifacts += [release, executable]
     # Distribution checksums can be checked directly beside the two ZIPs.
     # The uncompressed EXE hash is recorded inside Windows BUILD-INFO.json.

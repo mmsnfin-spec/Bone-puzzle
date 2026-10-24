@@ -1,0 +1,14 @@
+{
+  "dataset": "BodyParts3D 3.0 / 20110915",
+  "mirrorCommit": "f0eeb6e843380cfe6b83797cf8c3e1af74de5e61",
+  "fmaId": "FMA9945",
+  "sourceName": "sixth thoracic vertebra",
+  "file": "FMA9945.stl",
+  "url": "https://raw.githubusercontent.com/Kevin-Mattheus-Moerman/BodyParts3D/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61/assets/BodyParts3D_data/stl/FMA9945.stl",
+  "sha256": "591757ab8228e95d93733e276f424b240ce9e050cf7bf7ec10775c35004f908b",
+  "license": "CC BY-SA 2.1 Japan",
+  "modifications": "Seven morphology-guided solid Boolean regions. Exterior triangles are clipped/subdivided only at curved seams; original exterior shape is retained. Shared internal curved surfaces are complementary; no connectors. Small disconnected junction fragments attach to the adjacent region with largest shared surface.",
+  "originalTriangles": 4896,
+  "derivedTriangles": 9202,
+  "reviewStatus": "prototype; independent anatomical segmentation review pending"
+}

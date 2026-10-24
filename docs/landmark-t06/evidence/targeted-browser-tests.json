@@ -1,0 +1,269 @@
+{
+  "config": {
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "/workspace/Bone-puzzle/node_modules/.bin/playwright",
+      "test",
+      "tests/e2e/thoracic.spec.ts"
+    ],
+    "configFile": "/workspace/Bone-puzzle/playwright.config.ts",
+    "rootDir": "/workspace/Bone-puzzle/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/workspace/Bone-puzzle/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/workspace/Bone-puzzle/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 270000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/workspace/Bone-puzzle/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/workspace/Bone-puzzle/tests/e2e",
+        "snapshotDir": "/workspace/Bone-puzzle/tests/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 270000,
+        "use": {
+          "baseURL": "http://127.0.0.1:5174",
+          "headless": false,
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "launchOptions": {
+            "executablePath": "/usr/bin/chromium",
+            "args": [
+              "--no-sandbox",
+              "--disable-dev-shm-usage",
+              "--use-angle=swiftshader",
+              "--enable-unsafe-swiftshader"
+            ]
+          },
+          "screenshot": "only-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --port 5174",
+      "env": {
+        "VITE_E2E": "1"
+      },
+      "url": "http://127.0.0.1:5174",
+      "reuseExistingServer": true,
+      "timeout": 60000
+    }
+  },
+  "suites": [
+    {
+      "title": "thoracic.spec.ts",
+      "file": "thoracic.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "T06 easy: seven real pointer placements complete the original vertebra",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 22333,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T19:42:15.992Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dcea5317c4475d4b103f-ee299635b44506bf5fec",
+          "file": "thoracic.spec.ts",
+          "line": 26,
+          "column": 50
+        },
+        {
+          "title": "T06 normal: seven real pointer placements complete the original vertebra",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 18381,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T19:42:39.251Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dcea5317c4475d4b103f-ce29e7d20df899479f5d",
+          "file": "thoracic.spec.ts",
+          "line": 26,
+          "column": 50
+        },
+        {
+          "title": "T06 hard: seven real pointer placements complete the original vertebra",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 20003,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T19:42:57.655Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dcea5317c4475d4b103f-52d65865d98f621a6667",
+          "file": "thoracic.spec.ts",
+          "line": 26,
+          "column": 50
+        },
+        {
+          "title": "HAND and T06 retain separate notes and poses across menu switching and reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4634,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T19:43:17.674Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "dcea5317c4475d4b103f-d0aed1e1f285ccf923c7",
+          "file": "thoracic.spec.ts",
+          "line": 63,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-24T19:42:13.752Z",
+    "duration": 68786.963,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

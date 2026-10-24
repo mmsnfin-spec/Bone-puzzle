@@ -1,9 +1,10 @@
 import { useGameStore, namingCount } from "../state/gameStore";
 import { useScreenStore } from "../state/screenStore";
 import { formatTime } from "../components/game/ProgressDisplay";
-import { HAND_STAGE } from "../data/stageRegistry";
+import { usePuzzle } from "../hooks/usePuzzle";
 import { HINT_CONFIG } from "../data/config/gameplay";
 export default function CompletionScreen() {
+  const HAND_STAGE = usePuzzle();
   const time = useGameStore((s) => s.elapsedTime),
     hints = useGameStore((s) => s.hintsRemaining),
     named = useGameStore(namingCount);
@@ -15,11 +16,11 @@ export default function CompletionScreen() {
         <p>
           구조를 완성했습니다.
           <br />
-          이제 손의 움직임을 상상해 보세요.
+          {HAND_STAGE.puzzleType === "landmark" ? "하나의 척추뼈, 일곱 영역의 관계를 살펴보세요." : "이제 손의 움직임을 상상해 보세요."}
         </p>
       </div>
       <div className="completion-panel">
-        <span className="small-kicker">HAND / SESSION RESULT</span>
+        <span className="small-kicker">{HAND_STAGE.name} / SESSION RESULT</span>
         <dl>
           <div>
             <dt>ASSEMBLED</dt>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { handBones, handBonesByCategory, handBoneIndexById } from "../data/bones";
-import { BONE_CATEGORIES } from "../data/anatomy/categories";
+import { usePuzzle } from "../hooks/usePuzzle";
 import { GUIDE_CONFIG, HINT_CONFIG } from "../data/config/gameplay";
 import { INTERACTION_CONFIG } from "../data/config/interaction";
 import { useGameStore, assemblyCount, namingCount, flushGameSave } from "../state/gameStore";
@@ -10,6 +9,8 @@ import ProgressDisplay, { formatTime } from "../components/game/ProgressDisplay"
 import type { Vec3 } from "../types/bone";
 
 export default function GameScreen({ onHelp }: { onHelp: () => void }) {
+  const puzzle = usePuzzle();
+  const handBones = puzzle.bones;
   const placed = useGameStore(assemblyCount), named = useGameStore(namingCount);
   const hints = useGameStore((s) => s.hintsRemaining);
   const elapsed = useGameStore((s) => s.elapsedTime);
@@ -76,7 +77,7 @@ export default function GameScreen({ onHelp }: { onHelp: () => void }) {
   return (
     <div className="game-screen">
       <header className="game-header">
-        <div className="game-brand"><strong>HAND</strong><small>RIGHT · {difficulty.toUpperCase()}</small></div>
+        <div className="game-brand"><strong>{puzzle.name}</strong><small>{puzzle.puzzleType === "landmark" ? "LANDMARK" : "RIGHT"} · {difficulty.toUpperCase()}</small></div>
         <div className="game-meta">
           <span className="time">{formatTime(elapsed)}</span>
           <span className="hint-counter">HINTS {hints} / {HINT_CONFIG.maximumUniqueBones}</span>
@@ -107,12 +108,13 @@ export default function GameScreen({ onHelp }: { onHelp: () => void }) {
   );
 }
 function PieceInventory() {
+  const { groups, indexById: handBoneIndexById } = usePuzzle();
   const selected = useGameStore((s) => s.selectedBoneId), pieces = useGameStore((s) => s.pieces);
   return <section className="inventory" aria-label="뼈 조각 목록">
     <div className="inventory-heading"><span className="small-kicker">PIECE INDEX</span><small>✓ 배치 · • 이름 확인</small></div>
-    {BONE_CATEGORIES.map(({ id: category, name }) => <div className="inventory-group" key={category}>
+    {groups.map(({ id: category, name, bones }) => <div className="inventory-group" key={category}>
       <h3>{name}</h3><div className="piece-grid">
-        {handBonesByCategory[category].map((bone) => <button key={bone.id} aria-label={`조각 ${String(handBoneIndexById[bone.id] + 1).padStart(2, "0")} 선택`} aria-pressed={selected === bone.id} className={`${selected === bone.id ? "selected" : ""} ${pieces[bone.id].placed ? "placed" : ""}`} onClick={(event) => { useGameStore.getState().select(bone.id); event.currentTarget.blur(); }}>{pieces[bone.id].placed ? "✓" : String(handBoneIndexById[bone.id] + 1).padStart(2, "0")}{pieces[bone.id].nameVerified && <span className="verified-dot" />}</button>)}
+        {bones.map((bone) => <button key={bone.id} aria-label={`조각 ${String(handBoneIndexById[bone.id] + 1).padStart(2, "0")} 선택`} aria-pressed={selected === bone.id} className={`${selected === bone.id ? "selected" : ""} ${pieces[bone.id].placed ? "placed" : ""}`} onClick={(event) => { useGameStore.getState().select(bone.id); event.currentTarget.blur(); }}>{pieces[bone.id].placed ? "✓" : String(handBoneIndexById[bone.id] + 1).padStart(2, "0")}{pieces[bone.id].nameVerified && <span className="verified-dot" />}</button>)}
       </div>
     </div>)}
   </section>;

@@ -14,9 +14,7 @@ for (const asset of assets) {
     throw new Error(`HTML asset unexpectedly returned fallback HTML: ${asset}`);
   await response.arrayBuffer();
 }
-const { bones } = JSON.parse(
-  readFileSync(new URL("../src/data/hand.json", import.meta.url), "utf8"),
-);
+const bones = ["../src/data/hand.json", "../src/data/anatomy/t06.json"].flatMap(file => JSON.parse(readFileSync(new URL(file, import.meta.url), "utf8")).bones);
 for (const bone of bones) {
   const response = await fetch(new URL(bone.modelPath, base));
   if (!response.ok) throw new Error(`Model HTTP failure: ${bone.id}`);

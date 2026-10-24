@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { bonesById, handBones } from "../data/bones";
+import { getPuzzle, isPlayableStage } from "../data/puzzles";
+import type { PlayableStageId } from "../types/puzzle";
 import type { BonePlayState, Transform } from "../types/bone";
 import type { Difficulty, AnimationStatus, InteractionMode } from "../types/game";
 import { canSnap } from "../systems/SnapSystem";
@@ -10,10 +11,10 @@ import { rotateQuaternion, normalizeQuaternion } from "../systems/RotationSystem
 import { GUIDE_CONFIG, SAVE_CONFIG } from "../data/config/gameplay";
 import { INTERACTION_CONFIG } from "../data/config/interaction";
 import {
-  createGameStorage, freshPieces, restorePieces, STORAGE_KEY, validTransform,
+  createGameStorage, freshPieces, restorePieces, STORAGE_KEY, validTransform, readStageSession,
 } from "../utils/persistence";
 export interface GameState {
-  stageId: "hand";
+  stageId: PlayableStageId;
   difficulty: Difficulty;
   pieces: Record<string, BonePlayState>;
   selectedBoneId: string | null;
@@ -26,7 +27,8 @@ export interface GameState {
   guideEnabled: boolean;
   interactionMode: InteractionMode;
   animationStatus: AnimationStatus;
-  newGame: (difficulty?: Difficulty) => void;
+  newGame: (difficulty?: Difficulty, stageId?: PlayableStageId) => void;
+  resumeStage: (stageId: PlayableStageId) => boolean;
   select: (id: string | null) => void;
   setDragging: (value: boolean) => void;
   move: (id: string, transform: Transform) => void;
@@ -79,9 +81,11 @@ export const useGameStore = create<GameState>()(
       guideEnabled: GUIDE_CONFIG.enabled,
       interactionMode: INTERACTION_CONFIG.initialMode,
       animationStatus: "assembled",
-      newGame: (difficulty = get().difficulty) =>
+      newGame: (difficulty = get().difficulty, stageId = get().stageId) => {
+        flushGameSave();
         set({
-          pieces: freshPieces(),
+          stageId,
+          pieces: freshPieces(stageId, difficulty),
           difficulty: ["easy", "normal", "hard"].includes(difficulty) ? difficulty : "easy",
           selectedBoneId: null,
           dragging: false,
@@ -89,9 +93,17 @@ export const useGameStore = create<GameState>()(
           elapsedTime: 0,
           hasSession: true,
           animationStatus: "assembled",
-        }),
+        });
+      },
+      resumeStage: (stageId) => {
+        flushGameSave();
+        const restored = restoreSavedGame(readStageSession(stageId), get());
+        if (!restored || !restored.hasSession) return false;
+        set(restored);
+        return true;
+      },
       select: (id) => {
-        if ((id === null || bonesById[id]) && get().selectedBoneId !== id)
+        if ((id === null || getPuzzle(get().stageId).byId[id]) && get().selectedBoneId !== id)
           set({ selectedBoneId: id });
       },
       setDragging: (dragging) => {
@@ -115,8 +127,8 @@ export const useGameStore = create<GameState>()(
       },
       drop: (id, transform) => {
         const s = get(),
-          bone = bonesById[id];
-        if (!bone || s.pieces[id].placed) return false;
+          bone = getPuzzle(s.stageId).byId[id];
+        if (!bone || !s.pieces[id] || s.pieces[id].placed) return false;
         const safe = normalizedTransform(transform);
         if (!safe) {
           set({ dragging: false });
@@ -144,14 +156,14 @@ export const useGameStore = create<GameState>()(
             pieces: updatePiece(s.pieces, id, {
               userLabel: value.slice(0, SAVE_CONFIG.maximumLabelLength),
               nameVerified:
-                s.pieces[id].nameVerified && validateName(value, bonesById[id]),
+                s.pieces[id].nameVerified && validateName(value, getPuzzle(s.stageId).byId[id]),
             }),
           });
       },
       checkName: (id, value) => {
         const s = get();
-        if (!bonesById[id]) return false;
-        const valid = validateName(value, bonesById[id]);
+        if (!getPuzzle(s.stageId).byId[id]) return false;
+        const valid = validateName(value, getPuzzle(s.stageId).byId[id]);
         set({
           pieces: updatePiece(s.pieces, id, {
             userLabel: value.slice(0, SAVE_CONFIG.maximumLabelLength),
@@ -209,44 +221,50 @@ export const useGameStore = create<GameState>()(
         guideEnabled: s.guideEnabled,
         interactionMode: s.interactionMode,
       }),
-      merge: (persisted, current) => {
-        const saved = persisted as Partial<GameState> | undefined;
-        const pieces = restorePieces(saved?.pieces);
-        if (!pieces || saved?.stageId !== "hand") return current;
-        // Revalidate naming instead of trusting persisted correctness flags.
-        for (const bone of handBones)
-          pieces[bone.id].nameVerified =
-            pieces[bone.id].nameVerified &&
-            validateName(pieces[bone.id].userLabel, bone);
-        return {
-          ...current,
-          pieces,
-          hasSession: saved.hasSession === true,
-          difficulty: ["easy", "normal", "hard"].includes(
-            saved.difficulty ?? "",
-          )
-            ? saved.difficulty!
-            : "easy",
-          hintsRemaining:
-            MAX_HINTS - Object.values(pieces).filter((p) => p.hintShown).length,
-          elapsedTime:
-            typeof saved.elapsedTime === "number" &&
-            Number.isFinite(saved.elapsedTime) &&
-            saved.elapsedTime >= 0
-              ? saved.elapsedTime
-              : 0,
-          reducedMotion: saved.reducedMotion === true,
-          ghostOpacity:
-            typeof saved.ghostOpacity === "number" && Number.isFinite(saved.ghostOpacity)
-              ? Math.max(GUIDE_CONFIG.minimum, Math.min(GUIDE_CONFIG.maximum, saved.ghostOpacity))
-              : GUIDE_CONFIG.opacity,
-          guideEnabled: saved.guideEnabled !== false,
-          interactionMode: saved.interactionMode === "rotate" ? "rotate" : "move",
-        };
-      },
+      merge: (persisted, current) => restoreSavedGame(persisted, current) ?? current,
     },
   ),
 );
+
+function restoreSavedGame(persisted: unknown, current: GameState): GameState | null {
+  const saved = persisted as Partial<GameState> | undefined;
+  const pieces = isPlayableStage(saved?.stageId) ? restorePieces(saved?.pieces, saved!.stageId) : null;
+  if (!pieces || !saved || !isPlayableStage(saved.stageId)) return null;
+  // Revalidate naming instead of trusting persisted correctness flags.
+  for (const bone of getPuzzle(saved.stageId).bones)
+    pieces[bone.id].nameVerified =
+      pieces[bone.id].nameVerified &&
+      validateName(pieces[bone.id].userLabel, bone);
+  return {
+    ...current,
+    stageId: saved.stageId,
+    selectedBoneId: null,
+    dragging: false,
+    pieces,
+    hasSession: saved.hasSession === true,
+    difficulty: ["easy", "normal", "hard"].includes(
+      saved.difficulty ?? "",
+    )
+      ? saved.difficulty!
+      : "easy",
+    hintsRemaining:
+      MAX_HINTS - Object.values(pieces).filter((p) => p.hintShown).length,
+    elapsedTime:
+      typeof saved.elapsedTime === "number" &&
+      Number.isFinite(saved.elapsedTime) &&
+      saved.elapsedTime >= 0
+        ? saved.elapsedTime
+        : 0,
+    reducedMotion: saved.reducedMotion === true,
+    ghostOpacity:
+      typeof saved.ghostOpacity === "number" && Number.isFinite(saved.ghostOpacity)
+        ? Math.max(GUIDE_CONFIG.minimum, Math.min(GUIDE_CONFIG.maximum, saved.ghostOpacity))
+        : GUIDE_CONFIG.opacity,
+    guideEnabled: saved.guideEnabled !== false,
+    interactionMode: saved.interactionMode === "rotate" ? "rotate" : "move",
+  };
+
+}
 
 // A paused tab is not guaranteed to receive its pending timeout before the
 // browser freezes it, so page lifecycle events flush the final timer snapshot.

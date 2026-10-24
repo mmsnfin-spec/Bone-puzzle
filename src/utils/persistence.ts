@@ -1,11 +1,22 @@
 import type { BonePlayState, Transform } from "../types/bone";
 import type { Difficulty, InteractionMode } from "../types/game";
 import type { PersistStorage, StorageValue } from "zustand/middleware";
-import { handBones } from "../data/bones";
+import { getPuzzle, isPlayableStage } from "../data/puzzles";
+import type { PlayableStageId } from "../types/puzzle";
+import { initialOrientation } from "../systems/OrientationSystem";
 import { HINT_CONFIG, SAVE_CONFIG } from "../data/config/gameplay";
 export const STORAGE_KEY = SAVE_CONFIG.key;
+export const ACTIVE_STAGE_KEY = "bone-puzzle-3d:active-stage:v1";
+export const stageStorageKey = (stage: PlayableStageId) => stage === "hand" ? STORAGE_KEY : "bone-puzzle-3d:thoracic-t06:v1";
+export function readStageSession(stage: PlayableStageId): PersistedGameState | null {
+  try {
+    const snapshot = JSON.parse(localStorage.getItem(stageStorageKey(stage)) || "null");
+    if (!snapshot || (snapshot.version !== undefined && snapshot.version !== SAVE_CONFIG.version) || snapshot.state?.stageId !== stage) return null;
+    return snapshot.state;
+  } catch { return null; }
+}
 export interface PersistedGameState {
-  stageId: "hand";
+  stageId: PlayableStageId;
   difficulty: Difficulty;
   pieces: Record<string, BonePlayState>;
   hintsRemaining: number;
@@ -41,8 +52,11 @@ export function createGameStorage() {
       const next = JSON.stringify(latest);
       // The additional read preserves recovery after storage was externally
       // cleared, without writing duplicate values for ordinary runtime events.
-      if (next !== serialized || localStorage.getItem(STORAGE_KEY) !== next)
-        localStorage.setItem(STORAGE_KEY, next);
+      const key = stageStorageKey(latest.state.stageId);
+      if (next !== serialized || localStorage.getItem(key) !== next)
+        localStorage.setItem(key, next);
+      if (localStorage.getItem(ACTIVE_STAGE_KEY) !== latest.state.stageId)
+        localStorage.setItem(ACTIVE_STAGE_KEY, latest.state.stageId);
       serialized = next;
       written = latest;
     } catch {
@@ -53,7 +67,9 @@ export function createGameStorage() {
   const storage: PersistStorage<PersistedGameState> = {
     getItem: (name) => {
       try {
-        const raw = localStorage.getItem(name);
+        const active = localStorage.getItem(ACTIVE_STAGE_KEY);
+        const key = isPlayableStage(active) ? stageStorageKey(active) : name;
+        const raw = localStorage.getItem(key) ?? (key !== name ? localStorage.getItem(name) : null);
         if (!raw) return null;
         const value: unknown = JSON.parse(raw);
         if (!value || typeof value !== "object" || !("state" in value))
@@ -94,17 +110,21 @@ export function createGameStorage() {
       pending = null;
       latest = observed = written = null;
       serialized = null;
-      try { localStorage.removeItem(name); } catch { /* unavailable storage */ }
+      try {
+        const active = localStorage.getItem(ACTIVE_STAGE_KEY);
+        localStorage.removeItem(isPlayableStage(active) ? stageStorageKey(active) : name);
+        localStorage.removeItem(ACTIVE_STAGE_KEY);
+      } catch { /* unavailable storage */ }
     },
   };
   return { storage, flush };
 }
-export function freshPieces(): Record<string, BonePlayState> {
+export function freshPieces(stage: PlayableStageId = "hand", difficulty: Difficulty = "easy", random = Math.random): Record<string, BonePlayState> {
   return Object.fromEntries(
-    handBones.map((b) => [
+    getPuzzle(stage).bones.map((b) => [
       b.id,
       {
-        transform: structuredClone(b.initialTransform),
+        transform: { position: [...b.initialTransform.position], rotation: b.puzzleType === "landmark" ? initialOrientation(b.targetRotation, difficulty, random) : [...b.initialTransform.rotation] },
         placed: false,
         userLabel: "",
         nameVerified: false,
@@ -125,12 +145,13 @@ export function validTransform(value: unknown): value is Transform {
   return numericArray(transform.position, 3) &&
     numericArray(transform.rotation, 4) && Math.hypot(...transform.rotation) > 1e-12;
 }
-export function restorePieces(value: unknown) {
+export function restorePieces(value: unknown, stage: PlayableStageId = "hand") {
+  const bones = getPuzzle(stage).bones;
   if (!value || typeof value !== "object") return null;
   const saved = value as Record<string, BonePlayState>;
-  if (Object.keys(saved).length !== handBones.length) return null;
+  if (Object.keys(saved).length !== bones.length) return null;
   const pieces: Record<string, BonePlayState> = {};
-  for (const bone of handBones) {
+  for (const bone of bones) {
     const p = saved[bone.id];
     if (
       !p ||

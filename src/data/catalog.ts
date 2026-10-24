@@ -2,7 +2,7 @@ import type { BoneDefinition } from "../types/bone";
 import { BONE_CATEGORIES } from "./anatomy/categories";
 import type { BoneCategory } from "./anatomy/categories";
 
-function freezeData<T>(value: T): T {
+export function freezeData<T>(value: T): T {
   if (value && typeof value === "object" && !Object.isFrozen(value)) {
     for (const nested of Object.values(value)) freezeData(nested);
     Object.freeze(value);
@@ -20,10 +20,10 @@ export function createBoneCatalog<T extends { bones: unknown[] }>(
   const byCategory = {} as Record<BoneCategory, BoneDefinition[]>;
   for (const { id } of BONE_CATEGORIES) byCategory[id] = [];
   for (const bone of bones) {
-    if (!bone.id || byId[bone.id] || bone.fmaId !== bone.id || !byCategory[bone.category])
+    if (!bone.id || byId[bone.id] || bone.fmaId !== bone.id || !byCategory[bone.category as BoneCategory])
       throw new Error(`Invalid anatomical identity/category: ${bone.id}`);
     byId[bone.id] = bone;
-    byCategory[bone.category].push(bone);
+    byCategory[bone.category as BoneCategory].push(bone);
   }
   for (const { id } of BONE_CATEGORIES)
     if (byCategory[id].length !== expectedCounts[id]) throw new Error(`Unexpected ${id} count`);

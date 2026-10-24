@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { bonesById, handBoneIndexById } from "../../data/bones";
+import { usePuzzle } from "../../hooks/usePuzzle";
 import { HINT_CONFIG, SAVE_CONFIG } from "../../data/config/gameplay";
 import { INTERACTION_CONFIG } from "../../data/config/interaction";
 import { useGameStore } from "../../state/gameStore";
 
 export default function BoneNameInput() {
+  const {byId: bonesById, indexById: handBoneIndexById} = usePuzzle();
   const id = useGameStore((s) => s.selectedBoneId);
   const piece = useGameStore((s) => (id ? s.pieces[id] : null));
   const hints = useGameStore((s) => s.hintsRemaining);

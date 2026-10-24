@@ -1,0 +1,3 @@
+PASS: T06/FMA9945 provenance; 7 connected watertight exported solids; 15 semantic landmarks; unchanged anatomy across difficulty.
+Export round trip in source units: max exterior plane error 5.98760268e-05; pair overlap 2.07094688e-05; missing volume 0.00311081125; outside volume 0.00271980854; volume-sum error 0.00015824187.
+Independent expert validation of anatomical junction placement is pending; geometric checks do not establish clinical accuracy.

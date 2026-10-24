@@ -29,7 +29,7 @@ describe("anatomical catalog boundaries", () => {
     expect(() => createBoneCatalog(structuredClone(original), { carpals: 7, metacarpals: 5, phalanges: 14 })).toThrow();
   });
   it("registers only stages with available anatomy as playable", () => {
-    expect(STAGE_METADATA.filter((stage) => stage.available).map((stage) => stage.id)).toEqual(["hand"]);
+    expect(STAGE_METADATA.filter((stage) => stage.available).map((stage) => stage.id)).toEqual(["hand", "thoracic-t06"]);
     expect(STAGE_METADATA[0].count).toBe(handBones.length);
     expect(new Set(STAGE_METADATA.map((stage) => stage.id)).size).toBe(STAGE_METADATA.length);
   });

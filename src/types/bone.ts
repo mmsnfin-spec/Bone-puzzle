@@ -8,7 +8,12 @@ export type BoneDefinition = {
   englishName: string;
   koreanName: string;
   acceptedAliases: string[];
-  category: BoneCategory;
+  category: BoneCategory | "body" | "arch" | "process" | "articular";
+  puzzleType?: "bone" | "landmark";
+  label?: { en: string; ko: string };
+  anatomicalDirectionRole?: import("./puzzle").AnatomicalDirection[];
+  difficulty?: typeof import("../data/config/landmarkDifficulty").LANDMARK_DIFFICULTY;
+  learning?: { category: string; relatedLandmarks: string[] };
   modelPath: string;
   targetPosition: Vec3;
   targetRotation: Quat;

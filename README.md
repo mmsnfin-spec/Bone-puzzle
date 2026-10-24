@@ -1,6 +1,6 @@
 # BONE PUZZLE — Web
 
-실제 오른손 뼈 27개를 이동·자유 회전해 조립하고 영어 명칭을 학습하는 웹 게임입니다. 웹 전용 `improvement/web-performance` 브랜치에서 작업하며 Godot 프로젝트는 별도 `migration/godot` 브랜치에 보존합니다. 정적 호스팅으로 동작하며 게임용 로그인·백엔드·유료 API는 필요하지 않습니다.
+HAND의 실제 뼈 27개와 BodyParts3D T06(FMA9945)의 가상 landmark 영역 7개를 이동·회전해 조립하는 웹 게임입니다. T06 추가 작업은 `feature/landmark-t06`에서 독립 관리합니다. 웹 전용 `improvement/web-performance` 브랜치에서 작업하며 Godot 프로젝트는 별도 `migration/godot` 브랜치에 보존합니다. 정적 호스팅으로 동작하며 게임용 로그인·백엔드·유료 API는 필요하지 않습니다.
 
 상태·측정·미검증 항목은 [웹 최적화 보고서](docs/web-performance/REPORT.ko.md), 데이터 관리 경계는 [데이터 모듈](docs/DATA_MODULES.ko.md)에 기록합니다. 원본 해부학 JSON/GLB는 보존했습니다.
 
@@ -24,9 +24,9 @@ npm run preview
 
 ## 플레이
 
-- 검은 타이틀에서 일반 키 또는 클릭으로 Stage Select에 들어갑니다. 난이도를 고르고 Start HAND를 누르면 완성 손 → 물리 낙하 → HAND → 조립 화면으로 이어집니다.
+- 검은 타이틀에서 일반 키 또는 클릭으로 Stage Select에 들어갑니다. 난이도를 고르고 Start HAND 또는 Start T06을 누르면 완성 구조 → 물리 낙하 → 스테이지 이름 → 조립 화면으로 이어집니다.
 - 뼈를 클릭하면 이름 입력 패널이 열립니다. 작은 뼈는 Piece index에서도 선택할 수 있습니다.
-- 뼈를 반투명 골격의 해당 위치로 드래그합니다. Easy는 위치만 검사하고 회전을 보정합니다. Normal/Hard는 회전과 위치를 모두 검사합니다.
+- 뼈를 반투명 골격의 해당 위치로 드래그합니다. HAND의 Easy는 기존처럼 위치 중심으로 검사합니다. T06은 EASY/NORMAL/HARD 모두 7조각이며 초기 방향과 각도 허용치(25°/15°/8°)만 달라집니다.
 - MOVE+왼쪽 드래그: 이동. ROTATE+왼쪽 드래그: 카메라 기준 자유 회전. Shift+드래그: 임시 이동. 회전 중 위치와 모델 중심은 유지합니다.
 - 뼈를 클릭한 뒤 오른쪽 선택 패널의 **마우스로 회전**을 누르고 해당 뼈를 왼쪽 드래그해도 같은 회전 모드로 조작할 수 있습니다. **마우스로 이동**으로 다시 전환합니다.
 - 빈 공간/오른쪽 드래그: 궤도 회전. 가운데 드래그: Pan. 휠: 확대/축소. 뼈 조작 중 카메라는 잠깁니다.
@@ -104,3 +104,9 @@ docs/               요구사항, 구현 상태, 데이터, 디자인, 검수 �
 `vercel.json`에 Vite 빌드, `dist` 출력, hash 자산/모델 캐시 정책을 저장했습니다. 권한이 복구되면 웹 브랜치의 Preview에서 검증한 뒤 프로덕션 반영을 별도로 승인합니다. `npm run build`는 현재 소스로 `dist/downloads/Bone-puzzle-source.zip`도 생성하므로 About / Credits의 ZIP은 오래된 아카이브에 의존하지 않습니다. ZIP에는 27개 모델과 편집 가능한 코드·설정·테스트가 포함되며 환경 변수/캐시/빌드/다운로드 ZIP 자체는 제외합니다.
 
 현재 GitHub 읽기는 되지만 push는 Invalid username or token으로 거부됐고 Vercel API도 인증 토큰이 없다고 응답했습니다. 새 Preview와 프로덕션 배포는 수행하지 않았습니다. 기존 https://bone-puzzle-9g8i.vercel.app/ 주소는 이번 로컬 변경이 반영된 사이트가 아닙니다.
+
+## T06 landmark 테스트 케이스
+
+[구현·검수 보고서](docs/landmark-t06/REPORT.ko.md)를 참조하세요. `scripts/anatomy/t06-segmentation.json`이 분할·의미 metadata의 저작 원본이며, `src/data/anatomy/t06.json`과 GLB는 생성 산출물입니다. 원본 STL과 라이선스는 `public/models/thoracic/T06/source/`에 보존합니다. 독립 해부학 전문가의 분할 검수는 아직 미완료입니다.
+
+에셋을 다시 만들 때만 `python -m pip install -r scripts/requirements-anatomy.txt` 후 `npm run data:thoracic`, `npm run validate:thoracic`를 실행합니다. 일반 웹 실행·Vercel 빌드는 Python 설치 없이 커밋된 GLB를 사용합니다. HAND의 v1 저장 키는 유지하며 T06은 별도 저장합니다.

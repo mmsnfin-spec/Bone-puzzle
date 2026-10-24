@@ -22,11 +22,14 @@ export function canSnap(
     ...transform.position.map((v, i) => v - bone.targetPosition[i]),
   );
   const rule = DIFFICULTY_RULES[difficulty];
-  const tolerance = bone.snapDistance * rule.distanceMultiplier;
+  const landmarkRule = bone.puzzleType === "landmark" ? bone.difficulty?.[difficulty] : undefined;
+  if (bone.puzzleType === "landmark" && !landmarkRule) return false;
+  const angle = landmarkRule ? landmarkRule.rotationTolerance * Math.PI / 180 : rule.angleRadians;
+  const tolerance = bone.snapDistance * (landmarkRule?.distanceMultiplier ?? rule.distanceMultiplier);
   return (
     distance <= tolerance &&
-    (rule.angleRadians === null ||
+    (angle === null ||
       quaternionAngle(transform.rotation, bone.targetRotation) <=
-        rule.angleRadians)
+        angle)
   );
 }

@@ -2,8 +2,9 @@
 import { useEffect } from "react";
 import { useThree } from "@react-three/fiber";
 import { Box3, Mesh, Raycaster, Vector2, Vector3 } from "three";
-import { handBones } from "../data/bones";
+import { usePuzzle } from "../hooks/usePuzzle";
 export default function SceneProbe() {
+  const { bones: handBones } = usePuzzle();
   const { scene, camera, gl } = useThree();
   useEffect(() => {
     const project = (v: Vector3) => {
@@ -81,6 +82,6 @@ export default function SceneProbe() {
     return () => {
       delete (window as unknown as Record<string, unknown>).__boneProbe;
     };
-  }, [scene, camera, gl]);
+  }, [scene, camera, gl, handBones]);
   return null;
 }

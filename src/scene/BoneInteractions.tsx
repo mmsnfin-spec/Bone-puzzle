@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useThree } from "@react-three/fiber";
 import { Quaternion, Raycaster, Vector2, Vector3 } from "three";
 import type { Camera, Mesh, Plane } from "three";
-import { bonesById } from "../data/bones";
+import { getPuzzle } from "../data/puzzles";
 import { useGameStore } from "../state/gameStore";
 import type { Transform, Vec3, Quat } from "../types/bone";
 import type { Screen } from "../types/game";
@@ -119,7 +119,7 @@ export function attachBoneInteractions({
     const id = mesh.userData.boneId as string;
     const state = useGameStore.getState();
     const piece = state.pieces[id];
-    const bone = bonesById[id];
+    const bone = getPuzzle(state.stageId).byId[id];
     if (!piece || !bone) return;
     consume(event); // Capture phase prevents OrbitControls from starting first.
     state.select(id);

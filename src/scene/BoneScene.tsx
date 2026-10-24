@@ -16,10 +16,11 @@ import { OrbitControls, useGLTF } from "@react-three/drei";
 import { BufferGeometry, Mesh, MeshStandardMaterial, MOUSE, Vector3 } from "three";
 import type { OrthographicCamera } from "three";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
-import { handBones, handBoneIndexById } from "../data/bones";
+import { getPuzzle } from "../data/puzzles";
+import { usePuzzle } from "../hooks/usePuzzle";
+import type { PlayableStageId } from "../types/puzzle";
 import { RENDERING_CONFIG } from "../data/config/rendering";
 import { GUIDE_CONFIG } from "../data/config/gameplay";
-import { HAND_STAGE } from "../data/stageRegistry";
 import { useGameStore } from "../state/gameStore";
 import { useScreenStore } from "../state/screenStore";
 import type { BoneDefinition } from "../types/bone";
@@ -32,15 +33,15 @@ const SceneProbe =
   import.meta.env.DEV && import.meta.env.VITE_E2E === "1"
     ? lazy(() => import("./SceneProbe"))
     : null;
-const modelPaths = handBones.map((bone) => bone.modelPath);
 let introModule: ReturnType<typeof importIntro> | undefined;
 function importIntro() { return import("./IntroPhysics"); }
 const loadIntro = () => (introModule ??= importIntro());
 const IntroPhysics = lazy(loadIntro);
 
 /** Called only after explicit HAND intent; importing the title never calls this. */
-export function preloadHandStage() {
-  useGLTF.preload(modelPaths);
+export function preloadHandStage() { preloadPuzzle("hand"); }
+export function preloadPuzzle(stageId: PlayableStageId) {
+  useGLTF.preload(getPuzzle(stageId).bones.map(b=>b.modelPath));
   if (!useGameStore.getState().reducedMotion) void loadIntro().catch(() => { introModule = undefined; });
 }
 
@@ -59,11 +60,12 @@ class SceneErrorBoundary extends Component<{ children: ReactNode }, { error: boo
 }
 
 function BoneScene({ screen }: { screen: Screen }) {
+  const puzzle = usePuzzle();
   const [ready, setReady] = useState(false);
   const markReady = useCallback(() => setReady(true), []);
   return (
     <SceneErrorBoundary>
-      <div className={`scene scene-${screen}`} data-testid="bone-scene" aria-label="오른손 27개 뼈의 3D 조립 공간">
+      <div className={`scene scene-${screen}`} data-testid="bone-scene" aria-label={`${puzzle.koreanName} ${puzzle.count}개 조각의 3D 조립 공간`}>
         <Canvas
           frameloop="demand"
           dpr={RENDERING_CONFIG.dpr}
@@ -77,10 +79,10 @@ function BoneScene({ screen }: { screen: Screen }) {
           <directionalLight {...RENDERING_CONFIG.lights.key} />
           <directionalLight {...RENDERING_CONFIG.lights.fill} />
           <Suspense fallback={null}>
-            <World screen={screen} onReady={markReady} />
+            <World key={puzzle.id} screen={screen} onReady={markReady} />
           </Suspense>
         </Canvas>
-        {!ready && <div className="model-loading" role="status"><span className="loading-line" />Loading anatomy <small>{HAND_STAGE.name} · {handBones.length} BONES</small></div>}
+        {!ready && <div className="model-loading" role="status"><span className="loading-line" />Loading anatomy <small>{puzzle.name} · {puzzle.count} {puzzle.puzzleType === "landmark" ? "LANDMARK PIECES" : "BONES"}</small></div>}
       </div>
     </SceneErrorBoundary>
   );
@@ -139,6 +141,8 @@ function Camera({ screen, runtime }: { screen: Screen; runtime: PoseRuntime }) {
 }
 
 function World({ screen, onReady }: { screen: Screen; onReady: () => void }) {
+  const { bones: handBones, indexById: handBoneIndexById } = usePuzzle();
+  const modelPaths = useMemo(() => handBones.map(b=>b.modelPath), [handBones]);
   const gltfs = useGLTF(modelPaths);
   const geometries = useMemo(() => gltfs.map((gltf) => {
     let geometry: BufferGeometry | undefined;

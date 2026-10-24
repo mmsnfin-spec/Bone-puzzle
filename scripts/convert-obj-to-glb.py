@@ -30,14 +30,15 @@ def read_mesh(path):
         faces.append(tuple(face))
     return vertices,faces
 
-def write_glb(path,vertices,faces):
-    normals=[[0.,0.,0.] for _ in vertices]
-    for a,b,c in faces:
-        u=[vertices[b][i]-vertices[a][i] for i in range(3)];v=[vertices[c][i]-vertices[a][i] for i in range(3)]
-        n=[u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]]
-        for j in (a,b,c):
-            for k in range(3):normals[j][k]+=n[k]
-    normals=[[x/(math.hypot(*n) or 1) for x in n] for n in normals]
+def write_glb(path,vertices,faces,normals=None):
+    if normals is None:
+        normals=[[0.,0.,0.] for _ in vertices]
+        for a,b,c in faces:
+            u=[vertices[b][i]-vertices[a][i] for i in range(3)];v=[vertices[c][i]-vertices[a][i] for i in range(3)]
+            n=[u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]]
+            for j in (a,b,c):
+                for k in range(3):normals[j][k]+=n[k]
+        normals=[[x/(math.hypot(*n) or 1) for x in n] for n in normals]
     pos=struct.pack('<%sf'%(len(vertices)*3),*(x for v in vertices for x in v))
     norm=struct.pack('<%sf'%(len(vertices)*3),*(x for v in normals for x in v))
     indices=struct.pack('<%sI'%(len(faces)*3),*(i for f in faces for i in f))

@@ -1,8 +1,9 @@
 import { useGameStore } from "../state/gameStore";
 import { useScreenStore } from "../state/screenStore";
 import { TIMING } from "../systems/AnimationSystem";
-import { HAND_STAGE } from "../data/stageRegistry";
+import { usePuzzle } from "../hooks/usePuzzle";
 export default function StageIntroScreen() {
+  const HAND_STAGE = usePuzzle();
   const phase = useGameStore((s) => s.animationStatus);
   return (
     <div className="intro-screen">
@@ -18,7 +19,7 @@ export default function StageIntroScreen() {
       )}
       <p className="intro-subtitle">
         {phase === "assembled"
-          ? `${HAND_STAGE.count} bones. One extraordinary structure.`
+          ? `${HAND_STAGE.count} ${HAND_STAGE.puzzleType === "landmark" ? "landmark pieces" : "bones"}. One extraordinary structure.`
           : phase === "falling"
             ? "Every structure begins with a piece."
             : ""}

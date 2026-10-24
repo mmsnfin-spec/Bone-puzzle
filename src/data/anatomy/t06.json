@@ -1,0 +1,766 @@
+{
+  "stageId": "thoracic-t06",
+  "bone": "T06",
+  "sourceFmaId": "FMA9945",
+  "dataset": "BodyParts3D 3.0 / 20110915",
+  "puzzleType": "landmark",
+  "reviewStatus": "prototype; independent anatomical segmentation review pending",
+  "coordinateMapping": {
+    "sourceOrigin": [
+      -2.5001487731933594,
+      -33.224522054195404,
+      1259.9450073242188
+    ],
+    "rotationRows": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        -1,
+        0
+      ]
+    ],
+    "uniformScale": 0.10030593449958107,
+    "stageOffset": [
+      0,
+      1.3,
+      0
+    ]
+  },
+  "sourceAxes": {
+    "positiveX": "left",
+    "positiveY": "posterior",
+    "positiveZ": "superior",
+    "evidence": "BP3D common coordinate frame: right hand has negative X; T06 body is anterior (negative Y); spinous tip is posterior/inferior."
+  },
+  "landmarks": [
+    {
+      "id": "vertebral-body",
+      "en": "Vertebral Body",
+      "ko": "척추뼈몸통",
+      "pieces": [
+        1
+      ],
+      "pieceIds": [
+        "T06_P01_Body"
+      ],
+      "position": null,
+      "annotationStatus": "semantic-only; surface anchor not independently verified"
+    },
+    {
+      "id": "posterior-vertebral-arch",
+      "en": "Posterior Vertebral Arch",
+      "ko": "뒤쪽 척추고리",
+      "pieces": [
+        2
+      ],
+      "pieceIds": [
+        "T06_P02_PosteriorArch"
+      ],
+      "position": null,
+      "annotationStatus": "semantic-only; surface anchor not independently verified"
+    },
+    {
+      "id": "spinous-process",
+      "en": "Spinous Process",
+      "ko": "가시돌기",
+      "pieces": [
+        3
+      ],
+      "pieceIds": [
+        "T06_P03_SpinousProcess"
+      ],
+      "position": null,
+      "annotationStatus": "semantic-only; surface anchor not independently verified"
+    },
+    {
+      "id": "left-transverse-process",
+      "en": "Left Transverse Process",
+      "ko": "왼쪽 가로돌기",
+      "pieces": [
+        4
+      ],
+      "pieceIds": [
+        "T06_P04_LeftTransverseProcess"
+      ],
+      "position": null,
+      "annotationStatus": "semantic-only; surface anchor not independently verified"
+    },
+    {
+      "id": "right-transverse-process",
+      "en": "Right Transverse Process",
+      "ko": "오른쪽 가로돌기",
+      "pieces": [
+        5
+      ],
+      "pieceIds": [
+        "T06_P05_RightTransverseProcess"
+      ],
+      "position": null,
+      "annotationStatus": "semantic-only; surface anchor not independently verified"
+    },
+    {
+      "id": "left-superior-articular-facet",
+      "en": "Left Superior Articular Facet",
+      "ko": "왼쪽 위관절면",
+      "pieces": [
+        6
+      ],
+      "pieceIds": [
+        "T06_P06_LeftArticularRegion"
+      ],
+      "position": null,
+      "annotationStatus": "semantic-only; surface anchor not independently verified"
+    },
+    {
+      "id": "right-superior-articular-facet",
+      "en": "Right Superior Articular Facet",
+      "ko": "오른쪽 위관절면",
+      "pieces": [
+        7
+      ],
+      "pieceIds": [
+        "T06_P07_RightArticularRegion"
+      ],
+      "position": null,
+      "annotationStatus": "semantic-only; surface anchor not independently verified"
+    },
+    {
+      "id": "left-inferior-articular-facet",
+      "en": "Left Inferior Articular Facet",
+      "ko": "왼쪽 아래관절면",
+      "pieces": [
+        6
+      ],
+      "pieceIds": [
+        "T06_P06_LeftArticularRegion"
+      ],
+      "position": null,
+      "annotationStatus": "semantic-only; surface anchor not independently verified"
+    },
+    {
+      "id": "right-inferior-articular-facet",
+      "en": "Right Inferior Articular Facet",
+      "ko": "오른쪽 아래관절면",
+      "pieces": [
+        7
+      ],
+      "pieceIds": [
+        "T06_P07_RightArticularRegion"
+      ],
+      "position": null,
+      "annotationStatus": "semantic-only; surface anchor not independently verified"
+    },
+    {
+      "id": "superior-costal-facet",
+      "en": "Superior Costal Facet",
+      "ko": "위갈비오목",
+      "pieces": [
+        1
+      ],
+      "pieceIds": [
+        "T06_P01_Body"
+      ],
+      "position": null,
+      "annotationStatus": "semantic-only; surface anchor not independently verified"
+    },
+    {
+      "id": "inferior-costal-facet",
+      "en": "Inferior Costal Facet",
+      "ko": "아래갈비오목",
+      "pieces": [
+        1
+      ],
+      "pieceIds": [
+        "T06_P01_Body"
+      ],
+      "position": null,
+      "annotationStatus": "semantic-only; surface anchor not independently verified"
+    },
+    {
+      "id": "transverse-costal-facet",
+      "en": "Transverse Costal Facet",
+      "ko": "가로돌기갈비오목",
+      "pieces": [
+        4,
+        5
+      ],
+      "pieceIds": [
+        "T06_P04_LeftTransverseProcess",
+        "T06_P05_RightTransverseProcess"
+      ],
+      "position": null,
+      "annotationStatus": "semantic-only; surface anchor not independently verified"
+    },
+    {
+      "id": "pedicle",
+      "en": "Pedicle",
+      "ko": "척추뼈고리뿌리",
+      "pieces": [
+        2
+      ],
+      "pieceIds": [
+        "T06_P02_PosteriorArch"
+      ],
+      "position": null,
+      "annotationStatus": "semantic-only; surface anchor not independently verified"
+    },
+    {
+      "id": "lamina",
+      "en": "Lamina",
+      "ko": "척추뼈고리판",
+      "pieces": [
+        2
+      ],
+      "pieceIds": [
+        "T06_P02_PosteriorArch"
+      ],
+      "position": null,
+      "annotationStatus": "semantic-only; surface anchor not independently verified"
+    },
+    {
+      "id": "vertebral-foramen",
+      "en": "Vertebral Foramen",
+      "ko": "척추뼈구멍",
+      "pieces": [
+        1,
+        2
+      ],
+      "kind": "space",
+      "pieceIds": [
+        "T06_P01_Body",
+        "T06_P02_PosteriorArch"
+      ],
+      "position": null,
+      "annotationStatus": "semantic-only; surface anchor not independently verified"
+    }
+  ],
+  "bones": [
+    {
+      "id": "T06_P01_Body",
+      "fmaId": "FMA9945",
+      "englishName": "Vertebral Body",
+      "koreanName": "척추뼈몸통",
+      "label": {
+        "en": "Vertebral Body",
+        "ko": "척추뼈몸통"
+      },
+      "region": "spine",
+      "section": "thoracic",
+      "bone": "T06",
+      "puzzleType": "landmark",
+      "anatomicalDirectionRole": [
+        "anterior"
+      ],
+      "learning": {
+        "category": "body",
+        "relatedLandmarks": [
+          "superior-costal-facet",
+          "inferior-costal-facet"
+        ]
+      },
+      "acceptedAliases": [
+        "Vertebral Body",
+        "척추뼈몸통"
+      ],
+      "category": "body",
+      "modelPath": "/models/thoracic/T06/T06_P01_Body.glb",
+      "targetPosition": [
+        0.12004850932365561,
+        2.0843870202609454,
+        1.4813546011074492
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -1.3033251762390137,
+        -47.992886543273926,
+        1267.7649536132812
+      ],
+      "initialTransform": {
+        "position": [
+          -4.1,
+          -2.6,
+          3.6
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "size": [
+        3.25977728517241,
+        2.398293833556939,
+        3.5199191138657078
+      ],
+      "snapDistance": 0.55,
+      "sourceSha256": "591757ab8228e95d93733e276f424b240ce9e050cf7bf7ec10775c35004f908b",
+      "vertexCount": 1041,
+      "triangleCount": 1652
+    },
+    {
+      "id": "T06_P02_PosteriorArch",
+      "fmaId": "FMA9945",
+      "englishName": "Posterior Vertebral Arch",
+      "koreanName": "뒤쪽 척추고리",
+      "label": {
+        "en": "Posterior Vertebral Arch",
+        "ko": "뒤쪽 척추고리"
+      },
+      "region": "spine",
+      "section": "thoracic",
+      "bone": "T06",
+      "puzzleType": "landmark",
+      "anatomicalDirectionRole": [
+        "posterior"
+      ],
+      "learning": {
+        "category": "arch",
+        "relatedLandmarks": [
+          "pedicle",
+          "lamina",
+          "vertebral-foramen"
+        ]
+      },
+      "acceptedAliases": [
+        "Posterior Vertebral Arch",
+        "뒤쪽 척추고리"
+      ],
+      "category": "arch",
+      "modelPath": "/models/thoracic/T06/T06_P02_PosteriorArch.glb",
+      "targetPosition": [
+        0.014504803512736777,
+        2.2222464583140193,
+        -0.9259826612860466
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -2.3555431365966797,
+        -23.99293804168701,
+        1269.1393432617188
+      ],
+      "initialTransform": {
+        "position": [
+          0,
+          -2.6,
+          3.6
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "size": [
+        3.0256034837875703,
+        4.068524779994787,
+        2.4335088524657547
+      ],
+      "snapDistance": 0.55,
+      "sourceSha256": "591757ab8228e95d93733e276f424b240ce9e050cf7bf7ec10775c35004f908b",
+      "vertexCount": 1837,
+      "triangleCount": 2408
+    },
+    {
+      "id": "T06_P03_SpinousProcess",
+      "fmaId": "FMA9945",
+      "englishName": "Spinous Process",
+      "koreanName": "가시돌기",
+      "label": {
+        "en": "Spinous Process",
+        "ko": "가시돌기"
+      },
+      "region": "spine",
+      "section": "thoracic",
+      "bone": "T06",
+      "puzzleType": "landmark",
+      "anatomicalDirectionRole": [
+        "posterior",
+        "inferior"
+      ],
+      "learning": {
+        "category": "process",
+        "relatedLandmarks": [
+          "lamina"
+        ]
+      },
+      "acceptedAliases": [
+        "Spinous Process",
+        "가시돌기"
+      ],
+      "category": "process",
+      "modelPath": "/models/thoracic/T06/T06_P03_SpinousProcess.glb",
+      "targetPosition": [
+        0.16816006155423122,
+        0.4120867741489721,
+        -2.2427888136904377
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -0.8236770629882812,
+        -10.86503928899765,
+        1251.0929565429688
+      ],
+      "initialTransform": {
+        "position": [
+          4.1,
+          -2.6,
+          3.6
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "size": [
+        1.412133450369168,
+        4.381956336552438,
+        1.9970506886997306
+      ],
+      "snapDistance": 0.55,
+      "sourceSha256": "591757ab8228e95d93733e276f424b240ce9e050cf7bf7ec10775c35004f908b",
+      "vertexCount": 605,
+      "triangleCount": 886
+    },
+    {
+      "id": "T06_P04_LeftTransverseProcess",
+      "fmaId": "FMA9945",
+      "englishName": "Left Transverse Process",
+      "koreanName": "왼쪽 가로돌기",
+      "label": {
+        "en": "Left Transverse Process",
+        "ko": "왼쪽 가로돌기"
+      },
+      "region": "spine",
+      "section": "thoracic",
+      "bone": "T06",
+      "puzzleType": "landmark",
+      "anatomicalDirectionRole": [
+        "left",
+        "posterior"
+      ],
+      "learning": {
+        "category": "process",
+        "relatedLandmarks": [
+          "transverse-costal-facet"
+        ]
+      },
+      "acceptedAliases": [
+        "Left Transverse Process",
+        "왼쪽 가로돌기"
+      ],
+      "category": "process",
+      "modelPath": "/models/thoracic/T06/T06_P04_LeftTransverseProcess.glb",
+      "targetPosition": [
+        2.5366615089051603,
+        2.58213318033693,
+        -1.6340756395076734
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        22.789097785949707,
+        -16.933605194091797,
+        1272.7272338867188
+      ],
+      "initialTransform": {
+        "position": [
+          -4.5,
+          -2.2,
+          -0.5
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "size": [
+        1.9266769821896794,
+        1.537244770339222,
+        1.5291489414736281
+      ],
+      "snapDistance": 0.55,
+      "sourceSha256": "591757ab8228e95d93733e276f424b240ce9e050cf7bf7ec10775c35004f908b",
+      "vertexCount": 384,
+      "triangleCount": 608
+    },
+    {
+      "id": "T06_P05_RightTransverseProcess",
+      "fmaId": "FMA9945",
+      "englishName": "Right Transverse Process",
+      "koreanName": "오른쪽 가로돌기",
+      "label": {
+        "en": "Right Transverse Process",
+        "ko": "오른쪽 가로돌기"
+      },
+      "region": "spine",
+      "section": "thoracic",
+      "bone": "T06",
+      "puzzleType": "landmark",
+      "anatomicalDirectionRole": [
+        "right",
+        "posterior"
+      ],
+      "learning": {
+        "category": "process",
+        "relatedLandmarks": [
+          "transverse-costal-facet"
+        ]
+      },
+      "acceptedAliases": [
+        "Right Transverse Process",
+        "오른쪽 가로돌기"
+      ],
+      "category": "process",
+      "modelPath": "/models/thoracic/T06/T06_P05_RightTransverseProcess.glb",
+      "targetPosition": [
+        -2.4020743805438602,
+        2.77209244154622,
+        -1.4967621763015881
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -26.44762897491455,
+        -18.302551746368408,
+        1274.6210327148438
+      ],
+      "initialTransform": {
+        "position": [
+          4.5,
+          -2.2,
+          -0.5
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "size": [
+        2.1958512389122795,
+        1.4401958400604524,
+        1.5379812504700967
+      ],
+      "snapDistance": 0.55,
+      "sourceSha256": "591757ab8228e95d93733e276f424b240ce9e050cf7bf7ec10775c35004f908b",
+      "vertexCount": 379,
+      "triangleCount": 610
+    },
+    {
+      "id": "T06_P06_LeftArticularRegion",
+      "fmaId": "FMA9945",
+      "englishName": "Left Articular Region",
+      "koreanName": "왼쪽 관절돌기 영역",
+      "label": {
+        "en": "Left Articular Region",
+        "ko": "왼쪽 관절돌기 영역"
+      },
+      "region": "spine",
+      "section": "thoracic",
+      "bone": "T06",
+      "puzzleType": "landmark",
+      "anatomicalDirectionRole": [
+        "left",
+        "superior",
+        "inferior",
+        "posterior"
+      ],
+      "learning": {
+        "category": "articular",
+        "relatedLandmarks": [
+          "left-superior-articular-facet",
+          "left-inferior-articular-facet"
+        ]
+      },
+      "acceptedAliases": [
+        "Left Articular Region",
+        "왼쪽 관절돌기 영역"
+      ],
+      "category": "articular",
+      "modelPath": "/models/thoracic/T06/T06_P06_LeftArticularRegion.glb",
+      "targetPosition": [
+        1.4450599187323223,
+        2.4946960858225857,
+        -0.6483141551568614
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        11.906375885009766,
+        -26.761154174804688,
+        1271.8555297851562
+      ],
+      "initialTransform": {
+        "position": [
+          -3.3,
+          -1.8,
+          -3.2
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "size": [
+        1.3855009743025515,
+        3.768390616609323,
+        2.110035950364795
+      ],
+      "snapDistance": 0.55,
+      "sourceSha256": "591757ab8228e95d93733e276f424b240ce9e050cf7bf7ec10775c35004f908b",
+      "vertexCount": 1235,
+      "triangleCount": 1812
+    },
+    {
+      "id": "T06_P07_RightArticularRegion",
+      "fmaId": "FMA9945",
+      "englishName": "Right Articular Region",
+      "koreanName": "오른쪽 관절돌기 영역",
+      "label": {
+        "en": "Right Articular Region",
+        "ko": "오른쪽 관절돌기 영역"
+      },
+      "region": "spine",
+      "section": "thoracic",
+      "bone": "T06",
+      "puzzleType": "landmark",
+      "anatomicalDirectionRole": [
+        "right",
+        "superior",
+        "inferior",
+        "posterior"
+      ],
+      "learning": {
+        "category": "articular",
+        "relatedLandmarks": [
+          "right-superior-articular-facet",
+          "right-inferior-articular-facet"
+        ]
+      },
+      "acceptedAliases": [
+        "Right Articular Region",
+        "오른쪽 관절돌기 영역"
+      ],
+      "category": "articular",
+      "modelPath": "/models/thoracic/T06/T06_P07_RightArticularRegion.glb",
+      "targetPosition": [
+        -1.337479006906703,
+        2.383180424390099,
+        -0.7998105765191008
+      ],
+      "targetRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "targetScale": [
+        1,
+        1,
+        1
+      ],
+      "originalCenter": [
+        -15.834145545959473,
+        -25.250810623168945,
+        1270.7437744140625
+      ],
+      "initialTransform": {
+        "position": [
+          3.3,
+          -1.8,
+          -3.2
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "size": [
+        1.3710107109872292,
+        3.750673003423178,
+        1.5114271192829691
+      ],
+      "snapDistance": 0.55,
+      "sourceSha256": "591757ab8228e95d93733e276f424b240ce9e050cf7bf7ec10775c35004f908b",
+      "vertexCount": 912,
+      "triangleCount": 1226
+    }
+  ]
+}

@@ -20,6 +20,17 @@
 
 Three.js 및 Rapier 객체를 데이터 모듈에 넣지 않는다. 설정은 숫자·문자열·배열로만 관리하며 엔진 객체 생성은 지연 로딩되는 씬 안에서 수행한다. 이를 통해 타이틀이 물리·3D 라이브러리를 선로딩하지 않는다.
 
-새 부위를 추가할 때는 원본 JSON/GLB와 출처·체크섬, 분류 개수 계약, 카탈로그 모듈을 먼저 준비한다. 실제 모델과 정확한 목표 pose의 검사 및 저장 stage namespace 설계를 완료한 뒤 registry의 available을 활성화한다. 메타데이터만 추가했다고 플레이 가능한 것으로 표시하지 않는다. 현재 플레이 가능한 카탈로그는 HAND 하나이며 저장 키의 자동 변경·기존 기록 삭제는 하지 않는다.
+새 부위를 추가할 때는 원본 JSON/GLB와 출처·체크섬, 분류 개수 계약, 카탈로그 모듈을 먼저 준비한다. 실제 모델과 정확한 목표 pose의 검사 및 저장 stage namespace 설계를 완료한 뒤 registry의 available을 활성화한다. 메타데이터만 추가했다고 플레이 가능한 것으로 표시하지 않는다. 현재 플레이 가능한 카탈로그는 HAND와 T06이며, HAND 저장 키의 변경·기존 기록 삭제는 하지 않는다.
 
 검증 명령: `npm test`, `npm run validate:data`, `node scripts/audit-assets.mjs`. 카탈로그 검사는 원본과 동일한 pose·분류·체크섬, 원본 불변성, 가변 상태 분리, FMA 중복 거부를 확인한다. 실제 입력/판정/복원은 Playwright에서 별도로 검사한다.
+
+## Landmark 확장 경계
+
+- `scripts/anatomy/t06-segmentation.json`: FMA9945 전용 곡면 접합부와 7개 region·15개 landmark의 저작 원본.
+- `data/anatomy/t06.json`: 원본에서 생성한 pose·GLB 경로·learning metadata. 직접 편집하지 않는다.
+- `data/config/landmarkDifficulty.ts`: T06 각도 범위·허용치를 한 번 정의한다. 각 piece는 동일 객체를 참조한다. HAND 규칙은 기존 gameplay 모듈에 유지한다.
+- `data/puzzles.ts`, `hooks/usePuzzle.ts`: 불변 stage별 모델·이름·분류·인덱스. 조작·렌더링·UI는 이 공통 계약을 소비한다. FMA9945는 원본 bone ID이며, T06_P01…P07은 가상 piece ID다.
+- `systems/OrientationSystem.ts`: 엔진에 의존하지 않는 small/multi-axis/Shoemake quaternion 생성. 초기 pose는 세션 시작 시 생성하고 그대로 저장한다.
+- `utils/persistence.ts`: HAND `bone-puzzle-3d:hand:v1`, T06 `bone-puzzle-3d:thoracic-t06:v1`, 마지막 활성 스테이지 포인터를 분리한다. 기록 전환·복원·삭제가 다른 stage 기록을 덮어쓰지 않는다.
+
+semantic landmark는 관련 piece ID를 갖지만, 검증되지 않은 표면 anchor는 null로 둔다. 비용오목·관절면 등의 위치를 임의 좌표로 표시하지 않는다.

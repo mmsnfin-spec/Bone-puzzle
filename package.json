@@ -15,7 +15,9 @@
     "validate:data": "python scripts/validate-bone-data.py",
     "typecheck": "tsc -b",
     "data:fetch": "python scripts/extract-bodyparts3d.py",
-    "data:convert": "python scripts/convert-obj-to-glb.py"
+    "data:convert": "python scripts/convert-obj-to-glb.py",
+    "validate:thoracic": "python scripts/validate-thoracic.py",
+    "data:thoracic": "python scripts/build-thoracic.py"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",

@@ -30,9 +30,14 @@ let commit=null;
 try{commit=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8',stdio:['ignore','pipe','ignore']}).trim();}catch{/* Uploaded Vercel sources may omit Git metadata. */}
 files['Bone-puzzle-web/SOURCE-INFO.json']=strToU8(JSON.stringify({sourceCommit:commit,contents:'Current build input files, including working-tree changes when present',generatedUtc:new Date().toISOString()},null,2));
 for(const required of ['package.json','src/data/hand.json','src/scene/BoneScene.tsx'])if(!files[`Bone-puzzle-web/${required}`])throw new Error(`Source ZIP missing ${required}`);
-if(Object.keys(files).filter(name=>name.includes('/public/models/')&&name.endsWith('.glb')).length!==27)throw new Error('Source ZIP requires all 27 original GLBs');
+for (const catalog of ['src/data/hand.json','src/data/anatomy/t06.json']) {
+  const definition=JSON.parse(new TextDecoder().decode(files[`Bone-puzzle-web/${catalog}`]));
+  for (const bone of definition.bones)
+    if (!files[`Bone-puzzle-web/public${bone.modelPath}`]) throw new Error(`Source ZIP missing ${bone.id}`);
+}
+
 await mkdir('dist/downloads',{recursive:true});
 const target='dist/downloads/Bone-puzzle-source.zip';
 await writeFile(`${target}.tmp`,zipSync(files,{level:6}));
 await rename(`${target}.tmp`,target);
-console.log(`Source ZIP: ${Object.keys(files).length} files, 27 GLBs → ${target}`);
+console.log(`Source ZIP: ${Object.keys(files).length} files, HAND + T06 GLBs → ${target}`);

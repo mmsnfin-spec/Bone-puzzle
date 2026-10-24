@@ -11,7 +11,7 @@ import {
 import type { RapierRigidBody } from "@react-three/rapier";
 import { Mesh, Quaternion, Vector3 } from "three";
 import type { BufferGeometry, Material } from "three";
-import { handBones } from "../data/bones";
+import { usePuzzle } from "../hooks/usePuzzle";
 import { useGameStore } from "../state/gameStore";
 import { useScreenStore } from "../state/screenStore";
 import { INTRO_DURATION, TIMING, introPhase } from "../systems/AnimationSystem";
@@ -35,6 +35,7 @@ const boundaries = [
 ];
 
 export default function IntroPhysics({ geometries, material, metrics, onReady }: Props) {
+  const { bones: handBones } = usePuzzle();
   const [phase, setPhase] = useState<AnimationStatus>("assembled");
   const [settlePoses, setSettlePoses] = useState<Pose[] | null>(null);
   const bodies = useRef(new Map<number, RapierRigidBody>());
@@ -87,7 +88,7 @@ export default function IntroPhysics({ geometries, material, metrics, onReady }:
     }
     const boundary = boundaries.find((value) => value > ms);
     if (boundary !== undefined) timer.current = setTimeout(advanceClock, Math.max(1, boundary - ms));
-  }, [elapsed, invalidate, metrics]);
+  }, [elapsed, invalidate, metrics, handBones]);
 
   const physicsReady = useCallback(() => {
     onReady();
@@ -153,6 +154,7 @@ export default function IntroPhysics({ geometries, material, metrics, onReady }:
 }
 
 function ManualStepper({ active, metrics, onReady }: { active: boolean; metrics: SceneMetrics; onReady: () => void }) {
+  const { bones: handBones } = usePuzzle();
   const { step } = useRapier();
   const { invalidate } = useThree();
   const fresh = useRef(true);
@@ -185,6 +187,7 @@ function ManualStepper({ active, metrics, onReady }: { active: boolean; metrics:
 function FallingBone({ index, geometry, material, bodies }: {
   index: number; geometry: BufferGeometry; material: Material; bodies: Map<number, RapierRigidBody>;
 }) {
+  const { bones: handBones } = usePuzzle();
   const body = useRef<RapierRigidBody>(null);
   const bone = handBones[index];
   useEffect(() => {
@@ -206,13 +209,15 @@ function FallingBone({ index, geometry, material, bodies }: {
 function IntroMeshes({ phase, geometries, material, starts, elapsed, visible }: {
   phase: AnimationStatus; geometries: BufferGeometry[]; material: Material; starts: Pose[] | null; elapsed: () => number; visible: boolean;
 }) {
+  const { bones: handBones } = usePuzzle();
+  const initialTransforms = useMemo(() => handBones.map(b=>useGameStore.getState().pieces[b.id].transform), [handBones]);
   const meshes = useRef<Array<Mesh | null>>([]);
   const { invalidate } = useThree();
   const destinations = useMemo(() => handBones.map((bone, index) => {
-    const rotation = new Quaternion(...bone.initialTransform.rotation);
-    const position = new Vector3(...bone.initialTransform.position);
+    const rotation = new Quaternion(...initialTransforms[index].rotation);
+    const position = new Vector3(...initialTransforms[index].position);
     const box = geometries[index].boundingBox;
-    if (box) {
+    if (box && bone.puzzleType !== "landmark") {
       const corner = new Vector3();
       let bottom = Infinity;
       for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) {
@@ -222,7 +227,7 @@ function IntroMeshes({ phase, geometries, material, starts, elapsed, visible }: 
       position.y = Math.max(position.y, INTRO_PHYSICS.floorSurfaceY - bottom);
     }
     return { position, rotation };
-  }), [geometries]);
+  }), [geometries, handBones, initialTransforms]);
   const apply = useCallback((progress: number) => {
     const eased = 1 - Math.pow(1 - progress, 3);
     for (let index = 0; index < handBones.length; index++) {

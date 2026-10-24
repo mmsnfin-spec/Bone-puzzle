@@ -1,6 +1,9 @@
+import { getPuzzle } from "./puzzles";
+const thoracic = getPuzzle("thoracic-t06");
 /** Menu metadata only. An unavailable stage never creates fabricated anatomy. */
 export const STAGE_METADATA = [
   { id: "hand", name: "HAND", koreanName: "오른손", subtitle: "The architecture of touch", count: 27, available: true, side: "right" },
+  { id: thoracic.id, name: thoracic.name, koreanName: thoracic.koreanName, subtitle: "Orientation, landmark by landmark", count: thoracic.count, available: true },
   { id: "foot", name: "FOOT", koreanName: "발", subtitle: "The foundation of movement", count: 26, available: false },
   { id: "upper-limb", name: "UPPER LIMB", koreanName: "상지", count: null, available: false },
   { id: "lower-limb", name: "LOWER LIMB", koreanName: "하지", count: null, available: false },

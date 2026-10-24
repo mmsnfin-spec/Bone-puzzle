@@ -1,0 +1,3 @@
+# Offline asset generation/validation only; no browser/runtime dependencies.
+manifold3d==3.5.4
+numpy>=1.26,<3

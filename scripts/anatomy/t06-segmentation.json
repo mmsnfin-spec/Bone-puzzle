@@ -1,0 +1,341 @@
+{
+  "bone": "T06",
+  "fmaId": "FMA9945",
+  "sourceName": "sixth thoracic vertebra",
+  "mirrorCommit": "f0eeb6e843380cfe6b83797cf8c3e1af74de5e61",
+  "sha256": "591757ab8228e95d93733e276f424b240ce9e050cf7bf7ec10775c35004f908b",
+  "sourceAxes": {
+    "positiveX": "left",
+    "positiveY": "posterior",
+    "positiveZ": "superior",
+    "evidence": "BP3D common coordinate frame: right hand has negative X; T06 body is anterior (negative Y); spinous tip is posterior/inferior."
+  },
+  "method": "Source-specific morphology-guided curved ellipsoidal junctions, solid intersection/difference, and adjacent-volume cleanup. Source exterior is subdivided only at seams; no exterior deformation, connectors, or arbitrary planar slices. Independent anatomical segmentation review pending.",
+  "regions": [
+    {
+      "suffix": "P01_Body",
+      "en": "Vertebral Body",
+      "ko": "척추뼈몸통",
+      "category": "body",
+      "roles": [
+        "anterior"
+      ],
+      "related": [
+        "superior-costal-facet",
+        "inferior-costal-facet"
+      ],
+      "junction": "body-pedicle junction",
+      "center": [
+        -2,
+        -51,
+        1267
+      ],
+      "radii": [
+        24,
+        22,
+        22
+      ],
+      "tray": [
+        -4.1,
+        -2.6,
+        3.6
+      ]
+    },
+    {
+      "suffix": "P02_PosteriorArch",
+      "en": "Posterior Vertebral Arch",
+      "ko": "뒤쪽 척추고리",
+      "category": "arch",
+      "roles": [
+        "posterior"
+      ],
+      "related": [
+        "pedicle",
+        "lamina",
+        "vertebral-foramen"
+      ],
+      "junction": "central lamina and pedicle remainder",
+      "tray": [
+        0,
+        -2.6,
+        3.6
+      ]
+    },
+    {
+      "suffix": "P03_SpinousProcess",
+      "en": "Spinous Process",
+      "ko": "가시돌기",
+      "category": "process",
+      "roles": [
+        "posterior",
+        "inferior"
+      ],
+      "related": [
+        "lamina"
+      ],
+      "junction": "spinous process root",
+      "center": [
+        -1,
+        -6,
+        1248
+      ],
+      "radii": [
+        8,
+        17,
+        32
+      ],
+      "tray": [
+        4.1,
+        -2.6,
+        3.6
+      ]
+    },
+    {
+      "suffix": "P04_LeftTransverseProcess",
+      "en": "Left Transverse Process",
+      "ko": "왼쪽 가로돌기",
+      "category": "process",
+      "roles": [
+        "left",
+        "posterior"
+      ],
+      "related": [
+        "transverse-costal-facet"
+      ],
+      "junction": "left transverse process base",
+      "center": [
+        26,
+        -16,
+        1275
+      ],
+      "radii": [
+        13,
+        12,
+        9
+      ],
+      "tray": [
+        -4.5,
+        -2.2,
+        -0.5
+      ]
+    },
+    {
+      "suffix": "P05_RightTransverseProcess",
+      "en": "Right Transverse Process",
+      "ko": "오른쪽 가로돌기",
+      "category": "process",
+      "roles": [
+        "right",
+        "posterior"
+      ],
+      "related": [
+        "transverse-costal-facet"
+      ],
+      "junction": "right transverse process base",
+      "center": [
+        -29,
+        -17,
+        1275
+      ],
+      "radii": [
+        14,
+        12,
+        9
+      ],
+      "tray": [
+        4.5,
+        -2.2,
+        -0.5
+      ]
+    },
+    {
+      "suffix": "P06_LeftArticularRegion",
+      "en": "Left Articular Region",
+      "ko": "왼쪽 관절돌기 영역",
+      "category": "articular",
+      "roles": [
+        "left",
+        "superior",
+        "inferior",
+        "posterior"
+      ],
+      "related": [
+        "left-superior-articular-facet",
+        "left-inferior-articular-facet"
+      ],
+      "junction": "left articular process complex / arch junction",
+      "center": [
+        12,
+        -24,
+        1272
+      ],
+      "radii": [
+        7,
+        9,
+        25
+      ],
+      "tray": [
+        -3.3,
+        -1.8,
+        -3.2
+      ]
+    },
+    {
+      "suffix": "P07_RightArticularRegion",
+      "en": "Right Articular Region",
+      "ko": "오른쪽 관절돌기 영역",
+      "category": "articular",
+      "roles": [
+        "right",
+        "superior",
+        "inferior",
+        "posterior"
+      ],
+      "related": [
+        "right-superior-articular-facet",
+        "right-inferior-articular-facet"
+      ],
+      "junction": "right articular process complex / arch junction",
+      "center": [
+        -16,
+        -24,
+        1272
+      ],
+      "radii": [
+        7,
+        9,
+        25
+      ],
+      "tray": [
+        3.3,
+        -1.8,
+        -3.2
+      ]
+    }
+  ],
+  "landmarks": [
+    {
+      "id": "vertebral-body",
+      "en": "Vertebral Body",
+      "ko": "척추뼈몸통",
+      "pieces": [
+        1
+      ]
+    },
+    {
+      "id": "posterior-vertebral-arch",
+      "en": "Posterior Vertebral Arch",
+      "ko": "뒤쪽 척추고리",
+      "pieces": [
+        2
+      ]
+    },
+    {
+      "id": "spinous-process",
+      "en": "Spinous Process",
+      "ko": "가시돌기",
+      "pieces": [
+        3
+      ]
+    },
+    {
+      "id": "left-transverse-process",
+      "en": "Left Transverse Process",
+      "ko": "왼쪽 가로돌기",
+      "pieces": [
+        4
+      ]
+    },
+    {
+      "id": "right-transverse-process",
+      "en": "Right Transverse Process",
+      "ko": "오른쪽 가로돌기",
+      "pieces": [
+        5
+      ]
+    },
+    {
+      "id": "left-superior-articular-facet",
+      "en": "Left Superior Articular Facet",
+      "ko": "왼쪽 위관절면",
+      "pieces": [
+        6
+      ]
+    },
+    {
+      "id": "right-superior-articular-facet",
+      "en": "Right Superior Articular Facet",
+      "ko": "오른쪽 위관절면",
+      "pieces": [
+        7
+      ]
+    },
+    {
+      "id": "left-inferior-articular-facet",
+      "en": "Left Inferior Articular Facet",
+      "ko": "왼쪽 아래관절면",
+      "pieces": [
+        6
+      ]
+    },
+    {
+      "id": "right-inferior-articular-facet",
+      "en": "Right Inferior Articular Facet",
+      "ko": "오른쪽 아래관절면",
+      "pieces": [
+        7
+      ]
+    },
+    {
+      "id": "superior-costal-facet",
+      "en": "Superior Costal Facet",
+      "ko": "위갈비오목",
+      "pieces": [
+        1
+      ]
+    },
+    {
+      "id": "inferior-costal-facet",
+      "en": "Inferior Costal Facet",
+      "ko": "아래갈비오목",
+      "pieces": [
+        1
+      ]
+    },
+    {
+      "id": "transverse-costal-facet",
+      "en": "Transverse Costal Facet",
+      "ko": "가로돌기갈비오목",
+      "pieces": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "pedicle",
+      "en": "Pedicle",
+      "ko": "척추뼈고리뿌리",
+      "pieces": [
+        2
+      ]
+    },
+    {
+      "id": "lamina",
+      "en": "Lamina",
+      "ko": "척추뼈고리판",
+      "pieces": [
+        2
+      ]
+    },
+    {
+      "id": "vertebral-foramen",
+      "en": "Vertebral Foramen",
+      "ko": "척추뼈구멍",
+      "pieces": [
+        1,
+        2
+      ],
+      "kind": "space"
+    }
+  ]
+}

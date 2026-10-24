@@ -1,0 +1,178 @@
+{
+  "cpu": {
+    "title_idle": {
+      "beforePercentOneCore": 282.52366008451844,
+      "afterPercentOneCore": 1.6046726424162372,
+      "reductionPercent": 99.43202185546647,
+      "beforeRunMeanStatistics": {
+        "mean": 280.5808223921886,
+        "maximum": 289.4115192241103,
+        "note": "Maximum across sample-window means, not an instantaneous CPU peak"
+      },
+      "afterRunMeanStatistics": {
+        "mean": 1.8955457750293736,
+        "maximum": 2.5058105266977826,
+        "note": "Maximum across sample-window means, not an instantaneous CPU peak"
+      }
+    },
+    "intro_falling": {
+      "beforePercentOneCore": 267.37169040667527,
+      "afterPercentOneCore": 262.48641745930536,
+      "reductionPercent": 1.8271466735836388,
+      "beforeRunMeanStatistics": {
+        "mean": 269.24334935623773,
+        "maximum": 275.99859074871705,
+        "note": "Maximum across sample-window means, not an instantaneous CPU peak"
+      },
+      "afterRunMeanStatistics": {
+        "mean": 252.41877624475933,
+        "maximum": 268.6997671117994,
+        "note": "Maximum across sample-window means, not an instantaneous CPU peak"
+      }
+    },
+    "game_stationary_guide_on": {
+      "beforePercentOneCore": 357.05677538686655,
+      "afterPercentOneCore": 7.336570674463454,
+      "reductionPercent": 97.94526496058941,
+      "beforeRunMeanStatistics": {
+        "mean": 357.60753308297507,
+        "maximum": 358.7386724122698,
+        "note": "Maximum across sample-window means, not an instantaneous CPU peak"
+      },
+      "afterRunMeanStatistics": {
+        "mean": 7.1701833166893465,
+        "maximum": 7.603629091014007,
+        "note": "Maximum across sample-window means, not an instantaneous CPU peak"
+      }
+    },
+    "pointer_drag": {
+      "beforePercentOneCore": 348.0950180671746,
+      "afterPercentOneCore": 342.7787751438179,
+      "reductionPercent": 1.5272390144724164,
+      "beforeRunMeanStatistics": {
+        "mean": 348.25559283898764,
+        "maximum": 349.1329081264937,
+        "note": "Maximum across sample-window means, not an instantaneous CPU peak"
+      },
+      "afterRunMeanStatistics": {
+        "mean": 345.36354454557704,
+        "maximum": 350.59030262584537,
+        "note": "Maximum across sample-window means, not an instantaneous CPU peak"
+      }
+    },
+    "keyboard_rotation": {
+      "beforePercentOneCore": 356.87160668898883,
+      "afterPercentOneCore": 92.48621199611158,
+      "reductionPercent": 74.08417754099649,
+      "beforeRunMeanStatistics": {
+        "mean": 357.9192157398556,
+        "maximum": 361.694802100702,
+        "note": "Maximum across sample-window means, not an instantaneous CPU peak"
+      },
+      "afterRunMeanStatistics": {
+        "mean": 99.78567006834736,
+        "maximum": 120.62841412118179,
+        "note": "Maximum across sample-window means, not an instantaneous CPU peak"
+      }
+    },
+    "pointer_rotation": {
+      "beforePercentOneCore": null,
+      "afterPercentOneCore": 216.63368188673763,
+      "reductionPercent": null,
+      "beforeRunMeanStatistics": null,
+      "afterRunMeanStatistics": {
+        "mean": 213.8773523663829,
+        "maximum": 228.1527937787987,
+        "note": "Maximum across sample-window means, not an instantaneous CPU peak"
+      }
+    },
+    "camera_orbit": {
+      "beforePercentOneCore": 348.2300468993613,
+      "afterPercentOneCore": 344.8768283037062,
+      "reductionPercent": 0.9629320116147788,
+      "beforeRunMeanStatistics": {
+        "mean": 351.3151533628907,
+        "maximum": 357.5242206235241,
+        "note": "Maximum across sample-window means, not an instantaneous CPU peak"
+      },
+      "afterRunMeanStatistics": {
+        "mean": 344.6050986564746,
+        "maximum": 348.5978572751985,
+        "note": "Maximum across sample-window means, not an instantaneous CPU peak"
+      }
+    },
+    "game_stationary_guide_off": {
+      "beforePercentOneCore": null,
+      "afterPercentOneCore": 7.008418078867193,
+      "reductionPercent": null,
+      "beforeRunMeanStatistics": null,
+      "afterRunMeanStatistics": {
+        "mean": 7.394530609004323,
+        "maximum": 8.551717592667014,
+        "note": "Maximum across sample-window means, not an instantaneous CPU peak"
+      }
+    },
+    "game_background_idle": {
+      "beforePercentOneCore": 28.45917591554751,
+      "afterPercentOneCore": 1.5878341599847774,
+      "reductionPercent": 94.42066008974868,
+      "beforeRunMeanStatistics": {
+        "mean": 27.212127856367513,
+        "maximum": 30.89447632635825,
+        "note": "Maximum across sample-window means, not an instantaneous CPU peak"
+      },
+      "afterRunMeanStatistics": {
+        "mean": 1.8046402749090744,
+        "maximum": 2.5540064497250654,
+        "note": "Maximum across sample-window means, not an instantaneous CPU peak"
+      }
+    }
+  },
+  "lighthouse": {
+    "before": {
+      "scores": {
+        "performance": 0.66,
+        "accessibility": 0.95,
+        "best-practices": 1,
+        "seo": 1,
+        "agentic-browsing": 1
+      },
+      "metrics": {
+        "fcpMs": 3041.8873750000002,
+        "lcpMs": 3082.26485,
+        "tbtMs": 8,
+        "cls": 0,
+        "speedIndexMs": 3041.8873750000002,
+        "interactiveMs": 3140.99865
+      }
+    },
+    "after": {
+      "scores": {
+        "performance": 1,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1,
+        "agentic-browsing": 1
+      },
+      "metrics": {
+        "fcpMs": 490.1007,
+        "lcpMs": 528.2131999999999,
+        "tbtMs": 0,
+        "cls": 0,
+        "speedIndexMs": 490.1007,
+        "interactiveMs": 528.2131999999999
+      }
+    }
+  },
+  "firstPlayableIncludingIntro": {
+    "beforeMedianMs": 7112.820624999993,
+    "afterMedianMs": 7503.562425
+  },
+  "limitations": [
+    "Historical PSI report inaccessible",
+    "Deployed Lighthouse blocked by cloud Chromium proxy-CA trust",
+    "GitHub push rejected invalid credentials; Preview/Windows CI not executed",
+    "Active manipulation CPU does not meet 50% reduction",
+    "Windows hardware 60FPS and extended memory soak unverified"
+  ]
+}

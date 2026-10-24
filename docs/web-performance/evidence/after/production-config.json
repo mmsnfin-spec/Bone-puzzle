@@ -1,0 +1,38 @@
+{
+  "measuredUtc": "2026-10-24T17:08:05.513Z",
+  "origin": "http://127.0.0.1:4183",
+  "phase": "after",
+  "runs": 3,
+  "sampleDurationMs": 3000,
+  "os": "linux 6.18.55 x64",
+  "cpuModel": "AMD EPYC 9V45 96-Core Processor",
+  "hostLogicalCpuCount": 5,
+  "hostTotalMemoryBytes": 35743760384,
+  "cgroupCpuMax": "400000 100000",
+  "cgroupMemoryMax": "34359738368",
+  "clockTicksPerSecond": 100,
+  "viewport": [
+    1920,
+    1080
+  ],
+  "dpr": 1,
+  "browserExecutable": "/usr/bin/chromium",
+  "browserArgs": [
+    "--no-sandbox",
+    "--disable-dev-shm-usage",
+    "--use-angle=swiftshader",
+    "--enable-unsafe-swiftshader",
+    "--window-size=1920,1080"
+  ],
+  "headless": false,
+  "display": ":99",
+  "notes": [
+    "OS CPU is sampled over the complete Chromium process tree, including renderer/GPU/utility children. 100 percent means one logical core; shared RSS is summed and can double-count shared pages.",
+    "CDP TaskDuration is page main-thread task time, reported separately from OS browser CPU.",
+    "WebGL draw calls are counted by wrappers installed before application startup. Draw-bearing RAF frames approximate render cadence; RAF callbacks alone are not actual 3D rendered FPS.",
+    "The audit RAF loop and draw wrappers add equal instrumentation overhead to before and after. Long tasks use PerformanceObserver.",
+    "Each run uses a new browser/context. UI Restart and Skip Intro restore initial geometry/camera before manipulation scenarios. No production testhooks or internal stores are used.",
+    "SwiftShader is a software graphics backend. These measurements do not establish native GPU performance or a guaranteed improvement percentage.",
+    "Background scenario is an actual foreground-tab switch with CDP focus emulation disabled. document.hidden may remain false in this environment; focus and visibility are recorded, never forged."
+  ]
+}

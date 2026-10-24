@@ -1,0 +1,15 @@
+{
+  "providedPageSpeedReport": "https://pagespeed.web.dev/analysis/https-bone-puzzle-9g8i-vercel-app/yy02squnrv?form_factor=desktop",
+  "accessSucceeded": false,
+  "curlExitCode": 56,
+  "proxyConnectStatus": 403,
+  "targetHttpStatus": null,
+  "observedError": "curl: (56) CONNECT tunnel failed, response 403",
+  "reportContentRead": false,
+  "interpretation": "The supplied historical report could not be read in this cloud environment. No scores or diagnostics are attributed to it. Fresh Lighthouse runs are measured independently.",
+  "deployedUrl": "https://bone-puzzle-9g8i.vercel.app/",
+  "immutableLocalBaseline": "/workspace/web-baseline-dist",
+  "baselineCodebaseCommit": "db6d87768a541c4378c7899978d93193d5ff2b04",
+  "verifiedMatchingAsset": "assets/index-DrF_6NOK.js",
+  "deployedAndLocalAssetSha256": "3bdf953ab45b3111b17e043a6f31eee3b49dbcb604e1cb7613fdb4c6a06bf9f8"
+}

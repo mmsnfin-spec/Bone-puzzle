@@ -1,0 +1,33 @@
+{
+  "unit": {
+    "command": "npm test",
+    "passed": 60,
+    "failed": 0
+  },
+  "browser": {
+    "command": "DISPLAY=:99 E2E_HEADFUL=1 npm run test:e2e",
+    "passed": 10,
+    "failed": 0,
+    "skipped": 0,
+    "runner": "playwright.json"
+  },
+  "anatomy": {
+    "bones": 27,
+    "categories": [
+      8,
+      5,
+      14
+    ],
+    "triangles": 36216,
+    "vertices": 18164,
+    "sourceRoundTripMaximumError": 1.353e-06,
+    "originalJSONandGLBsChanged": false
+  },
+  "archive": {
+    "crcVerified": true,
+    "independentExtractInstallAndBuildPassed": true
+  },
+  "windowsBrowsersExecuted": false,
+  "previewDeployed": false,
+  "remotePushSucceeded": false
+}

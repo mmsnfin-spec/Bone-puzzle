@@ -1,7 +1,7 @@
 export const PROJECT = {
   name: "BONE PUZZLE",
   repository: "https://github.com/mmsnfin-spec/Bone-puzzle",
-  sourceArchive: "https://codeload.github.com/mmsnfin-spec/Bone-puzzle/zip/refs/heads/improvement/web-performance",
+  sourceArchive: "/downloads/Bone-puzzle-source.zip",
 } as const;
 export const ANATOMY_ATTRIBUTION = {
   name: "BodyParts3D",

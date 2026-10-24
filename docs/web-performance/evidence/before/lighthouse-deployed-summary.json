@@ -1,0 +1,14 @@
+{
+  "phase": "before",
+  "origin": "https://bone-puzzle-9g8i.vercel.app/",
+  "label": "deployed",
+  "runs": [
+    {
+      "run": 1,
+      "url": "https://bone-puzzle-9g8i.vercel.app/",
+      "failed": true,
+      "exitCode": 1,
+      "log": "/workspace/Bone-puzzle/docs/web-performance/evidence/before/lighthouse-deployed-1.log"
+    }
+  ]
+}

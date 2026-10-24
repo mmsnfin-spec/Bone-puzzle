@@ -19,6 +19,7 @@ import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { handBones, handBoneIndexById } from "../data/bones";
 import { RENDERING_CONFIG } from "../data/config/rendering";
 import { GUIDE_CONFIG } from "../data/config/gameplay";
+import { HAND_STAGE } from "../data/stageRegistry";
 import { useGameStore } from "../state/gameStore";
 import { useScreenStore } from "../state/screenStore";
 import type { BoneDefinition } from "../types/bone";
@@ -79,7 +80,7 @@ function BoneScene({ screen }: { screen: Screen }) {
             <World screen={screen} onReady={markReady} />
           </Suspense>
         </Canvas>
-        {!ready && <div className="model-loading" role="status"><span className="loading-line" />Loading anatomy <small>HAND · 27 BONES</small></div>}
+        {!ready && <div className="model-loading" role="status"><span className="loading-line" />Loading anatomy <small>{HAND_STAGE.name} · {handBones.length} BONES</small></div>}
       </div>
     </SceneErrorBoundary>
   );

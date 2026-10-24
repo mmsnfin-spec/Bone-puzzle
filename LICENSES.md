@@ -9,7 +9,7 @@
 - Distribution: BodyParts3D 3.0 / 20110915, OBJ 95% polygon-reduced archive, subsequently converted to STL by Kevin-Mattheus-Moerman.
 - Mirror: https://github.com/Kevin-Mattheus-Moerman/BodyParts3D/tree/f0eeb6e843380cfe6b83797cf8c3e1af74de5e61
 - The preserved official README's section 3 contains the license and attribution text: `public/models/hand/source/original-README.html`.
-- All derived GLB models, geometry-derived transforms and source metadata in this project are distributed under **CC BY-SA 2.1 Japan**. This includes `public/models/hand/`, `src/data/hand.json`, and the anatomical renderings in `docs/evidence/`.
+- All derived GLB models, geometry-derived transforms and source metadata in this project are distributed under **CC BY-SA 2.1 Japan**. This includes `public/models/hand/`, `src/data/hand.json`, and the anatomical renderings in `docs/evidence/` and `docs/web-performance/evidence/`.
 
 Our modifications: extracted the 27 right-hand meshes, deduplicated coincident vertices, generated smooth normals, applied one shared rigid rotation and uniform scale, centered each mesh while recording the reversible target translation, exported GLB. No further decimation or anatomical deformation. The processing code is newly written; mirror application code is not copied.
 
@@ -28,4 +28,4 @@ Three references were provided in the conversation. Binary originals are not pre
 
 ## Dependencies
 
-Vite, React, TypeScript, Three.js, React Three Fiber, Drei, Rapier, Zustand, Vitest, Testing Library, and Playwright retain their respective upstream licenses in their npm packages. See package-lock.json for exact versions. No paid API or backend service is required.
+Vite, React, TypeScript, Three.js, React Three Fiber, Drei, Rapier, Zustand, Vitest, Testing Library, Playwright, and fflate retain their respective upstream licenses in their npm packages. fflate is used only by the build-time source ZIP packager. See package-lock.json for exact versions. No paid API or backend service is required.

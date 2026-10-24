@@ -18,6 +18,8 @@ export type BoneDefinition = {
   size: Vec3;
   snapDistance: number;
   sourceSha256: string;
+  vertexCount: number;
+  triangleCount: number;
 };
 export type BonePlayState = {
   transform: Transform;

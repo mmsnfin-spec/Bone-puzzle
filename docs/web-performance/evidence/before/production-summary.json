@@ -1,0 +1,113 @@
+{
+  "phase": "before",
+  "origin": "http://127.0.0.1:4182",
+  "runs": 3,
+  "medians": {
+    "title_idle": {
+      "browserProcessCpuMs": 8590,
+      "browserProcessCpuPercentOneCore": 282.52366008451844,
+      "browserProcessPeakRssBytes": 848433152,
+      "pageTaskMs": 128.95899999999995,
+      "pageScriptMs": 102.67199999999998,
+      "webglDrawCallsPerSecond": 3238.433016282444,
+      "webglDrawBearingFramesPerSecond": 59.97098178300822,
+      "rafCadenceFps": 60.002594706798135,
+      "rafFrameP95Ms": 16.700000000000728,
+      "longTaskCount": 0,
+      "longTaskTotalMs": 0,
+      "pageJsHeapBytes": 13768192
+    },
+    "game_stationary_guide_on": {
+      "browserProcessCpuMs": 10990,
+      "browserProcessCpuPercentOneCore": 357.05677538686655,
+      "browserProcessPeakRssBytes": 853467136,
+      "pageTaskMs": 71.92199999999983,
+      "pageScriptMs": 50.50399999999999,
+      "webglDrawCallsPerSecond": 849.9060698346825,
+      "webglDrawBearingFramesPerSecond": 10.36470816871564,
+      "rafCadenceFps": 10.508830807823989,
+      "rafFrameP95Ms": 133.29999999999927,
+      "longTaskCount": 0,
+      "longTaskTotalMs": 0,
+      "pageJsHeapBytes": 13838676
+    },
+    "intro_falling": {
+      "browserProcessCpuMs": 2230,
+      "browserProcessCpuPercentOneCore": 267.37169040667527,
+      "browserProcessPeakRssBytes": 886611968,
+      "pageTaskMs": 57.647999999999925,
+      "pageScriptMs": 49.265000000000114,
+      "webglDrawCallsPerSecond": 849.8751931564636,
+      "webglDrawBearingFramesPerSecond": 15.452276239208429,
+      "rafCadenceFps": 16.004267804747947,
+      "rafFrameP95Ms": 66.79999999999927,
+      "longTaskCount": 0,
+      "longTaskTotalMs": 0,
+      "pageJsHeapBytes": 14004368
+    },
+    "pointer_drag": {
+      "browserProcessCpuMs": 10760,
+      "browserProcessCpuPercentOneCore": 348.0950180671746,
+      "browserProcessPeakRssBytes": 868003840,
+      "pageTaskMs": 129.56699999999978,
+      "pageScriptMs": 63.07000000000018,
+      "webglDrawCallsPerSecond": 834.6055979643766,
+      "webglDrawBearingFramesPerSecond": 10.178117048346056,
+      "rafCadenceFps": 10.170181029222322,
+      "rafFrameP95Ms": 116.70000000000073,
+      "longTaskCount": 0,
+      "longTaskTotalMs": 0,
+      "pageJsHeapBytes": 16250736
+    },
+    "camera_orbit": {
+      "browserProcessCpuMs": 10920,
+      "browserProcessCpuPercentOneCore": 348.2300468993613,
+      "browserProcessPeakRssBytes": 854253568,
+      "pageTaskMs": 111.54099999999988,
+      "pageScriptMs": 52.88099999999996,
+      "webglDrawCallsPerSecond": 829.0941261951589,
+      "webglDrawBearingFramesPerSecond": 10.110903977989741,
+      "rafCadenceFps": 10.117220206530835,
+      "rafFrameP95Ms": 166.6999999999971,
+      "longTaskCount": 0,
+      "longTaskTotalMs": 0,
+      "pageJsHeapBytes": 16561996
+    },
+    "game_stationary_guide_off": {},
+    "keyboard_rotation": {
+      "browserProcessCpuMs": 10730,
+      "browserProcessCpuPercentOneCore": 356.87160668898883,
+      "browserProcessPeakRssBytes": 872194048,
+      "pageTaskMs": 115.564,
+      "pageScriptMs": 70.69199999999975,
+      "webglDrawCallsPerSecond": 891.8429003021148,
+      "webglDrawBearingFramesPerSecond": 10.876132930513595,
+      "rafCadenceFps": 10.995224930887142,
+      "rafFrameP95Ms": 100.10000000000582,
+      "longTaskCount": 0,
+      "longTaskTotalMs": 0,
+      "pageJsHeapBytes": 17707508
+    },
+    "pointer_rotation": {},
+    "game_background_idle": {
+      "browserProcessCpuMs": 890,
+      "browserProcessCpuPercentOneCore": 28.45917591554751,
+      "browserProcessPeakRssBytes": 907632640,
+      "pageTaskMs": 18.199999999999772,
+      "pageScriptMs": 12.53700000000002,
+      "webglDrawCallsPerSecond": 78.05311419226683,
+      "webglDrawBearingFramesPerSecond": 0.9518672462471566,
+      "rafCadenceFps": 0.9836710603974045,
+      "rafFrameP95Ms": 1016.5999999999985,
+      "longTaskCount": 0,
+      "longTaskTotalMs": 0,
+      "pageJsHeapBytes": 15390148
+    }
+  },
+  "firstPlayableMs": [
+    7266.204734000001,
+    7107.182508000005,
+    7112.820624999993
+  ],
+  "errors": []
+}

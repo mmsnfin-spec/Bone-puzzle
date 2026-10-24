@@ -164,7 +164,7 @@ function ManualStepper({ active, metrics, onReady }: { active: boolean; metrics:
   }, [metrics, onReady]);
   useEffect(() => {
     fresh.current = true;
-    metrics.dynamicBodies = active ? 27 : 0;
+    metrics.dynamicBodies = active ? handBones.length : 0;
     if (active) invalidate();
   }, [active, invalidate, metrics]);
   useEffect(() => {

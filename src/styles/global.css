@@ -41,6 +41,7 @@ input[type=checkbox] { accent-color:var(--gold); }
 .menu-links { display:flex; gap:10px; flex-wrap:wrap; }
 .menu-links button { font-size:12px; }
 .scene { position:absolute; inset:0; z-index:0; }
+.scene-stageIntro { top:64px; bottom:130px; }
 .scene-game,.scene-paused { right:370px; top:78px; bottom:150px; }
 .scene-complete { right:350px; }
 .scene canvas { touch-action:none; display:block; }
@@ -69,6 +70,9 @@ input[type=checkbox] { accent-color:var(--gold); }
 .selection-panel h2 span { color:var(--gold); }
 .piece-status { display:flex; justify-content:space-between; font-size:10px; color:var(--muted); }
 .bone-id { color:#858879; font-size:10px; margin:10px 0 20px; letter-spacing:1px; }
+.selected-manipulation { margin:0 0 20px; }
+.selected-manipulation .interaction-modes button { flex:1; padding:10px 8px; font-size:11px; }
+.selected-manipulation p { font-size:11px; line-height:1.7; color:var(--muted); margin:10px 0 0; }
 .selection-panel form label { display:block; font-size:9px; letter-spacing:1px; color:var(--muted); margin:0 0 10px; }
 .selection-panel input[type=text],.selection-panel input:not([type]) { width:100%; min-width:0; padding:12px 10px; border:1px solid #56594b; background:#090a08; color:var(--ivory); }
 .input-actions { display:flex; gap:8px; margin-top:10px; }

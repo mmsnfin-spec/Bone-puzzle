@@ -23,12 +23,23 @@ export default function SceneProbe() {
           const b = handBones.find((b) => b.id === id)!;
           const p = o.getWorldPosition(new Vector3());
           const box = new Box3().setFromObject(o);
+          const projected = [];
+          for (const x of [box.min.x, box.max.x])
+            for (const y of [box.min.y, box.max.y])
+              for (const z of [box.min.z, box.max.z])
+                projected.push(project(new Vector3(x, y, z)));
           result[id] = {
             position: p.toArray(),
             rotation: o.getWorldQuaternion(o.quaternion.clone()).toArray(),
             screen: project(p),
             target: project(new Vector3(...b.targetPosition)),
             minY: box.min.y,
+            bounds: {
+              left: Math.min(...projected.map((p) => p.x)),
+              right: Math.max(...projected.map((p) => p.x)),
+              top: Math.min(...projected.map((p) => p.y)),
+              bottom: Math.max(...projected.map((p) => p.y)),
+            },
           };
         }
       });

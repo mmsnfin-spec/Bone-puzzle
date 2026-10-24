@@ -4,6 +4,9 @@ export const RENDERING_CONFIG = {
   dpr: [1, 1.5] as [number, number],
   camera: { near: 0.1, far: 120, minimumZoom: 18, maximumZoom: 230, maximumPolarAngle: Math.PI * 0.85 },
   views: {
+    // Include both the upright hand and its floor/scatter envelope. The intro
+    // canvas reserves separate space for the caption, subtitle and skip button.
+    intro: { target: [0, -0.5, 0.8], offset: [0, 8.9, 24], height: 14, width: 16 },
     gameplay: { target: [0, -0.5, 0.8], offset: [0, 18, 18], height: 13.4, width: 13 },
     anatomy: { target: [0, 1.3, 0], offset: [0, 8.9, 24], height: 10.5, width: 9.5 },
   },

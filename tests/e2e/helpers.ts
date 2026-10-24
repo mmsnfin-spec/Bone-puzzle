@@ -6,7 +6,7 @@ export const handBones = JSON.parse(
   readFileSync(new URL("../../src/data/hand.json", import.meta.url), "utf8"),
 ).bones as BoneDefinition[];
 export type Point = { x: number; y: number };
-export type Sample = { screen: Point; target: Point; position: number[]; rotation: number[]; minY: number };
+export type Sample = { screen: Point; target: Point; position: number[]; rotation: number[]; minY: number; bounds: { left: number; right: number; top: number; bottom: number } };
 export type SceneStats = {
   frames?: number;
   frameCount?: number;

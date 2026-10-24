@@ -8,6 +8,7 @@ export default function BoneNameInput() {
   const id = useGameStore((s) => s.selectedBoneId);
   const piece = useGameStore((s) => (id ? s.pieces[id] : null));
   const hints = useGameStore((s) => s.hintsRemaining);
+  const mode = useGameStore((s) => s.interactionMode);
   const [value, setValue] = useState("");
   const [feedback, setFeedback] = useState("");
   useEffect(() => {
@@ -27,9 +28,9 @@ export default function BoneNameInput() {
           시작하세요.
         </h2>
         <p>
-          아래의 뼈를 클릭하면
+          뼈를 클릭해 선택한 뒤
           <br />
-          이름을 기록하고 확인할 수 있습니다.
+          마우스 회전 또는 이동을 선택하세요.
         </p>
         <p className="muted">
           작은 조각은 오른쪽 목록에서도
@@ -74,6 +75,15 @@ export default function BoneNameInput() {
         </span>
       </div>
       <p className="bone-id">{bone.fmaId}</p>
+      {!piece.placed && (
+        <div className="selected-manipulation">
+          <div className="interaction-modes" role="group" aria-label="선택한 뼈 마우스 조작">
+            <button aria-pressed={mode === "move"} onClick={(event) => { useGameStore.getState().setInteractionMode("move"); event.currentTarget.blur(); }}>마우스로 이동</button>
+            <button aria-pressed={mode === "rotate"} onClick={(event) => { useGameStore.getState().setInteractionMode("rotate"); event.currentTarget.blur(); }}>마우스로 회전</button>
+          </div>
+          <p>{mode === "rotate" ? "선택한 뼈 위에서 왼쪽 버튼을 누른 채 드래그하면 자유롭게 회전합니다. Shift + 드래그는 이동입니다." : "선택한 뼈를 드래그해 이동하세요. 회전하려면 ‘마우스로 회전’을 선택하세요."}</p>
+        </div>
+      )}
       <form
         onSubmit={(e) => {
           e.preventDefault();

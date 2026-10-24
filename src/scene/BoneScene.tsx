@@ -100,11 +100,11 @@ function Camera({ screen, runtime }: { screen: Screen; runtime: PoseRuntime }) {
   const dragging = useGameStore((state) => state.dragging);
   const visible = usePageActivity();
   const enabled = !dragging && visible && (screen === "game" || screen === "complete");
-  const anatomy = screen === "stageIntro" || screen === "complete";
-  const lastView = useRef<boolean | null>(null);
+  const viewName = screen === "stageIntro" ? "intro" : screen === "complete" ? "anatomy" : "gameplay";
+  const lastView = useRef<string | null>(null);
   const reset = useCallback(() => {
     const orthographic = camera as OrthographicCamera;
-    const view = RENDERING_CONFIG.views[anatomy ? "anatomy" : "gameplay"];
+    const view = RENDERING_CONFIG.views[viewName];
     const target = new Vector3(...view.target);
     camera.position.copy(target).add(new Vector3(...view.offset));
     orthographic.zoom = Math.min(size.height / view.height, size.width / view.width);
@@ -115,14 +115,14 @@ function Camera({ screen, runtime }: { screen: Screen; runtime: PoseRuntime }) {
       controls.current.update();
     }
     invalidate();
-  }, [anatomy, camera, invalidate, size.height, size.width]);
+  }, [viewName, camera, invalidate, size.height, size.width]);
   useEffect(() => {
     // Pausing must preserve the exact camera pose; only real view changes reset.
-    if (lastView.current !== anatomy) {
-      lastView.current = anatomy;
+    if (lastView.current !== viewName) {
+      lastView.current = viewName;
       reset();
     }
-  }, [anatomy, reset]);
+  }, [viewName, reset]);
   useEffect(() => {
     reset();
   }, [size.height, size.width]); // Resize reframes the actual unobscured canvas.

@@ -1,0 +1,606 @@
+{
+  "config": {
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "/workspace/Bone-puzzle/node_modules/.bin/playwright",
+      "test"
+    ],
+    "configFile": "/workspace/Bone-puzzle/playwright.config.ts",
+    "rootDir": "/workspace/Bone-puzzle/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/workspace/Bone-puzzle/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/workspace/Bone-puzzle/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 270000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/workspace/Bone-puzzle/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/workspace/Bone-puzzle/tests/e2e",
+        "snapshotDir": "/workspace/Bone-puzzle/tests/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 270000,
+        "use": {
+          "baseURL": "http://127.0.0.1:5174",
+          "headless": false,
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "launchOptions": {
+            "executablePath": "/usr/bin/chromium",
+            "args": [
+              "--no-sandbox",
+              "--disable-dev-shm-usage",
+              "--use-angle=swiftshader",
+              "--enable-unsafe-swiftshader"
+            ]
+          },
+          "screenshot": "only-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --port 5174",
+      "env": {
+        "VITE_E2E": "1"
+      },
+      "url": "http://127.0.0.1:5174",
+      "reuseExistingServer": true,
+      "timeout": 60000
+    }
+  },
+  "suites": [
+    {
+      "title": "hand.spec.ts",
+      "file": "hand.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "cinematic, all 27 actual pointer placements, naming, persistence and completion",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 31264,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T18:26:45.814Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a5bdbe1f1123773dbb37-50ea551f9c59caff2180",
+          "file": "hand.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "camera orbit, zoom, rotated-camera drag, five-hint cap, restart",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4912,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T18:27:17.362Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a5bdbe1f1123773dbb37-063306b7b39d729b274d",
+          "file": "hand.spec.ts",
+          "line": 101,
+          "column": 1
+        },
+        {
+          "title": "mobile layout, reduced motion and asset failure feedback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2664,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T18:27:22.286Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a5bdbe1f1123773dbb37-40460967eafc70f0795e",
+          "file": "hand.spec.ts",
+          "line": 141,
+          "column": 1
+        },
+        {
+          "title": "Normal rejects rotation mismatch, rotation controls and keyboard placement work",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3090,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T18:27:24.959Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a5bdbe1f1123773dbb37-35c624b4ac18ccfdcd1e",
+          "file": "hand.spec.ts",
+          "line": 172,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "interaction.spec.ts",
+      "file": "interaction.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "rolling arcball covers 90, 180 and 360 degrees without translating a bone",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9907,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T18:27:28.067Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "658d4d77d9fd28df6a81-0bedaeab56516367ff59",
+          "file": "interaction.spec.ts",
+          "line": 34,
+          "column": 1
+        },
+        {
+          "title": "diagonal arcball is cadence independent and canonical after keyboard edits and reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 150000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6836,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T18:27:37.981Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "658d4d77d9fd28df6a81-d1b9ac94a9538c1fcdae",
+          "file": "interaction.spec.ts",
+          "line": 58,
+          "column": 1
+        },
+        {
+          "title": "Shift moves temporarily, and cancellation or blur rolls back without locking the camera",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5673,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T18:27:44.829Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "658d4d77d9fd28df6a81-4e6ba75d76911fd3f69c",
+          "file": "interaction.spec.ts",
+          "line": 96,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "intro-framing.spec.ts",
+      "file": "intro-framing.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "whole intro remains visible through every phase at 1920x1080",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8231,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T18:27:50.515Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ef98fdd71253d4aad043-02ea4872964cbaa4fc15",
+          "file": "intro-framing.spec.ts",
+          "line": 5,
+          "column": 3
+        },
+        {
+          "title": "whole intro remains visible through every phase at 1920x900",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8174,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T18:27:58.753Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ef98fdd71253d4aad043-675c3b2aa05264e7e903",
+          "file": "intro-framing.spec.ts",
+          "line": 5,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "rendering.spec.ts",
+      "file": "rendering.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "minimal title loads no scene, menu controls and responsive layouts remain usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2294,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T18:28:06.949Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f672df31acb714c8c296-9f3cd59c87fecf0fa3a2",
+          "file": "rendering.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "guide is truly unmounted when off, persists, and static gameplay stops drawing",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7691,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T18:28:09.253Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f672df31acb714c8c296-a96f38b5d209d4d258d3",
+          "file": "rendering.spec.ts",
+          "line": 45,
+          "column": 1
+        },
+        {
+          "title": "real foreground switch pauses intro physics and resumes without background simulation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9222,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T18:28:16.951Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f672df31acb714c8c296-368c91f9b8de10659dda",
+          "file": "rendering.spec.ts",
+          "line": 92,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "selection-rotation.spec.ts",
+      "file": "selection-rotation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "select each bone and rotate it using the visible selection panel action",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3717,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T18:28:26.186Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3fabc8217af58fe7adf4-e4197f264c9b8415bf41",
+          "file": "selection-rotation.spec.ts",
+          "line": 4,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-24T18:26:44.608Z",
+    "duration": 105442.20199999999,
+    "expected": 13,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Euler, Quaternion } from "three";
-import { bonesById, handBones } from "../../data/bones";
+import { bonesById, handBoneIndexById } from "../../data/bones";
+import { HINT_CONFIG, SAVE_CONFIG } from "../../data/config/gameplay";
+import { INTERACTION_CONFIG } from "../../data/config/interaction";
 import { useGameStore } from "../../state/gameStore";
-import type { Quat, Transform } from "../../types/bone";
 
 export default function BoneNameInput() {
   const id = useGameStore((s) => s.selectedBoneId);
@@ -39,7 +39,7 @@ export default function BoneNameInput() {
       </section>
     );
   const bone = bonesById[id];
-  const number = handBones.findIndex((b) => b.id === id) + 1;
+  const number = handBoneIndexById[id] + 1;
   const save = () => {
     useGameStore.getState().saveLabel(id, value);
     setFeedback("메모를 저장했습니다. 정답 여부는 Check로 확인하세요.");
@@ -73,6 +73,7 @@ export default function BoneNameInput() {
           {piece.placed ? "● 배치 완료" : "○ 미배치"}
         </span>
       </div>
+      <p className="bone-id">{bone.fmaId}</p>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -83,7 +84,7 @@ export default function BoneNameInput() {
         <input
           id="bone-name"
           value={value}
-          maxLength={120}
+          maxLength={SAVE_CONFIG.maximumLabelLength}
           autoComplete="off"
           spellCheck={false}
           placeholder="Enter bone name…"
@@ -117,7 +118,7 @@ export default function BoneNameInput() {
         onClick={() => useGameStore.getState().revealHint()}
       >
         <span>✧ {piece.hintShown ? "공개한 힌트" : "이름 힌트 보기"}</span>
-        <span>{hints} / 5</span>
+        <span>{hints} / {HINT_CONFIG.maximumUniqueBones}</span>
       </button>
       {piece.hintShown && (
         <div className="revealed-hint">
@@ -127,33 +128,14 @@ export default function BoneNameInput() {
           <small>힌트 공개는 이름 정답으로 기록되지 않습니다.</small>
         </div>
       )}
-      {!piece.placed && (
-        <RotationControls id={id} transform={piece.transform} />
-      )}
+      {!piece.placed && <RotationControls id={id} />}
     </section>
   );
 }
 export function rotateBone(id: string, axis: "x" | "y" | "z", degrees: number) {
-  const s = useGameStore.getState(),
-    p = s.pieces[id];
-  if (!p || p.placed) return;
-  const euler = new Euler().setFromQuaternion(
-    new Quaternion(...p.transform.rotation),
-  );
-  euler[axis] += (degrees * Math.PI) / 180;
-  const rotation = new Quaternion().setFromEuler(euler).toArray() as Quat;
-  s.move(id, { ...p.transform, rotation });
+  useGameStore.getState().rotate(id, axis, degrees);
 }
-function RotationControls({
-  id,
-  transform,
-}: {
-  id: string;
-  transform: Transform;
-}) {
-  const euler = new Euler().setFromQuaternion(
-    new Quaternion(...transform.rotation),
-  );
+function RotationControls({ id }: { id: string }) {
   return (
     <details className="rotation-controls">
       <summary>조각 회전 · 키보드 조작</summary>
@@ -163,16 +145,15 @@ function RotationControls({
           <span>{axis.toUpperCase()}</span>
           <button
             aria-label={`${axis}축 반시계 회전`}
-            onClick={(e) => rotateBone(id, axis, e.shiftKey ? -5 : -15)}
+            onClick={(e) => rotateBone(id, axis, -(e.shiftKey ? INTERACTION_CONFIG.preciseRotationDegrees : INTERACTION_CONFIG.rotationDegrees))}
           >
-            −
+            −15°
           </button>
-          <output>{Math.round((euler[axis] * 180) / Math.PI)}°</output>
           <button
             aria-label={`${axis}축 시계 회전`}
-            onClick={(e) => rotateBone(id, axis, e.shiftKey ? 5 : 15)}
+            onClick={(e) => rotateBone(id, axis, e.shiftKey ? INTERACTION_CONFIG.preciseRotationDegrees : INTERACTION_CONFIG.rotationDegrees)}
           >
-            +
+            +15°
           </button>
         </div>
       ))}

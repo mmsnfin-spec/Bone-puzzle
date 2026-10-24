@@ -9,6 +9,7 @@ import { afterEach, beforeEach, describe, it, expect, vi } from "vitest";
 import { useScreenStore } from "../src/state/screenStore";
 import { useGameStore } from "../src/state/gameStore";
 import TitleScreen from "../src/screens/TitleScreen";
+import StageSelectScreen from "../src/screens/StageSelectScreen";
 import StageIntroScreen from "../src/screens/StageIntroScreen";
 import BoneNameInput from "../src/components/game/BoneNameInput";
 import { handBones } from "../src/data/bones";
@@ -19,19 +20,36 @@ beforeEach(() => {
   useGameStore.getState().newGame();
 });
 describe("screen flow and learning UI", () => {
-  it("requires Start and leaves unavailable stages disabled", () => {
-    render(<TitleScreen onCredits={vi.fn()} />);
+  it("keeps the title minimal and starts HAND through a separate menu", () => {
+    const view = render(<TitleScreen />);
     expect(useScreenStore.getState().screen).toBe("title");
+    expect(screen.getByRole("heading", { name: "BONE PUZZLE" })).toBeInTheDocument();
+    expect(screen.getByText("아무 key나 눌러 시작하시오")).toBeInTheDocument();
+    expect(screen.getAllByRole("button")).toHaveLength(1);
+    fireEvent.click(screen.getByRole("button", { name: "Start" }));
+    expect(useScreenStore.getState().screen).toBe("menu");
+    view.rerender(<StageSelectScreen onSettings={vi.fn()} onCredits={vi.fn()} onHelp={vi.fn()} />);
     expect(screen.getByRole("button", { name: /FOOT/ })).toBeDisabled();
     expect(screen.getByRole("button", { name: /VERTEBRA/ })).toBeDisabled();
-    fireEvent.click(screen.getByRole("button", { name: /^Start/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Start HAND" }));
     expect(useScreenStore.getState().screen).toBe("stageIntro");
+  });
+  it("ignores modifier and repeated title keys, then accepts one ordinary key", () => {
+    render(<TitleScreen />);
+    fireEvent.keyDown(window, { key: "Shift" });
+    fireEvent.keyDown(window, { key: "a", repeat: true });
+    expect(useScreenStore.getState().screen).toBe("title");
+    fireEvent.keyDown(window, { key: "a", repeat: false });
+    expect(useScreenStore.getState().screen).toBe("menu");
+    fireEvent.keyDown(window, { key: "a", repeat: true });
+    expect(useScreenStore.getState().screen).toBe("menu");
   });
   it("allows only valid state transitions", () => {
     useScreenStore.setState({ screen: "splash" });
     useScreenStore.getState().go("game");
     expect(useScreenStore.getState().screen).toBe("splash");
     useScreenStore.getState().go("title");
+    useScreenStore.getState().go("menu");
     useScreenStore.getState().go("stageIntro");
     useScreenStore.getState().go("game");
     useScreenStore.getState().go("complete");

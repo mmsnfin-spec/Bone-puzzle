@@ -22,6 +22,8 @@ export default function SplashScreen() {
         <img
           src={brand.logoPath}
           alt="브랜드 로고"
+          width={180}
+          height={180}
           className="splash-logo"
           style={{ animationDuration: `${TIMING.splash}ms` }}
           onError={() => useScreenStore.getState().go("title")}

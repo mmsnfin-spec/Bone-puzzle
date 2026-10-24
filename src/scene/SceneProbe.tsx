@@ -53,6 +53,13 @@ export default function SceneProbe() {
     const probe = {
       snapshot,
       hit,
+      stats: () => ({
+        ...(scene.userData.runtimeMetrics ?? {}),
+        drawCalls: gl.info.render.calls,
+        triangles: gl.info.render.triangles,
+        geometries: gl.info.memory.geometries,
+        textures: gl.info.memory.textures,
+      }),
       camera: () => ({
         position: camera.position.toArray(),
         quaternion: camera.quaternion.toArray(),

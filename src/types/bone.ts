@@ -1,3 +1,4 @@
+import type { BoneCategory } from "../data/anatomy/categories";
 export type Vec3 = [number, number, number];
 export type Quat = [number, number, number, number];
 export type Transform = { position: Vec3; rotation: Quat };
@@ -7,7 +8,7 @@ export type BoneDefinition = {
   englishName: string;
   koreanName: string;
   acceptedAliases: string[];
-  category: "carpals" | "metacarpals" | "phalanges";
+  category: BoneCategory;
   modelPath: string;
   targetPosition: Vec3;
   targetRotation: Quat;

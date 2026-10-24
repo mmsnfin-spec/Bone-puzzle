@@ -1,93 +1,73 @@
 import { useEffect, useState } from "react";
-import { handBones } from "../data/bones";
-import { useGameStore, assemblyCount, namingCount } from "../state/gameStore";
+import { handBones, handBonesByCategory, handBoneIndexById } from "../data/bones";
+import { BONE_CATEGORIES } from "../data/anatomy/categories";
+import { GUIDE_CONFIG, HINT_CONFIG } from "../data/config/gameplay";
+import { INTERACTION_CONFIG } from "../data/config/interaction";
+import { useGameStore, assemblyCount, namingCount, flushGameSave } from "../state/gameStore";
 import { useScreenStore } from "../state/screenStore";
-import BoneNameInput, { rotateBone } from "../components/game/BoneNameInput";
-import ProgressDisplay, {
-  formatTime,
-} from "../components/game/ProgressDisplay";
+import BoneNameInput from "../components/game/BoneNameInput";
+import ProgressDisplay, { formatTime } from "../components/game/ProgressDisplay";
 import type { Vec3 } from "../types/bone";
+
 export default function GameScreen({ onHelp }: { onHelp: () => void }) {
-  const placed = useGameStore(assemblyCount),
-    named = useGameStore(namingCount),
-    hints = useGameStore((s) => s.hintsRemaining),
-    elapsed = useGameStore((s) => s.elapsedTime),
-    difficulty = useGameStore((s) => s.difficulty),
-    ghost = useGameStore((s) => s.ghostOpacity);
-  const [notice, setNotice] = useState("뼈를 드래그해 반투명 골격에 놓으세요.");
+  const placed = useGameStore(assemblyCount), named = useGameStore(namingCount);
+  const hints = useGameStore((s) => s.hintsRemaining);
+  const elapsed = useGameStore((s) => s.elapsedTime);
+  const difficulty = useGameStore((s) => s.difficulty);
+  const ghost = useGameStore((s) => s.ghostOpacity);
+  const guide = useGameStore((s) => s.guideEnabled);
+  const mode = useGameStore((s) => s.interactionMode);
+  const [notice, setNotice] = useState("조각을 선택하고 이동하거나 회전해 정확한 위치에 놓으세요.");
   useEffect(() => {
     if (placed === handBones.length) useScreenStore.getState().go("complete");
   }, [placed]);
   useEffect(() => {
-    let prev = performance.now();
+    let previous = performance.now();
     const timer = setInterval(() => {
       const now = performance.now();
-      if (document.visibilityState === "visible")
-        useGameStore.getState().tick((now - prev) / 1000);
-      prev = now;
+      if (document.visibilityState === "visible" && useScreenStore.getState().screen === "game") useGameStore.getState().tick((now - previous) / 1000);
+      previous = now;
     }, 1000);
-    const visibility = () => {
-      prev = performance.now();
-    };
+    const visibility = () => { previous = performance.now(); if (document.visibilityState !== "visible") flushGameSave(); };
     document.addEventListener("visibilitychange", visibility);
-    return () => {
-      clearInterval(timer);
-      document.removeEventListener("visibilitychange", visibility);
-    };
+    return () => { clearInterval(timer); document.removeEventListener("visibilitychange", visibility); flushGameSave(); };
   }, []);
   useEffect(() => {
-    const drop = (e: Event) =>
-      setNotice(
-        (e as CustomEvent).detail.snapped
-          ? "정확한 위치입니다. 조각을 고정했습니다."
-          : "아직 맞는 위치가 아닙니다. 위치와 회전을 확인해 보세요.",
-      );
+    const drop = (event: Event) => setNotice((event as CustomEvent).detail.snapped ? "정확한 위치입니다. 조각을 고정했습니다." : "아직 맞는 위치가 아닙니다. 위치와 회전을 확인해 보세요.");
     window.addEventListener("bone-drop", drop);
     return () => window.removeEventListener("bone-drop", drop);
   }, []);
   useEffect(() => {
-    const keydown = (e: KeyboardEvent) => {
-      if (
-        (e.target as HTMLElement).closest(
-          'input,textarea,select,button,[role="dialog"]',
-        )
-      )
-        return;
-      const s = useGameStore.getState(),
-        id = s.selectedBoneId;
-      if (!id || s.pieces[id].placed) return;
-      const p = s.pieces[id],
-        step = e.shiftKey ? 0.05 : 0.25;
-      const pos = [...p.transform.position] as Vec3;
+    const keydown = (event: KeyboardEvent) => {
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+      if ((event.target as HTMLElement).closest('input,textarea,select,[contenteditable="true"],[role="dialog"]') || document.querySelector("dialog[open]")) return;
+      const store = useGameStore.getState();
+      if (store.dragging) return;
+      const key = event.key.toLowerCase();
+      if (key === "g") { event.preventDefault(); if (!event.repeat) store.setGuide(!store.guideEnabled); return; }
+      const id = store.selectedBoneId;
+      if (!id || store.pieces[id].placed) return;
+      const piece = store.pieces[id];
+      const step = event.shiftKey ? INTERACTION_CONFIG.preciseMoveStep : INTERACTION_CONFIG.moveStep;
+      const position = [...piece.transform.position] as Vec3;
       const axes: Record<string, [number, number]> = {
-        ArrowLeft: [0, -step],
-        ArrowRight: [0, step],
-        ArrowUp: [1, step],
-        ArrowDown: [1, -step],
-        PageUp: [2, -step],
-        PageDown: [2, step],
+        ArrowLeft: [0, -step], ArrowRight: [0, step], ArrowUp: [1, step], ArrowDown: [1, -step], PageUp: [2, -step], PageDown: [2, step],
       };
-      if (axes[e.key]) {
-        e.preventDefault();
-        const [axis, delta] = axes[e.key];
-        pos[axis] = Math.max(
-          axis === 1 ? -3.7 : -7,
-          Math.min(axis === 1 ? 6 : 7, pos[axis] + delta),
-        );
-        s.move(id, { ...p.transform, position: pos });
-      }
-      if (e.key === "q" || e.key === "e") {
-        e.preventDefault();
-        rotateBone(id, "z", (e.key === "q" ? -1 : 1) * (e.shiftKey ? 5 : 15));
-      }
-      if (e.key === "Enter") {
-        e.preventDefault();
-        const snapped = s.drop(id, p.transform);
-        setNotice(
-          snapped
-            ? "정확한 위치입니다. 조각을 고정했습니다."
-            : "아직 맞는 위치가 아닙니다.",
-        );
+      if (axes[event.key]) {
+        event.preventDefault();
+        const [axis, delta] = axes[event.key];
+        const key = (["x", "y", "z"] as const)[axis];
+        const [minimum, maximum] = INTERACTION_CONFIG.bounds[key];
+        position[axis] = Math.max(minimum, Math.min(maximum, position[axis] + delta));
+        store.move(id, { ...piece.transform, position });
+      } else if (["x", "y", "z", "q", "e"].includes(key)) {
+        event.preventDefault();
+        const axis = key === "q" || key === "e" ? "z" : key as "x" | "y" | "z";
+        store.rotate(id, axis, (key === "q" ? -1 : 1) * (event.shiftKey ? INTERACTION_CONFIG.preciseRotationDegrees : INTERACTION_CONFIG.rotationDegrees));
+      } else if (event.key === "Enter" && !(event.target as HTMLElement).closest("button")) {
+        event.preventDefault();
+        const snapped = store.drop(id, piece.transform);
+        setNotice(snapped ? "정확한 위치입니다. 조각을 고정했습니다." : "아직 맞는 위치가 아닙니다.");
       }
     };
     window.addEventListener("keydown", keydown);
@@ -96,121 +76,44 @@ export default function GameScreen({ onHelp }: { onHelp: () => void }) {
   return (
     <div className="game-screen">
       <header className="game-header">
-        <div className="game-brand">
-          <button
-            className="text-button"
-            onClick={() => useScreenStore.getState().go("title")}
-            aria-label="타이틀로 돌아가기"
-          >
-            ←
-          </button>
-          <span className="mini-wordmark">B/P</span>
-          <span className="header-divider" />
-          <strong>HAND</strong>
-          <small>RIGHT · {difficulty.toUpperCase()}</small>
-        </div>
+        <div className="game-brand"><strong>HAND</strong><small>RIGHT · {difficulty.toUpperCase()}</small></div>
         <div className="game-meta">
           <span className="time">{formatTime(elapsed)}</span>
-          <span className="hint-counter">✧ {hints} / 5</span>
-          <button
-            className="text-button"
-            onClick={() => {
-              useGameStore.getState().newGame();
-              useScreenStore.getState().go("stageIntro");
-            }}
-          >
-            Restart ↻
-          </button>
-          <button
-            className="circle-button"
-            onClick={onHelp}
-            aria-label="조작 도움말"
-          >
-            ?
-          </button>
+          <span className="hint-counter">HINTS {hints} / {HINT_CONFIG.maximumUniqueBones}</span>
+          <button onClick={() => { flushGameSave(); useScreenStore.getState().go("paused"); }}>Pause · Esc</button>
+          <button onClick={() => { useGameStore.getState().newGame(); useScreenStore.getState().go("stageIntro"); }}>Restart ↻</button>
+          <button className="circle-button" onClick={onHelp} aria-label="조작 도움말">?</button>
         </div>
       </header>
-      <div className="scene-heading">
-        <span className="small-kicker">ASSEMBLE THE ANATOMY</span>
-        <h1>The hand.</h1>
-        <span>8 CARPALS · 5 METACARPALS · 14 PHALANGES</span>
-      </div>
       <aside className="game-sidebar">
-        <ProgressDisplay placed={placed} named={named} total={27} />
+        <ProgressDisplay placed={placed} named={named} total={handBones.length} />
         <BoneNameInput />
         <PieceInventory />
       </aside>
       <div className="scene-bottom">
         <div className="scene-controls">
-          <button
-            onClick={() => window.dispatchEvent(new Event("reset-camera"))}
-            className="text-button"
-          >
-            ↺ 시점 초기화
-          </button>
-          <label>
-            GHOST{" "}
-            <input
-              type="range"
-              aria-label="고스트 투명도"
-              min=".05"
-              max=".25"
-              step=".01"
-              value={ghost}
-              onChange={(e) =>
-                useGameStore.getState().setGhost(Number(e.target.value))
-              }
-            />
-          </label>
+          <div className="interaction-modes" role="group" aria-label="조각 조작 모드">
+            <button aria-label="이동 모드" aria-pressed={mode === "move"} onClick={(event) => { useGameStore.getState().setInteractionMode("move"); event.currentTarget.blur(); }}>MOVE</button>
+            <button aria-label="회전 모드" aria-pressed={mode === "rotate"} onClick={(event) => { useGameStore.getState().setInteractionMode("rotate"); event.currentTarget.blur(); }}>ROTATE</button>
+          </div>
+          <button className="guide-toggle" aria-label="조립 가이드" aria-pressed={guide} onClick={(event) => { useGameStore.getState().setGuide(!guide); event.currentTarget.blur(); }}>GUIDE {guide ? "ON" : "OFF"} · G</button>
+          <label className={guide ? "opacity-control" : "opacity-control disabled"}>투명도 <input type="range" aria-label="고스트 투명도" min={GUIDE_CONFIG.minimum} max={GUIDE_CONFIG.maximum} step={GUIDE_CONFIG.step} value={ghost} disabled={!guide} onChange={(event) => useGameStore.getState().setGhost(Number(event.target.value))} /></label>
+          <button className="text-button" onClick={() => window.dispatchEvent(new Event("reset-camera"))}>↺ 시점 초기화</button>
         </div>
-        <p className="game-notice" role="status">
-          {notice}
-        </p>
-        <div className="control-legend">
-          <span>DRAG · 조각 이동</span>
-          <span>ORBIT · 빈 공간 드래그</span>
-          <span>ZOOM · 스크롤</span>
-        </div>
+        <p className="game-notice" role="status">{notice}</p>
+        <p className="control-legend">LEFT · {mode === "rotate" ? "자유 회전" : "조각 이동"} / SHIFT · 이동　 RIGHT · 시점 회전　 MIDDLE · PAN　 WHEEL · 확대</p>
       </div>
     </div>
   );
 }
 function PieceInventory() {
-  const selected = useGameStore((s) => s.selectedBoneId),
-    pieces = useGameStore((s) => s.pieces);
-  return (
-    <section className="inventory" aria-label="뼈 조각 목록">
-      <div className="inventory-heading">
-        <span className="small-kicker">PIECE INDEX</span>
-        <small>✓ 배치 · • 이름 확인</small>
+  const selected = useGameStore((s) => s.selectedBoneId), pieces = useGameStore((s) => s.pieces);
+  return <section className="inventory" aria-label="뼈 조각 목록">
+    <div className="inventory-heading"><span className="small-kicker">PIECE INDEX</span><small>✓ 배치 · • 이름 확인</small></div>
+    {BONE_CATEGORIES.map(({ id: category, name }) => <div className="inventory-group" key={category}>
+      <h3>{name}</h3><div className="piece-grid">
+        {handBonesByCategory[category].map((bone) => <button key={bone.id} aria-label={`조각 ${String(handBoneIndexById[bone.id] + 1).padStart(2, "0")} 선택`} aria-pressed={selected === bone.id} className={`${selected === bone.id ? "selected" : ""} ${pieces[bone.id].placed ? "placed" : ""}`} onClick={(event) => { useGameStore.getState().select(bone.id); event.currentTarget.blur(); }}>{pieces[bone.id].placed ? "✓" : String(handBoneIndexById[bone.id] + 1).padStart(2, "0")}{pieces[bone.id].nameVerified && <span className="verified-dot" />}</button>)}
       </div>
-      {(["carpals", "metacarpals", "phalanges"] as const).map((category) => (
-        <div className="inventory-group" key={category}>
-          <h3>{category.toUpperCase()}</h3>
-          <div className="piece-grid">
-            {handBones.map(
-              (b, i) =>
-                b.category === category && (
-                  <button
-                    key={b.id}
-                    aria-label={`조각 ${String(i + 1).padStart(2, "0")} 선택`}
-                    aria-pressed={selected === b.id}
-                    className={`${selected === b.id ? "selected" : ""} ${pieces[b.id].placed ? "placed" : ""}`}
-                    onClick={(e) => {
-                      useGameStore.getState().select(b.id);
-                      e.currentTarget.blur();
-                    }}
-                  >
-                    {pieces[b.id].placed ? "✓" : String(i + 1).padStart(2, "0")}
-                    {pieces[b.id].nameVerified && (
-                      <span className="verified-dot" />
-                    )}
-                  </button>
-                ),
-            )}
-          </div>
-        </div>
-      ))}
-    </section>
-  );
+    </div>)}
+  </section>;
 }

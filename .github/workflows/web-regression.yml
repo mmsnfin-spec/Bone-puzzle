@@ -1,0 +1,43 @@
+name: Web game Windows Chrome and Edge
+on:
+  push:
+    branches: [improvement/web-performance]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: web-regression-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  windows-browser:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chrome, msedge]
+    env:
+      BROWSER_CHANNEL: ${{ matrix.browser }}
+      E2E_HEADFUL: '1'
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run validate:data
+      - run: npm run build
+      - name: Install browser
+        shell: pwsh
+        run: npx playwright install $env:BROWSER_CHANNEL
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: web-${{ matrix.browser }}-${{ github.sha }}
+          path: |
+            test-results/
+            dist/

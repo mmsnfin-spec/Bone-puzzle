@@ -1,6 +1,8 @@
 import { useGameStore, namingCount } from "../state/gameStore";
 import { useScreenStore } from "../state/screenStore";
 import { formatTime } from "../components/game/ProgressDisplay";
+import { HAND_STAGE } from "../data/stageRegistry";
+import { HINT_CONFIG } from "../data/config/gameplay";
 export default function CompletionScreen() {
   const time = useGameStore((s) => s.elapsedTime),
     hints = useGameStore((s) => s.hintsRemaining),
@@ -8,7 +10,7 @@ export default function CompletionScreen() {
   return (
     <div className="completion-screen">
       <div className="completion-heading">
-        <p className="eyebrow">ALL 27 PIECES, IN PLACE.</p>
+        <p className="eyebrow">ALL {HAND_STAGE.count} PIECES, IN PLACE.</p>
         <h1>Complete.</h1>
         <p>
           구조를 완성했습니다.
@@ -22,7 +24,7 @@ export default function CompletionScreen() {
           <div>
             <dt>ASSEMBLED</dt>
             <dd>
-              27 <small>/ 27</small>
+              {HAND_STAGE.count} <small>/ {HAND_STAGE.count}</small>
             </dd>
           </div>
           <div>
@@ -32,13 +34,13 @@ export default function CompletionScreen() {
           <div>
             <dt>HINTS USED</dt>
             <dd>
-              {5 - hints} <small>/ 5</small>
+              {HINT_CONFIG.maximumUniqueBones - hints} <small>/ {HINT_CONFIG.maximumUniqueBones}</small>
             </dd>
           </div>
           <div>
             <dt>NAMES VERIFIED</dt>
             <dd>
-              {named} <small>/ 27</small>
+              {named} <small>/ {HAND_STAGE.count}</small>
             </dd>
           </div>
         </dl>
@@ -53,13 +55,13 @@ export default function CompletionScreen() {
         </button>
         <button
           className="text-button"
-          onClick={() => useScreenStore.getState().go("title")}
+          onClick={() => useScreenStore.getState().go("menu")}
         >
-          Back to title <span>→</span>
+          Back to Stage Select <span>→</span>
         </button>
       </div>
       <p className="completion-caption">
-        드래그하여 완성된 골격을 자유롭게 관찰하세요.
+        오른쪽 드래그 · 휠 · 가운데 드래그로 완성된 골격을 관찰하세요.
       </p>
     </div>
   );

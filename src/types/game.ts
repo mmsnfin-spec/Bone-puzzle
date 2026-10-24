@@ -1,6 +1,14 @@
-export type Screen = "splash" | "title" | "stageIntro" | "game" | "complete";
+export type Screen =
+  | "splash"
+  | "title"
+  | "menu"
+  | "stageIntro"
+  | "game"
+  | "paused"
+  | "complete";
 export type Difficulty = "easy" | "normal" | "hard";
-export type StageId = "hand" | "foot" | "vertebra";
+export type InteractionMode = "move" | "rotate";
+export type StageId = import("../data/stageRegistry").RegisteredStageId;
 export type AnimationStatus =
   | "assembled"
   | "falling"

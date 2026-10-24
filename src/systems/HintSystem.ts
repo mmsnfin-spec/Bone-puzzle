@@ -1,4 +1,5 @@
-export const MAX_HINTS = 5;
+import { HINT_CONFIG } from "../data/config/gameplay";
+export const MAX_HINTS = HINT_CONFIG.maximumUniqueBones;
 export function hintAllowed(
   selected: boolean,
   revealed: boolean,

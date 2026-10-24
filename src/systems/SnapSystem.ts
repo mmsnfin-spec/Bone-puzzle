@@ -1,5 +1,6 @@
 import type { BoneDefinition, Transform } from "../types/bone";
 import type { Difficulty } from "../types/game";
+import { DIFFICULTY_RULES } from "../data/config/gameplay";
 export function quaternionAngle(a: number[], b: number[]) {
   const norm = Math.hypot(...a) * Math.hypot(...b);
   if (!norm) return Infinity;
@@ -20,13 +21,12 @@ export function canSnap(
   const distance = Math.hypot(
     ...transform.position.map((v, i) => v - bone.targetPosition[i]),
   );
-  const tolerance =
-    bone.snapDistance *
-    (difficulty === "hard" ? 0.5 : difficulty === "normal" ? 0.75 : 1);
+  const rule = DIFFICULTY_RULES[difficulty];
+  const tolerance = bone.snapDistance * rule.distanceMultiplier;
   return (
     distance <= tolerance &&
-    (difficulty === "easy" ||
+    (rule.angleRadians === null ||
       quaternionAngle(transform.rotation, bone.targetRotation) <=
-        (difficulty === "normal" ? 0.35 : 0.16))
+        rule.angleRadians)
   );
 }

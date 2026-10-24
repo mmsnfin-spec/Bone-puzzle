@@ -1,83 +1,10 @@
 import { test, expect } from "@playwright/test";
-import type { Page } from "@playwright/test";
-import { readFileSync } from "node:fs";
-import type { BoneDefinition } from "../../src/types/bone";
-const handBones = JSON.parse(
-  readFileSync(new URL("../../src/data/hand.json", import.meta.url), "utf8"),
-).bones as BoneDefinition[];
-type Point = { x: number; y: number };
-type Sample = {
-  screen: Point;
-  target: Point;
-  position: number[];
-  rotation: number[];
-  minY: number;
-};
-type Probe = {
-  snapshot: () => Record<string, Sample>;
-  hit: (x: number, y: number) => string | null;
-  camera: () => { position: number[]; quaternion: number[]; zoom: number };
-};
-declare global {
-  interface Window {
-    __boneProbe: Probe;
-  }
-}
-async function load(page: Page) {
-  await page.goto("/");
-  await expect(page.locator(".app")).toHaveAttribute("data-screen", "title");
-  await page.waitForFunction(() => Boolean(window.__boneProbe));
-  await expect(page.locator(".model-loading")).toHaveCount(0);
-}
-async function begin(page: Page, skip = true) {
-  await page.getByRole("button", { name: /^Start/ }).click();
-  if (skip) await page.getByRole("button", { name: /Skip intro/ }).click();
-  await expect(page.locator(".app")).toHaveAttribute("data-screen", "game");
-  await page.waitForTimeout(1200);
-}
-async function state(page: Page) {
-  return page.evaluate(
-    () => JSON.parse(localStorage.getItem("bone-puzzle-3d:hand:v1")!).state,
-  );
-}
-async function snapshot(page: Page) {
-  return page.evaluate(() => window.__boneProbe.snapshot());
-}
-async function grabPoint(page: Page, id: string) {
-  const s = (await snapshot(page))[id];
-  // Find a visible surface near the mesh centroid; no game state mutation.
-  const point = await page.evaluate(
-    ({ center, id }) => {
-      for (const radius of [0, 3, 6, 10, 15, 22, 30])
-        for (let i = 0; i < 12; i++) {
-          const x = center.x + radius * Math.cos((i * Math.PI) / 6),
-            y = center.y + radius * Math.sin((i * Math.PI) / 6);
-          if (window.__boneProbe.hit(x, y) === id) return { x, y };
-        }
-      return null;
-    },
-    { center: s.screen, id },
-  );
-  expect(point, `visible clickable surface for ${id}`).not.toBeNull();
-  return point!;
-}
-async function placeWithMouse(page: Page, id: string, wrong = false) {
-  const s = (await snapshot(page))[id],
-    p = await grabPoint(page, id);
-  const dest = wrong
-    ? { x: s.target.x + 200, y: s.target.y - 80 }
-    : { x: s.target.x + p.x - s.screen.x, y: s.target.y + p.y - s.screen.y };
-  await page.mouse.move(p.x, p.y);
-  await page.mouse.down();
-  await page.mouse.move(dest.x, dest.y, { steps: 14 });
-  await page.mouse.up();
-  await page.waitForTimeout(300);
-}
+import { handBones, load, menu, begin, ready, state, snapshot, grabPoint, placeWithMouse, restart } from "./helpers";
 
 test("cinematic, all 27 actual pointer placements, naming, persistence and completion", async ({
   page,
 }) => {
-  test.setTimeout(180_000);
+  test.setTimeout(270_000);
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   page.on("console", (m) => {
@@ -87,11 +14,13 @@ test("cinematic, all 27 actual pointer placements, naming, persistence and compl
   await page.waitForTimeout(500);
   expect(await page.locator(".app").getAttribute("data-screen")).toBe("title");
   await page.screenshot({ path: "test-results/title.png" });
-  await page.getByRole("button", { name: /^Start/ }).click();
+  await menu(page, true);
+  await page.getByRole("button", { name: "Start HAND", exact: true }).click();
   await expect(page.locator(".app")).toHaveAttribute(
     "data-screen",
     "stageIntro",
   );
+  await ready(page);
   await page.waitForTimeout(2300);
   const falling = await snapshot(page);
   expect(Object.values(falling).some((b) => b.position[1] < -1)).toBe(true);
@@ -135,6 +64,8 @@ test("cinematic, all 27 actual pointer placements, naming, persistence and compl
   await expect(
     page.getByRole("status", { name: "이름 확인 결과" }),
   ).toContainText("정답입니다");
+  await page.getByRole("button", { name: "조립 가이드", exact: true }).click();
+  await expect(page.getByRole("button", { name: "조립 가이드", exact: true })).toHaveAttribute("aria-pressed", "false");
   const before = await page.evaluate(() => window.__boneProbe.camera());
   await placeWithMouse(page, handBones[0].id, true);
   expect((await state(page)).pieces[handBones[0].id].placed).toBe(false);
@@ -151,14 +82,16 @@ test("cinematic, all 27 actual pointer placements, naming, persistence and compl
   await expect(page.locator(".app")).toHaveAttribute("data-screen", "complete");
   await expect(page.getByRole("heading", { name: "Complete." })).toBeVisible();
   await page.screenshot({ path: "test-results/complete.png" });
-  await page.getByRole("button", { name: /Back to title/ }).click();
+  await page.getByRole("button", { name: /Back to Stage Select/ }).click();
   await page.reload();
+  await menu(page);
   await expect(page.getByRole("button", { name: /이어하기/ })).toBeVisible();
   await page.getByRole("button", { name: /이어하기/ }).click();
   await expect(page.locator(".app")).toHaveAttribute("data-screen", "complete");
   await page.getByRole("button", { name: /Replay/ }).click();
   await page.getByRole("button", { name: /Skip intro/ }).click();
   expect((await state(page)).hintsRemaining).toBe(5);
+  expect((await state(page)).guideEnabled).toBe(false);
   expect(
     Object.values((await state(page)).pieces).filter((p: any) => p.placed),
   ).toHaveLength(0);
@@ -200,8 +133,7 @@ test("camera orbit, zoom, rotated-camera drag, five-hint cap, restart", async ({
     page.getByRole("button", { name: /이름 힌트 보기/ }),
   ).toBeDisabled();
   expect((await state(page)).hintsRemaining).toBe(0);
-  await page.getByRole("button", { name: /Restart/ }).click();
-  await page.getByRole("button", { name: /Skip intro/ }).click();
+  await restart(page);
   expect((await state(page)).hintsRemaining).toBe(5);
   expect((await state(page)).pieces[handBones[0].id].placed).toBe(false);
 });
@@ -212,11 +144,11 @@ test("mobile layout, reduced motion and asset failure feedback", async ({
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await load(page);
+  await menu(page);
   await expect(
     page.getByRole("checkbox", { name: "모션 줄이기" }),
   ).toBeChecked();
-  await page.getByRole("button", { name: /^Start/ }).click();
-  await expect(page.locator(".app")).toHaveAttribute("data-screen", "game");
+  await begin(page);
   await expect(page.getByRole("progressbar")).toBeVisible();
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth),
@@ -230,6 +162,8 @@ test("mobile layout, reduced motion and asset failure feedback", async ({
   ).toContainText("정답입니다");
   await page.route("**/*.glb", (route) => route.abort());
   await page.reload();
+  await menu(page);
+  await page.getByRole("button", { name: /이어하기/ }).click();
   await expect(page.getByRole("alert")).toContainText(
     "3D 모델을 불러오지 못했습니다",
   );
@@ -239,6 +173,7 @@ test("Normal rejects rotation mismatch, rotation controls and keyboard placement
   page,
 }) => {
   await load(page);
+  await menu(page);
   await page.getByLabel("DIFFICULTY").selectOption("normal");
   await begin(page);
   const bone = handBones[1];

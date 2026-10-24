@@ -22,6 +22,10 @@ The official server was unreachable (proxy 403) during implementation; provenanc
 
 Three references were provided in the conversation. Binary originals are not present in the workspace and are not redistributed here. No replacement brand-symbol artwork or commercial font binaries have been generated or included. Times New Roman/Times are referenced as system fonts only.
 
+## Web title typography
+
+`src/assets/title-serif.woff2` is a Latin/punctuation WOFF2 subset of the DejaVu Serif font used in the Godot edition. Glyph outlines are retained; no commercial font was included. Bitstream Vera/DejaVu notices are preserved at `public/assets/fonts/LICENSE-DejaVu.txt`. Korean interface text uses system fallbacks. No original brand image is currently mounted.
+
 ## Dependencies
 
 Vite, React, TypeScript, Three.js, React Three Fiber, Drei, Rapier, Zustand, Vitest, Testing Library, and Playwright retain their respective upstream licenses in their npm packages. See package-lock.json for exact versions. No paid API or backend service is required.

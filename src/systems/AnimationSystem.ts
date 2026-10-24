@@ -1,11 +1,5 @@
-export const TIMING = {
-  splash: 2100,
-  reveal: 1700,
-  falling: 2600,
-  settle: 900,
-  typography: 1500,
-  snap: 220,
-};
+export { ANIMATION_TIMING as TIMING } from "../data/config/gameplay";
+import { ANIMATION_TIMING as TIMING } from "../data/config/gameplay";
 export const INTRO_DURATION =
   TIMING.reveal + TIMING.falling + TIMING.settle + TIMING.typography;
 export function introPhase(ms: number) {

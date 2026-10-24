@@ -1,8 +1,16 @@
+@font-face {
+  font-family: "Bone Serif";
+  src: url("../assets/title-serif.woff2") format("woff2");
+  font-display: swap;
+}
 :root {
   --black: #050505;
   --white: #eeeee7;
-  --line: #292b24;
-  --muted: #94988a;
   --ivory: #e9e5da;
+  --muted: #a0a197;
+  --line: #35372f;
+  --panel: #10110e;
+  --gold: #cbbb8c;
+  --serif: "Bone Serif", Georgia, "Times New Roman", serif;
   color-scheme: dark;
 }

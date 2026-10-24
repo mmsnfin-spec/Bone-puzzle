@@ -1,0 +1,213 @@
+{
+  "config": {
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "/workspace/Bone-puzzle/node_modules/.bin/playwright",
+      "test",
+      "tests/e2e/intro-framing.spec.ts"
+    ],
+    "configFile": "/workspace/Bone-puzzle/playwright.config.ts",
+    "rootDir": "/workspace/Bone-puzzle/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/workspace/Bone-puzzle/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/workspace/Bone-puzzle/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 270000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/workspace/Bone-puzzle/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/workspace/Bone-puzzle/tests/e2e",
+        "snapshotDir": "/workspace/Bone-puzzle/tests/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 270000,
+        "use": {
+          "baseURL": "http://127.0.0.1:5174",
+          "headless": false,
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "launchOptions": {
+            "executablePath": "/usr/bin/chromium",
+            "args": [
+              "--no-sandbox",
+              "--disable-dev-shm-usage",
+              "--use-angle=swiftshader",
+              "--enable-unsafe-swiftshader"
+            ]
+          },
+          "screenshot": "only-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --port 5174",
+      "env": {
+        "VITE_E2E": "1"
+      },
+      "url": "http://127.0.0.1:5174",
+      "reuseExistingServer": true,
+      "timeout": 60000
+    }
+  },
+  "suites": [
+    {
+      "title": "intro-framing.spec.ts",
+      "file": "intro-framing.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "whole intro remains visible through every phase at 1920x1080",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9183,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T19:59:06.983Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "intro-frame-bounds",
+                      "contentType": "application/json",
+                      "body": "ewogICJwaGFzZXMiOiBbCiAgICAiYXNzZW1ibGVkIiwKICAgICJmYWxsaW5nIiwKICAgICJzZXR0bGluZyIsCiAgICAidHlwb2dyYXBoeSIKICBdLAogICJjbGlwcGVkIjogW10sCiAgInNhbXBsZXMiOiAyMDIsCiAgImRvbmUiOiB0cnVlCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ef98fdd71253d4aad043-02ea4872964cbaa4fc15",
+          "file": "intro-framing.spec.ts",
+          "line": 8,
+          "column": 3
+        },
+        {
+          "title": "whole intro remains visible through every phase at 1920x900",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 270000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9248,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T19:59:16.699Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "intro-frame-bounds",
+                      "contentType": "application/json",
+                      "body": "ewogICJwaGFzZXMiOiBbCiAgICAiYXNzZW1ibGVkIiwKICAgICJmYWxsaW5nIiwKICAgICJzZXR0bGluZyIsCiAgICAidHlwb2dyYXBoeSIKICBdLAogICJjbGlwcGVkIjogW10sCiAgInNhbXBsZXMiOiAyNjAsCiAgImRvbmUiOiB0cnVlCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ef98fdd71253d4aad043-675c3b2aa05264e7e903",
+          "file": "intro-framing.spec.ts",
+          "line": 8,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-24T19:59:05.892Z",
+    "duration": 20577.706000000002,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

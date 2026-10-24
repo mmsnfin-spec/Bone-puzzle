@@ -1,28 +1,46 @@
 import { test, expect } from "@playwright/test";
-import { load, menu, snapshot } from "./helpers";
+import { load, menu } from "./helpers";
+
+type IntroTrace = { phases: string[]; clipped: string[]; samples: number; done: boolean };
+declare global { interface Window { __introTrace: IntroTrace; } }
 
 for (const viewport of [{ width: 1920, height: 1080 }, { width: 1920, height: 900 }]) {
   test(`whole intro remains visible through every phase at ${viewport.width}x${viewport.height}`, async ({ page }) => {
     await page.setViewportSize(viewport);
     await load(page);
     await menu(page);
+    // Observe inside the browser, beginning before model initialization. Remote
+    // locator calls and screenshots can exceed the 900ms settle phase on CI.
+    // All four real phases and the same strict model bounds remain required.
+    await page.evaluate(({width,height}) => {
+      const trace: IntroTrace = window.__introTrace = {phases:[],clipped:[],samples:0,done:false};
+      const sample = () => {
+        const screen=document.querySelector('.app')?.getAttribute('data-screen');
+        if(screen==='game'){trace.done=true;return;}
+        if(screen==='stageIntro' && window.__boneProbe){
+          const pieces=window.__boneProbe.snapshot();
+          if(Object.keys(pieces).length===27){
+            const caption=document.querySelector('.intro-subtitle')?.textContent;
+            const phase=document.querySelector('.stage-typography')?'typography':caption?.includes('extraordinary')?'assembled':caption?.includes('Every structure')?'falling':'settling';
+            if(!trace.phases.includes(phase))trace.phases.push(phase);
+            trace.samples++;
+            for(const [id,piece] of Object.entries(pieces)){
+              const b=piece.bounds;
+              if(b.left<0||b.right>width||b.top<60||b.bottom>height-120)
+                if(trace.clipped.length<20)trace.clipped.push(`${phase}: ${id} ${JSON.stringify(b)}`);
+            }
+          }
+        }
+        requestAnimationFrame(sample);
+      };
+      requestAnimationFrame(sample);
+    },viewport);
     await page.getByRole("button", { name: "Start HAND", exact: true }).click();
-    await page.waitForFunction(() => Boolean(window.__boneProbe) && Object.keys(window.__boneProbe.snapshot()).length === 27);
-    const phases = new Set<string>();
-    const clipped: string[] = [];
-    while (await page.locator(".app").getAttribute("data-screen") === "stageIntro") {
-      const caption = await page.locator(".intro-subtitle").textContent();
-      const phase = await page.getByLabel("HAND", { exact: true }).count() ? "typography" : caption || "settling";
-      if (!phases.has(phase)) await page.screenshot({ path: `test-results/intro-${viewport.height}-phase-${phases.size}.png` });
-      phases.add(phase);
-      for (const [id, piece] of Object.entries(await snapshot(page))) {
-        const b = piece.bounds;
-        if (b.left < 0 || b.right > viewport.width || b.top < 60 || b.bottom > viewport.height - 120)
-          clipped.push(`${phase}: ${id} ${JSON.stringify(b)}`);
-      }
-      await page.waitForTimeout(75);
-    }
-    expect(phases.size).toBe(4);
-    expect(clipped.slice(0, 5), "model bounds must stay above the subtitle and skip controls").toEqual([]);
+    await page.waitForFunction(()=>window.__introTrace.done);
+    const trace=await page.evaluate(()=>window.__introTrace);
+    await test.info().attach('intro-frame-bounds',{body:JSON.stringify(trace,null,2),contentType:'application/json'});
+    expect(trace.phases.sort()).toEqual(['assembled','falling','settling','typography']);
+    expect(trace.samples).toBeGreaterThan(4);
+    expect(trace.clipped, "model bounds must stay above the subtitle and skip controls").toEqual([]);
   });
 }

@@ -54,7 +54,7 @@ position tolerance와 anatomical pieces는 동일하다. 초기 방향은 New Ga
 - `validate:thoracic`: 원본 출처·체크섬, 7개 exported solid의 edge closure·연결성·양의 부피, 15 landmark 연결, 원본 외부 삼각형 평면 오차 검사 통과.
 - 실제 export→역변환 결과: 최대 외부 평면 오차 0.000059876 source units, 최대 pair overlap volume 0.000020709, missing volume 0.003110811, outside volume 0.002719809, volume 합 오차 0.000158242. 비교 원본 volume 24289.090584. 임의로 임상 mm 단위라고 주장하지 않는다. Boolean 생성 단계의 overlap/union difference는 1e-7 미만이다.
 - TypeScript·프로덕션 build 통과. 신규 runtime 패키지는 추가하지 않았다. Python 의존성은 에셋 제작·검사에만 필요하다.
-- 이번 변경의 CPU/Lighthouse는 재측정하지 않았다. Windows Chrome/Edge 결과는 GitHub의 신규 커밋 workflow 결과로 구분해 확인해야 한다.
+- 이번 변경의 CPU/Lighthouse는 재측정하지 않았다. 첫 Windows 검사에서 Chrome은 17개 통과, Edge는 T06 4개를 포함한 16개 통과 후 기존 HAND 900px intro 검사에서 구간 수 기록 3/4로 실패했다. 모델 경계 위반은 보고되지 않았다. Node 원격 호출·스크린샷 사이에 짧은 settling 구간을 놓치지 않도록 브라우저 내부 rAF 기록으로 변경했다. 4구간과 같은 bounds 조건은 유지하며 JSON trace를 첨부한다. 수정 후 Windows 재검사는 최종 응답/CI 결과를 참조한다.
 
 ## 재현
 

@@ -5,12 +5,12 @@ from collections import Counter
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 spec=importlib.util.spec_from_file_location('convert',ROOT/'scripts/convert-obj-to-glb.py');convert=importlib.util.module_from_spec(spec);spec.loader.exec_module(convert)
-data=json.loads((ROOT/'src/data/hand.json').read_text());bones=data['bones'];mapping=data['coordinateMapping']
+data=json.loads((ROOT/'src/data/hand.json').read_text(encoding='utf-8'));bones=data['bones'];mapping=data['coordinateMapping']
 assert len(bones)==27 and len({b['id'] for b in bones})==27
 assert Counter(b['category'] for b in bones)=={'carpals':8,'metacarpals':5,'phalanges':14}
 assert sum('thumb' in b['englishName'].lower() for b in bones)==2,'Thumb has two phalanges'
-manifest=json.loads((ROOT/'public/models/hand/source/manifest.json').read_text())
-names=dict(line.split('\t',1) for line in (ROOT/'public/models/hand/source/parts_list_e.txt').read_text().splitlines()[1:])
+manifest=json.loads((ROOT/'public/models/hand/source/manifest.json').read_text(encoding='utf-8'))
+names=dict(line.split('\t',1) for line in (ROOT/'public/models/hand/source/parts_list_e.txt').read_text(encoding='utf-8').splitlines()[1:])
 max_error=0.;triangles=0;source_checks=0
 for b in bones:
     rec=next(x for x in manifest['models'] if x['fmaId']==b['id']);assert names[b['id']]==rec['englishName']
